@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Shafam.Common.DataModel;
+using Shafam.DataAccess.Infrastructure;
+
+namespace Shafam.DataAccess.Repositories
+{
+    public class PatientRepository : IPatientRepository
+    {
+        private readonly IShafamDataContext _context;
+
+        public PatientRepository(IShafamDataContext context)
+        {
+            _context = context;
+        }
+
+        public void AddPatient(Patient patient)
+        {
+            _context.Patients.Add(patient);
+            _context.Save();
+        }
+
+        public IEnumerable<Patient> GetPatients()
+        {
+            return _context.Patients.ToList();
+        }
+
+        public Patient GetPatient(int patientid)
+        {
+            return _context.Patients.First(p => p.PatientId == patientid);
+        }
+    }
+}

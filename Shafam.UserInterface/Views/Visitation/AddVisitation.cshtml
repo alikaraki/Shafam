@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Add Visitation";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@model Shafam.UserInterface.Models.VisitationViewModel
+
+@using(Html.BeginForm("AddVisitation", "Visitation", new {patientId = Model.Patient.PatientId}))
+{
+    @Html.LabelFor(m => m.Reason)
+    @Html.TextAreaFor(m => m.Reason)
+
+    <input type="submit" value="Save" />
+}
