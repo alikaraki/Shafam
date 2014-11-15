@@ -6,3 +6,6 @@ Shafam.Common/obj/
 Shafam.DataAccess/obj/
 Shafam.BusinessLogic/obj/
 Shafam.UserInterface/obj/
+Shafam.UserInterface/App_Data/aspnet-Shafam.UserInterface-20141027084411.mdf
+Shafam.UserInterface/App_Data/aspnet-Shafam.UserInterface-20141027084411_log.ldf
+Shafam.v12.suo
