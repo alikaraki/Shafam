@@ -4,7 +4,7 @@
 
 @model Shafam.Common.DataModel.Patient
 
-<h2>@ViewBag.Title</h2>
+@Html.Partial("_Header", @Model)
 
 <form class="form-horizontal" role="form">
     <div class="form-group">
@@ -26,7 +26,3 @@
         </div>
     </div>
 </form>
-
-<p>@Html.ActionLink("Add Visitation", "AddVisitation", "Visitation", new {patientId = @Model.PatientId}, null)</p>
-<br />
-<p>@Html.ActionLink("Back", "Index")</p>

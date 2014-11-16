@@ -42,7 +42,15 @@ namespace Shafam.UserInterface.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+
+                    switch (user.Role)
+                    {
+                        case UserRole.Doctor:
+                            return RedirectToAction("Index", "Doctor");
+
+                        default:
+                            return RedirectToLocal(returnUrl);
+                    }
                 }
                 else
                 {
@@ -59,8 +67,8 @@ namespace Shafam.UserInterface.Controllers
         {
             User user = _userRepository.GetUser("Doctor");
             SignInAsync(user, true);
-            
-            return RedirectToLocal(returnUrl);
+
+            return RedirectToAction("Index", "Doctor");
         }
 
         [AllowAnonymous]

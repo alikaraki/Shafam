@@ -20,7 +20,7 @@
     @foreach (Patient patient in Model)
     {
         <tr>
-            <td>@Html.ActionLink(@patient.PatientId.ToString(), "PatientDetails", new { patientid = @patient.PatientId }) </td>
+            <td>@Html.ActionLink(@patient.PatientId.ToString(), "Profile", new { patientid = @patient.PatientId }) </td>
             <td>@patient.FirstName</td>
             <td>@patient.LastName</td>
             <td>@patient.Age</td>

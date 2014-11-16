@@ -32,7 +32,7 @@ namespace Shafam.UserInterface.Controllers
             // Add visitation record to repository
             // Redirect to patient details
 
-            return RedirectToAction("PatientDetails", "Patient", new {patientId = patientId});
+            return RedirectToAction("Profile", "Patient", new {patientId = patientId});
         }
 	}
 }

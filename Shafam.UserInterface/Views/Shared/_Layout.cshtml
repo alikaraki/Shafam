@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Shafam.Common.Infrastructure
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,10 +24,19 @@
                 <ul class="nav navbar-nav">
                     @{string action = ViewContext.RouteData.Values["action"].ToString();}
                     @{string controller = ViewContext.RouteData.Values["controller"].ToString();}
-                    <li @if (action == "Index" && controller == "Home") { <text> class="active" </text> }>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li @if (action == "About") { <text> class="active" </text>  }>@Html.ActionLink("About", "About", "Home")</li>
-                    <li @if (action == "Contact") { <text> class="active" </text>  }>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li @if (controller == "Patient") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Index", "Patient")</li>
+                    
+                    @if (User.IsAnonymous())
+                    { 
+                        <li @if (action == "Index" && controller == "Home") { <text> class="active" </text> }>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li @if (action == "About") { <text> class="active" </text>  }>@Html.ActionLink("About", "About", "Home")</li>
+                        <li @if (action == "Contact") { <text> class="active" </text>  }>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+                    
+                    @if (User.IsDoctor())
+                    {
+                        <li @if (controller == "Doctor") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Index", "Doctor")</li>
+                        <li @if (controller == "Patient") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Index", "Patient")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

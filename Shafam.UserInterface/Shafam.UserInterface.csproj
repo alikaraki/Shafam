@@ -228,13 +228,14 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Patient\PatientDetails.cshtml" />
+    <Content Include="Views\Patient\Profile.cshtml" />
     <Content Include="Views\Visitation\AddVisitation.cshtml" />
-    <Content Include="Views\Doctor\Create.cshtml" />
-    <Content Include="Views\Doctor\Delete.cshtml" />
-    <Content Include="Views\Doctor\Details.cshtml" />
-    <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Patient\Visitations.cshtml" />
+    <Content Include="Views\Patient\Medications.cshtml" />
+    <Content Include="Views\Patient\Treatments.cshtml" />
+    <Content Include="Views\Patient\Tests.cshtml" />
+    <Content Include="Views\Patient\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

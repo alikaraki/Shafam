@@ -42,10 +42,33 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PatientDetails(int patientId)
+        public ActionResult Profile(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
+            return View(patient);
+        }
 
+        public ActionResult Visitations(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            return View(patient);
+        }
+
+        public ActionResult Medications(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            return View(patient);
+        }
+
+        public ActionResult Treatments(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            return View(patient);
+        }
+
+        public ActionResult Tests(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
             return View(patient);
         }
 	}
