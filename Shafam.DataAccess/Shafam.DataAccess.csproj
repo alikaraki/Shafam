@@ -62,9 +62,11 @@
     <Compile Include="Infrastructure\ShafamDataContext.cs" />
     <Compile Include="Infrastructure\ShafamDropCreateAlwaysInitializer.cs" />
     <Compile Include="IPatientRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DoctorRepository.cs" />
     <Compile Include="Repositories\PatientRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

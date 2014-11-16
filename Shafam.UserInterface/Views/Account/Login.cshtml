@@ -11,7 +11,6 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
                 <hr />
                 @Html.ValidationSummary(true)
                 <div class="form-group">
@@ -41,16 +40,20 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register", "Register") if you don't have a local account.
-                </p>
             }
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        <p>Login with a  Test Account:</p>
+        <div class="list-group">
+            @Html.ActionLink("Doctor", "LoginAsDoctor", null, new { @class = "list-group-item" })
+            @Html.ActionLink("Patient", "LoginAsPatient", null, new { @class = "list-group-item" })
+            @Html.ActionLink("Staff", "LoginAsStaff", null, new { @class = "list-group-item" })
+            @Html.ActionLink("Legal", "LoginAsLegal", null, new { @class = "list-group-item" })
+            @Html.ActionLink("Finance", "LoginAsFinance", null, new { @class = "list-group-item" })
+            @Html.ActionLink("IT Dept", "LoginAsIT", null, new { @class = "list-group-item" })
+
+        </div>
     </div>
 </div>
 @section Scripts {

@@ -9,6 +9,8 @@ namespace Shafam.DataAccess.Infrastructure
 
         IDbSet<Doctor> Doctors { get; } 
 
+        IDbSet<User> Users { get; } 
+
         void Save();
     }
 }
