@@ -7,7 +7,7 @@ using Shafam.Common.DataModel;
 
 namespace Shafam.BusinessLogic
 {
-    interface IPatientManagementService
+    class IPatientManagementService
     {
         Patient ViewPatient(int patientId);
         List<Patient> ViewAllPatients(int doctorId);
