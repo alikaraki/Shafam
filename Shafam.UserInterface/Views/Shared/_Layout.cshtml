@@ -34,8 +34,35 @@
                     
                     @if (User.IsDoctor())
                     {
-                        <li @if (controller == "Doctor") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Index", "Doctor")</li>
-                        <li @if (controller == "Patient") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Index", "Patient")</li>
+                        <li @if (action == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Home", "Doctor")</li>
+                        <li @if (action != "Home") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                    }
+                    
+                    @if (User.IsFinance())
+                    {
+                        <li @if (action == "Bills") { <text> class="active" </text>   }>@Html.ActionLink("Bills", "Bills", "Finance")</li>
+                        <li @if (action == "Reports") { <text> class="active" </text>   }>@Html.ActionLink("Reports", "Reports", "Finance")</li>
+                    }
+                    
+                    @if (User.IsIT())
+                    {
+                        <li class="active">@Html.ActionLink("Users", "Users", "IT")</li>
+                    }
+                    
+                    @if (User.IsLegal())
+                    {
+                        <li @if (action == "Complaints") { <text> class="active" </text>     }>@Html.ActionLink("Complaints", "Complaints", "Legal")</li>
+                        <li @if (action == "Reports") { <text> class="active" </text>     }>@Html.ActionLink("Reports", "Reports", "Legal")</li>
+                    }
+                    
+                    @if (User.IsPatient())
+                    {
+                        <li class="active">@Html.ActionLink("Home", "Index", "Patient")</li>
+                    }
+                    
+                    @if (User.IsStaff())
+                    {
+                        <li class="active">@Html.ActionLink("Patients", "Patients", "Staff")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

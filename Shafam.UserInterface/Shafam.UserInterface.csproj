@@ -166,13 +166,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ITController.cs" />
+    <Compile Include="Controllers\LegalController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="Controllers\VisitationController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
+    <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\VisitationViewModel.cs" />
@@ -227,15 +231,30 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Patient\Profile.cshtml" />
-    <Content Include="Views\Visitation\AddVisitation.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Patient\Visitations.cshtml" />
-    <Content Include="Views\Patient\Medications.cshtml" />
-    <Content Include="Views\Patient\Treatments.cshtml" />
+    <Content Include="Views\Doctor\Patients.cshtml" />
+    <Content Include="Views\Doctor\PatientProfile.cshtml" />
+    <Content Include="Views\Doctor\AddVisitation.cshtml" />
+    <Content Include="Views\Doctor\Home.cshtml" />
+    <Content Include="Views\Doctor\Visitations.cshtml" />
+    <Content Include="Views\Doctor\Medication.cshtml" />
+    <Content Include="Views\Doctor\Treatments.cshtml" />
+    <Content Include="Views\Doctor\Tests.cshtml" />
+    <Content Include="Views\Doctor\_Header.cshtml" />
+    <Content Include="Views\Finance\Bills.cshtml" />
+    <Content Include="Views\Finance\Reports.cshtml" />
+    <Content Include="Views\IT\Users.cshtml" />
+    <Content Include="Views\Patient\Appointments.cshtml" />
+    <Content Include="Views\Patient\Medication.cshtml" />
     <Content Include="Views\Patient\Tests.cshtml" />
     <Content Include="Views\Patient\_Header.cshtml" />
+    <Content Include="Views\Legal\Complaints.cshtml" />
+    <Content Include="Views\Legal\Reports.cshtml" />
+    <Content Include="Views\Staff\Patients.cshtml" />
+    <Content Include="Views\Staff\_Header.cshtml" />
+    <Content Include="Views\Staff\PatientProfile.cshtml" />
+    <Content Include="Views\Staff\Medication.cshtml" />
+    <Content Include="Views\Staff\Treatments.cshtml" />
+    <Content Include="Views\Staff\Tests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

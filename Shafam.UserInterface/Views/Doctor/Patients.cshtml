@@ -1,0 +1,29 @@
+﻿@using Shafam.Common.DataModel
+
+@{
+    ViewBag.Title = "Patients";
+}
+
+<h2>Patients</h2>
+
+<p>
+    @Html.ActionLink("Add patient", "AddRandomPatient")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Patient ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+    </tr>
+    @foreach (Patient patient in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@patient.PatientId.ToString(), "PatientProfile", new { patientid = @patient.PatientId }) </td>
+            <td>@patient.FirstName</td>
+            <td>@patient.LastName</td>
+            <td>@patient.Age</td>
+        </tr>
+    }
+</table>

@@ -48,6 +48,21 @@ namespace Shafam.UserInterface.Controllers
                         case UserRole.Doctor:
                             return RedirectToAction("Index", "Doctor");
 
+                        case UserRole.IT:
+                            return RedirectToAction("Index", "IT");
+
+                        case UserRole.Finance:
+                            return RedirectToAction("Index", "Finance");
+
+                        case UserRole.Legal:
+                            return RedirectToAction("Index", "Legal");
+
+                        case UserRole.Staff:
+                            return RedirectToAction("Index", "Staff");
+
+                        case UserRole.Patient:
+                            return RedirectToAction("Index", "Patient");
+
                         default:
                             return RedirectToLocal(returnUrl);
                     }
@@ -77,7 +92,7 @@ namespace Shafam.UserInterface.Controllers
             User user = _userRepository.GetUser("Patient");
             SignInAsync(user, true);
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "Patient");
         }
 
         [AllowAnonymous]
@@ -86,7 +101,7 @@ namespace Shafam.UserInterface.Controllers
             User user = _userRepository.GetUser("Staff");
             SignInAsync(user, true);
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "Staff");
         }
 
         [AllowAnonymous]
@@ -95,7 +110,7 @@ namespace Shafam.UserInterface.Controllers
             User user = _userRepository.GetUser("IT");
             SignInAsync(user, true);
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "IT");
         }
 
         [AllowAnonymous]
@@ -104,7 +119,7 @@ namespace Shafam.UserInterface.Controllers
             User user = _userRepository.GetUser("Legal");
             SignInAsync(user, true);
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "Legal");
         }
 
         [AllowAnonymous]
@@ -113,7 +128,7 @@ namespace Shafam.UserInterface.Controllers
             User user = _userRepository.GetUser("Finance");
             SignInAsync(user, true);
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "Finance");
         }
 
         //

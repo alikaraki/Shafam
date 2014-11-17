@@ -1,0 +1,25 @@
+﻿@model Shafam.Common.DataModel.Patient
+
+<div class="row">
+    <div class="col-md-10">
+        <h3>Patient @Model.PatientId - @Model.LastName, @Model.FirstName</h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("< Back to patients", "Patients")</p>
+    </div>
+</div>
+
+<br />
+
+@{string action = ViewContext.RouteData.Values["action"].ToString();}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" @if (action == "PatientProfile") { <text> class="active" </text> }>@Html.ActionLink("Profile", "PatientProfile", new {patientId = Model.PatientId})</li>
+    <li role="presentation" @if (action == "Visitations") { <text> class="active" </text> }>@Html.ActionLink("Visitations", "Visitations", new { patientId = Model.PatientId })</li>
+    <li role="presentation" @if (action == "Medication") { <text> class="active" </text> }>@Html.ActionLink("Medication", "Medication", new { patientId = Model.PatientId })</li>
+    <li role="presentation" @if (action == "Treatments") { <text> class="active" </text> }>@Html.ActionLink("Treatments", "Treatments", new { patientId = Model.PatientId })</li>
+    <li role="presentation" @if (action == "Tests") { <text> class="active" </text> }>@Html.ActionLink("Tests", "Tests", new { patientId = Model.PatientId })</li>
+</ul>
+
+<br />
