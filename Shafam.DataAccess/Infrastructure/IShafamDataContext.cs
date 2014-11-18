@@ -5,9 +5,9 @@ namespace Shafam.DataAccess.Infrastructure
 {
     public interface IShafamDataContext
     {
-        IDbSet<Patient> Patients { get; }
-        IDbSet<Doctor> Doctors { get; } 
-        IDbSet<User> Users { get; }
+        IDbSet<Patient> Patients { get; set; }
+        IDbSet<Doctor> Doctors { get; set; }
+        IDbSet<User> Users { get; set; }
         IDbSet<Medication> Medications { get; set; }
         IDbSet<Treatment> Treatments { get; set; }
         IDbSet<Test> Tests { get; set; }
