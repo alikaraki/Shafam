@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Shafam.BusinessLogic;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 using Shafam.UserInterface.Infrastructure;
@@ -12,10 +13,13 @@ namespace Shafam.UserInterface.Controllers
     public class DoctorController : Controller
     {
         private readonly IPatientRepository _patientRepository;
+        private readonly IPatientManagementService _patientManagementService;
 
-        public DoctorController(IPatientRepository patientRepository)
+        public DoctorController(IPatientRepository patientRepository,
+                                IPatientManagementService patientManagementService)
         {
             _patientRepository = patientRepository;
+            _patientManagementService = patientManagementService;
         }
 
         public ActionResult Index()
@@ -55,7 +59,7 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult PatientProfile(int patientId)
         {
-            Patient patient = _patientRepository.GetPatient(patientId);
+            Patient patient = _patientManagementService.ViewPatient(patientId);
             return View(patient);
         }
 
