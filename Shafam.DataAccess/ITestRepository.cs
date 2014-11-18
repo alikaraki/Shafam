@@ -11,9 +11,9 @@ namespace Shafam.DataAccess
     {
         Test AddTest(int visitationId, string testType);
 
-        IEnumerable<Test> GetTestsForPatient(int patientId);
+        List<Test> GetTestsForPatient(int patientId);
 
-        IEnumerable<Test> GetTestsForVisitation(int patientId);
+        List<Test> GetTestsForVisitation(int visitationId);
 
         void AddTestResult(int testId, string result);
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shafam.DataAccess.Repositories
 {
-    class VisitationRepository : IVisitationRepository
+    public class VisitationRepository : IVisitationRepository
     {
         private readonly IShafamDataContext _dataContext;
         public VisitationRepository(IShafamDataContext dataContext)

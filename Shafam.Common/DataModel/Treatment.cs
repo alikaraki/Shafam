@@ -3,7 +3,7 @@
     public class Treatment
     {
         public int TreatmentId { get; set; }
-        public string Type { get; set; }
+        public string TreatmentType { get; set; }
 
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
