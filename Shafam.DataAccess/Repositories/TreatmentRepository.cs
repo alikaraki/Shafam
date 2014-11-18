@@ -19,10 +19,14 @@ namespace Shafam.DataAccess.Repositories
 
         public Treatment AddTreatment(int visitationId, string treatmentType)
         {
+            Visitation visitation = _dataContext.Visitations.First(v => v.VisitationId == visitationId);
+
             var treatment = new Treatment
                             {
                                 VisitationId = visitationId,
-                                TreatmentType = treatmentType
+                                TreatmentType = treatmentType,
+                                DoctorId = visitation.DoctorId,
+                                PatientId = visitation.PatientId
                             };
 
             _dataContext.Treatments.Add(treatment);

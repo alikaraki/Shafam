@@ -17,13 +17,20 @@ namespace Shafam.DataAccess.Repositories
         }
         public Visitation CreateVisitation(int doctorId, int patientId, DateTime dateTime, string reason, string notes = null)
         {
+            Patient patient = _dataContext.Patients.First(p => p.PatientId == patientId);
+            Appointment appointment = _dataContext.Appointments.First(a => a.PatientId == patientId);
+
             var visitation = new Visitation
                             {
                                 DoctorId = doctorId,
                                 PatientId = patientId,
                                 DateTime = dateTime,
                                 Reason = reason,
-                                Notes = notes
+                                Notes = notes,
+                                AppointmentId = appointment.AppointmentId,
+                                Medications = patient.Medications,
+                                Tests = patient.Tests,
+                                Treatments = patient.Treatments
                             };
             _dataContext.Visitations.Add(visitation);
             _dataContext.Save();

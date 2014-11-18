@@ -19,10 +19,16 @@ namespace Shafam.DataAccess.Repositories
 
         public Test AddTest(int visitationId, string testType)
         {
+            Visitation visitation = _dataContext.Visitations.First(v => v.VisitationId == visitationId);
+
             var test = new Test
                       {
                           VisitationId = visitationId,
-                          Type = testType
+                          Type = testType,
+                          // How should I initialize Result?
+                          SeenByDoctor = false,
+                          DoctorId = visitation.DoctorId,
+                          PatientId = visitation.PatientId
                       };
             _dataContext.Tests.Add(test);
             _dataContext.Save();
