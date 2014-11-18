@@ -8,7 +8,7 @@ namespace Shafam.DataAccess
     {
         Appointment AddAppointment(int patientId, int doctorId, DateTime dateTime, string reason = null);
 
-        void CancelAppointment(int appoitmentId);
+        void CancelAppointment(int appointmentId);
 
         List<Appointment> GetAppointmentsForDoctor(int doctorId);
 

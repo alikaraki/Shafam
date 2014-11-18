@@ -16,6 +16,7 @@ namespace Shafam.DataAccess
             container.RegisterSingleton<IDoctorRepository, DoctorRepository>();
             container.RegisterSingleton<IUserRepository, UserRepository>();
             container.RegisterSingleton<IMedicationRepository, MedicationRepository>();
+            container.RegisterSingleton<IAppointmentRepository, AppointmentRepository>();
 
             InitializeDatabase(container);
         }
