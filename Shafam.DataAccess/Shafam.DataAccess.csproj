@@ -71,6 +71,7 @@
     <Compile Include="IVisitationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppointmentRepository.cs" />
+    <Compile Include="Repositories\AppointmentRequestRepository.cs" />
     <Compile Include="Repositories\DoctorRepository.cs" />
     <Compile Include="ITreatmentRepository.cs" />
     <Compile Include="Repositories\MedicationRepository.cs" />
