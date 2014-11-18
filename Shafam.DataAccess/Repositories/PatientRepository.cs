@@ -30,7 +30,13 @@ namespace Shafam.DataAccess.Repositories
 
         public Patient GetPatient(int patientid)
         {
-            return _context.Patients.First(p => p.PatientId == patientid);
+            return _context.Patients.First(p => p.UserId == patientid);
+        }
+
+        public void DeletePatient(int patientId)
+        {
+            Patient patient = GetPatient(patientId);
+            _context.Patients.Remove(patient);
         }
     }
 }

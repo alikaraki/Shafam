@@ -15,7 +15,7 @@ namespace Shafam.UserInterface.Controllers
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
 
-        public DoctorController(IPatientRepository patientRepository,
+        public DoctorController(IPatientRepository patientRepository, 
                                 IPatientManagementService patientManagementService)
         {
             _patientRepository = patientRepository;

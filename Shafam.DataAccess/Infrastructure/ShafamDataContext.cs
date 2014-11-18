@@ -16,6 +16,20 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<User> Users { get; set; }
 
+        public IDbSet<Medication> Medications { get; set; }
+
+        public IDbSet<Treatment> Treatments { get; set; }
+
+        public IDbSet<Test> Tests { get; set; }
+
+        public IDbSet<Appointment> Appointments { get; set; }
+
+        public IDbSet<AppointmentRequest> AppointmentRequests { get; set; }
+
+        public IDbSet<Visitation> Visitations { get; set; }
+
+        public IDbSet<Staff> Staff { get; set; } 
+
         public void Save()
         {
             base.SaveChanges();

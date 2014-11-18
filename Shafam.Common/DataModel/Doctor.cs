@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Shafam.Common.DataModel
 {
-    public class Doctor
+    public class Doctor : Staff
     {
-        public int DoctorId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Speciality { get; set; }
+        public Gender Gender { get; set; }
 
-        public IEnumerable<Patient> Patients { get; set; } 
+        public virtual ICollection<Patient> Patients { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
+        public virtual ICollection<Visitation> Visitations { get; set; }
     }
 }
