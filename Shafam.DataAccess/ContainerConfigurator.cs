@@ -19,6 +19,8 @@ namespace Shafam.DataAccess
             container.RegisterSingleton<IVisitationRepository, VisitationRepository>();
             container.RegisterSingleton<IAppointmentRepository, AppointmentRepository>();
             container.RegisterSingleton<IAppointmentRequestRepository, AppointmentRequestRepository>();
+            container.RegisterSingleton<ITreatmentRepository, TreatmentRepository>();
+            container.RegisterSingleton<ITestRepository, TestRepository>();
             InitializeDatabase(container);
         }
 
