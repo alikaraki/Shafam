@@ -30,7 +30,7 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<Visitation> Visitations { get; set; }
 
-        public IDbSet<Staff> Staff { get; set; }
+        public IDbSet<Staff> Staffs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,5 +43,6 @@ namespace Shafam.DataAccess.Infrastructure
         {
             base.SaveChanges();
         }
+
     }
 }
