@@ -11,6 +11,10 @@ namespace Shafam.BusinessLogic.PatientManagement
         private readonly IDoctorRepository _doctorRepository;
         private readonly IVisitationRepository _visitationRepository;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="patientRepository"></param>
         public PatientManagementService(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
