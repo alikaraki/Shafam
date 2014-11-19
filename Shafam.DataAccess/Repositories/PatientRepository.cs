@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess.Infrastructure;
 
@@ -27,7 +30,7 @@ namespace Shafam.DataAccess.Repositories
 
         public Patient GetPatient(int patientid)
         {
-            return _context.Patients.First(p => p.PatientId == patientid);
+            return _context.Patients.First(p => p.UserId == patientid);
         }
 
         public void DeletePatient(int patientId)

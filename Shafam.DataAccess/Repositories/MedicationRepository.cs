@@ -16,7 +16,7 @@ namespace Shafam.DataAccess.Repositories
 
         public Medication AddMedication(int visitationId, string name, string quantity, string instructions)
         {
-            Visitation visitation = _dataContext.Visitations.First(v => v.VisitationId == visitationId);
+            Visitation visitation = _dataContext.Visitations.First(v => v.AppointmentId == visitationId);
 
             var medication = new Medication
                              {

@@ -18,17 +18,17 @@ namespace Shafam.DataAccess.Infrastructure
 
         protected override void Seed(ShafamDataContext context)
         {
-            var defaultUsers = new List<Account>
+            var defaultUsers = new List<User>
                                {
-                                   new Account {Username = "Doctor", Password = "doctor", Role = UserRole.Doctor},
-                                   new Account {Username = "Patient", Password = "patient", Role = UserRole.Patient},
-                                   new Account {Username = "Staff", Password = "staff", Role = UserRole.Staff},
-                                   new Account {Username = "IT", Password = "it", Role = UserRole.IT},
-                                   new Account {Username = "Legal", Password = "legal", Role = UserRole.Legal},
-                                   new Account {Username = "Finance", Password = "finance", Role = UserRole.Finance},
+                                   new User {Username = "Doctor", Password = "doctor", Role = UserRole.Doctor},
+                                   new User {Username = "Patient", Password = "patient", Role = UserRole.Patient},
+                                   new User {Username = "Staff", Password = "staff", Role = UserRole.Staff},
+                                   new User {Username = "IT", Password = "it", Role = UserRole.IT},
+                                   new User {Username = "Legal", Password = "legal", Role = UserRole.Legal},
+                                   new User {Username = "Finance", Password = "finance", Role = UserRole.Finance},
                                };
 
-            defaultUsers.ForEach(u => context.Accounts.Add(u));
+            defaultUsers.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
         }
     }

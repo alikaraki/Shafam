@@ -46,9 +46,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>patientID if successfully added patient, else invalid value ‘-1’</returns>
         public int AddPatient(Patient patient, int doctorId)
         {
-            _patientRepository.AddPatient(patient);
-            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            return 1;
+            throw new NotImplementedException();
         }
 
         /// <summary>
