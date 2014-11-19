@@ -16,7 +16,7 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<Doctor> Doctors { get; set; }
 
-        public IDbSet<User> Users { get; set; }
+        public IDbSet<Account> Accounts { get; set; }
 
         public IDbSet<Medication> Medications { get; set; }
 
@@ -35,24 +35,8 @@ namespace Shafam.DataAccess.Infrastructure
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            modelBuilder.Entity<User>()
-                        .HasKey(u => u.UserId)
-                        .Map(m => m.MapInheritedProperties()).ToTable("User")
-                        .Property(p => p.UserId)
-                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            modelBuilder.Entity<Patient>()
-                        .HasKey(u => u.UserId)
-                        .Map(m => m.MapInheritedProperties()).ToTable("Patient");
-
-            modelBuilder.Entity<Doctor>()
-                        .HasKey(u => u.UserId)
-                        .Map(m => m.MapInheritedProperties()).ToTable("Doctor");
-
-            modelBuilder.Entity<Staff>()
-                        .HasKey(u => u.UserId)
-                        .Map(m => m.MapInheritedProperties()).ToTable("Staff");
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
         public void Save()

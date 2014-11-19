@@ -14,11 +14,11 @@ namespace Shafam.UserInterface.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(IUserRepository userRepository)
+        public AccountController(IAccountRepository accountRepository)
         {
-            _userRepository = userRepository;
+            _accountRepository = accountRepository;
         }
 
         //
@@ -38,7 +38,7 @@ namespace Shafam.UserInterface.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userRepository.VerifyUser(model.UserName, model.Password);
+                var user = _accountRepository.VerifyAccount(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -80,8 +80,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsDoctor(string returnUrl)
         {
-            User user = _userRepository.GetUser("Doctor");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("Doctor");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "Doctor");
         }
@@ -89,8 +89,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsPatient(string returnUrl)
         {
-            User user = _userRepository.GetUser("Patient");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("Patient");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "Patient");
         }
@@ -98,8 +98,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsStaff(string returnUrl)
         {
-            User user = _userRepository.GetUser("Staff");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("Staff");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "Staff");
         }
@@ -107,8 +107,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsIT(string returnUrl)
         {
-            User user = _userRepository.GetUser("IT");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("IT");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "IT");
         }
@@ -116,8 +116,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsLegal(string returnUrl)
         {
-            User user = _userRepository.GetUser("Legal");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("Legal");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "Legal");
         }
@@ -125,8 +125,8 @@ namespace Shafam.UserInterface.Controllers
         [AllowAnonymous]
         public ActionResult LoginAsFinance(string returnUrl)
         {
-            User user = _userRepository.GetUser("Finance");
-            SignInAsync(user, true);
+            Account account = _accountRepository.GetAccount("Finance");
+            SignInAsync(account, true);
 
             return RedirectToAction("Index", "Finance");
         }
@@ -153,7 +153,7 @@ namespace Shafam.UserInterface.Controllers
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid)
             {
-                if (_userRepository.ChangePassword(User.Identity.GetUserId(), model.OldPassword, model.NewPassword))
+                if (_accountRepository.ChangePassword(User.Identity.GetUserId(), model.OldPassword, model.NewPassword))
                 {
                     return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
@@ -181,20 +181,20 @@ namespace Shafam.UserInterface.Controllers
             }
         }
 
-        private async Task SignInAsync(User user, bool isPersistent)
+        private async Task SignInAsync(Account account, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
-            ClaimsIdentity identity = CreateIdentity(user);
+            ClaimsIdentity identity = CreateIdentity(account);
 
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
-        private ClaimsIdentity CreateIdentity(User user)
+        private ClaimsIdentity CreateIdentity(Account account)
         {
-            var nameClaim = new Claim(ClaimTypes.Name, user.Username);
-            var userIdClaim = new Claim(ClaimTypes.NameIdentifier, user.Username);
-            var roleClaim = new Claim(ClaimTypes.Role, user.Role.ToString());
+            var nameClaim = new Claim(ClaimTypes.Name, account.Username);
+            var userIdClaim = new Claim(ClaimTypes.NameIdentifier, account.Username);
+            var roleClaim = new Claim(ClaimTypes.Role, account.Role.ToString());
             var claims = new List<Claim> { nameClaim, userIdClaim, roleClaim };
 
             return new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);

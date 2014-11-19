@@ -3,13 +3,13 @@ using Shafam.Common.DataModel;
 
 namespace Shafam.DataAccess
 {
-    public interface IUserRepository
+    public interface IAccountRepository
     {
-        IEnumerable<User> GetUsers();
+        IEnumerable<Account> GetAccounts();
 
-        User GetUser(string username);
+        Account GetAccount(string username);
 
-        User VerifyUser(string username, string password);
+        Account VerifyAccount(string username, string password);
 
         bool ChangePassword(string username, string oldPassword, string newPassword);
     }

@@ -7,7 +7,7 @@ namespace Shafam.DataAccess.Infrastructure
     {
         IDbSet<Patient> Patients { get; set; }
         IDbSet<Doctor> Doctors { get; set; }
-        IDbSet<User> Users { get; set; }
+        IDbSet<Account> Accounts { get; set; }
         IDbSet<Medication> Medications { get; set; }
         IDbSet<Treatment> Treatments { get; set; }
         IDbSet<Test> Tests { get; set; }

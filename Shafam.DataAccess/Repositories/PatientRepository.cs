@@ -27,7 +27,7 @@ namespace Shafam.DataAccess.Repositories
 
         public Patient GetPatient(int patientid)
         {
-            return _context.Patients.First(p => p.UserId == patientid);
+            return _context.Patients.First(p => p.PatientId == patientid);
         }
 
         public void DeletePatient(int patientId)

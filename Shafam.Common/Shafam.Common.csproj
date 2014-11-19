@@ -55,7 +55,7 @@
     <Compile Include="DataModel\Staff.cs" />
     <Compile Include="DataModel\Test.cs" />
     <Compile Include="DataModel\Treatment.cs" />
-    <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\Account.cs" />
     <Compile Include="DataModel\UserRole.cs" />
     <Compile Include="DataModel\Visitation.cs" />
     <Compile Include="Infrastructure\IContainerConfigurator.cs" />

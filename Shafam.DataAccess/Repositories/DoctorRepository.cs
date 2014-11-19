@@ -27,12 +27,12 @@ namespace Shafam.DataAccess.Repositories
 
         public Doctor GetDoctor(int doctorId)
         {
-            return _dataContext.Doctors.First(d => d.UserId == doctorId);
+            return _dataContext.Doctors.First(d => d.DoctorId == doctorId);
         }
 
         public void UpdateDoctor(Doctor updatedDoctor)
         {
-            Doctor doctor = GetDoctor(updatedDoctor.UserId);
+            Doctor doctor = GetDoctor(updatedDoctor.DoctorId);
             doctor.FirstName = updatedDoctor.FirstName;
             doctor.LastName = updatedDoctor.LastName;
 
@@ -49,7 +49,7 @@ namespace Shafam.DataAccess.Repositories
         public void AssignPatient(int doctorId, int patientId)
         {
             Doctor doctor = GetDoctor(doctorId);
-            Patient patient = _dataContext.Patients.First(p => p.UserId == patientId);
+            Patient patient = _dataContext.Patients.First(p => p.PatientId == patientId);
             doctor.Patients.Add(patient);
             _dataContext.Save();
         }
