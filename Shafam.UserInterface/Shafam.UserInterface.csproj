@@ -163,6 +163,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\DoctorTestController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ITController.cs" />
@@ -253,6 +254,11 @@
     <Content Include="Views\Staff\Medication.cshtml" />
     <Content Include="Views\Staff\Treatments.cshtml" />
     <Content Include="Views\Staff\Tests.cshtml" />
+    <Content Include="Views\DoctorTest\Create.cshtml" />
+    <Content Include="Views\DoctorTest\Delete.cshtml" />
+    <Content Include="Views\DoctorTest\Details.cshtml" />
+    <Content Include="Views\DoctorTest\Edit.cshtml" />
+    <Content Include="Views\DoctorTest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
