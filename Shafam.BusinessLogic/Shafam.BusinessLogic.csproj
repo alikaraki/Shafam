@@ -51,7 +51,7 @@
     <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />
     <Compile Include="IVisitationManagementService.cs" />
-    <Compile Include="Notification\NotificationManagementService.cs" />
+    <Compile Include="NotificationManagement\NotificationManagementService.cs" />
     <Compile Include="PatientManagement\PatientManagementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisitationManagement\VisitationManagementService.cs" />
