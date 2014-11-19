@@ -42,12 +42,8 @@ namespace Shafam.DataAccess.Repositories
         public void DeleteRequest(int appointmentRequestId)
         {
             AppointmentRequest appointmentRequest = GetAppointmentRequest(appointmentRequestId);
-
-            if (appointmentRequest != null)
-            {
-                _dataContext.AppointmentRequests.Remove(appointmentRequest);
-                _dataContext.Save();
-            }
+            _dataContext.AppointmentRequests.Remove(appointmentRequest);
+            _dataContext.Save();
         }
 
         public AppointmentRequest GetAppointmentRequest(int appointmentRequestId)

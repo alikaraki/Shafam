@@ -4,6 +4,11 @@ namespace Shafam.Common.DataModel
 {
     public class Doctor : Staff
     {
+        public Doctor()
+        {
+            Patients = new HashSet<Patient>();
+        }
+
         public string Speciality { get; set; }
         public Gender Gender { get; set; }
 

@@ -11,7 +11,7 @@ namespace Shafam.DataAccess
         public void Configure(IUnityContainer container)
         {
             container.RegisterSingleton<IDatabaseInitializer, ShafamDropCreateAlwaysInitializer>();
-            container.RegisterSingleton<IShafamDataContext, ShafamDataContext>();
+            container.RegisterType(typeof(IShafamDataContext), typeof(ShafamDataContext));
             container.RegisterSingleton<IPatientRepository, PatientRepository>();
             container.RegisterSingleton<IDoctorRepository, DoctorRepository>();
             container.RegisterSingleton<IUserRepository, UserRepository>();

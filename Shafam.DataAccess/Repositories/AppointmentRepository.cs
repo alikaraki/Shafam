@@ -34,12 +34,8 @@ namespace Shafam.DataAccess.Repositories
         public void CancelAppointment(int appointmentId)
         {
             Appointment appointment = GetAppointment(appointmentId);
-            
-            if (appointment != null)
-            {
-                _dataContext.Appointments.Remove(appointment);
-                _dataContext.Save();
-            }
+            _dataContext.Appointments.Remove(appointment);
+            _dataContext.Save();
         }
 
         public List<Appointment> GetAppointmentsForDoctor(int doctorId)
