@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shafam.BusinessLogic
 {
-    interface IVisitationManagementService
+    public interface IVisitationManagementService
     {
     }
 }

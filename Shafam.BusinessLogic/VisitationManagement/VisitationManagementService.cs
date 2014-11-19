@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shafam.BusinessLogic.VisitationManagement
 {
-    class VisitationManagementService
+    public class VisitationManagementService
     {
     }
 }
