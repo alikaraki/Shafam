@@ -79,6 +79,7 @@
     <Compile Include="Repositories\MedicationRepository.cs" />
     <Compile Include="Repositories\PatientRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
+    <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\TreatmentRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\VisitationRepository.cs" />

@@ -52,7 +52,8 @@ namespace Shafam.BusinessLogic.PatientManagement
         {
             _patientRepository.AddPatient(patient);
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            return 1;
+            // TODO: ASSIGN patient to doctor
+            return patient.PatientId;
         }
 
         /// <summary>
