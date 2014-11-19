@@ -25,11 +25,10 @@ namespace Shafam.DataAccess.Repositories
                       {
                           VisitationId = visitationId,
                           Type = testType,
-                          // How should I initialize Result?
-                          SeenByDoctor = false,
                           DoctorId = visitation.DoctorId,
                           PatientId = visitation.PatientId
                       };
+
             _dataContext.Tests.Add(test);
             _dataContext.Save();
 
@@ -48,13 +47,16 @@ namespace Shafam.DataAccess.Repositories
 
         public void AddTestResult(int testId, string result)
         {
-            throw new NotImplementedException();
+            Test test = _dataContext.Tests.First(t => t.TestId == testId);
+            test.Result = result;
+            _dataContext.Save();
         }
 
         public void MarkAsSeen(int testId)
         {
-            throw new NotImplementedException();
-            //_dataContext.Tests.Where(t => t.TestId == testId).
+            Test test = _dataContext.Tests.First(t => t.TestId == testId);
+            test.SeenByDoctor = true;
+            _dataContext.Save();
         }
     }
 }

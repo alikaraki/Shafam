@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Shafam.Common.DataModel;
 
 namespace Shafam.DataAccess.Infrastructure
@@ -14,7 +16,7 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<Doctor> Doctors { get; set; }
 
-        public IDbSet<User> Users { get; set; }
+        public IDbSet<Account> Accounts { get; set; }
 
         public IDbSet<Medication> Medications { get; set; }
 
@@ -28,11 +30,19 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<Visitation> Visitations { get; set; }
 
-        public IDbSet<Staff> Staff { get; set; } 
+        public IDbSet<Staff> Staffs { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
 
         public void Save()
         {
             base.SaveChanges();
         }
+
     }
 }

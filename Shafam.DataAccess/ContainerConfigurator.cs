@@ -14,13 +14,12 @@ namespace Shafam.DataAccess
             container.RegisterSingleton<IShafamDataContext, ShafamDataContext>();
             container.RegisterSingleton<IPatientRepository, PatientRepository>();
             container.RegisterSingleton<IDoctorRepository, DoctorRepository>();
-            container.RegisterSingleton<IUserRepository, UserRepository>();
+            container.RegisterSingleton<IAccountRepository, AccountRepository>();
             container.RegisterSingleton<IMedicationRepository, MedicationRepository>();
             container.RegisterSingleton<IVisitationRepository, VisitationRepository>();
             container.RegisterSingleton<IAppointmentRepository, AppointmentRepository>();
             container.RegisterSingleton<IAppointmentRequestRepository, AppointmentRequestRepository>();
-            container.RegisterSingleton<ITreatmentRepository, TreatmentRepository>();
-            container.RegisterSingleton<ITestRepository, TestRepository>();
+            container.RegisterSingleton<IStaffRepository, StaffRepository>();
             InitializeDatabase(container);
         }
 

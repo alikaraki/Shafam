@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\packages\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
@@ -58,7 +55,7 @@
     <Compile Include="DataModel\Staff.cs" />
     <Compile Include="DataModel\Test.cs" />
     <Compile Include="DataModel\Treatment.cs" />
-    <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\Account.cs" />
     <Compile Include="DataModel\UserRole.cs" />
     <Compile Include="DataModel\Visitation.cs" />
     <Compile Include="Infrastructure\IContainerConfigurator.cs" />

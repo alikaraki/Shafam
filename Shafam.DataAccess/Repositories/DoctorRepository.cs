@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess.Infrastructure;
 
@@ -31,12 +27,12 @@ namespace Shafam.DataAccess.Repositories
 
         public Doctor GetDoctor(int doctorId)
         {
-            return _dataContext.Doctors.First(d => d.UserId == doctorId);
+            return _dataContext.Doctors.First(d => d.DoctorId == doctorId);
         }
 
         public void UpdateDoctor(Doctor updatedDoctor)
         {
-            Doctor doctor = GetDoctor(updatedDoctor.UserId);
+            Doctor doctor = GetDoctor(updatedDoctor.DoctorId);
             doctor.FirstName = updatedDoctor.FirstName;
             doctor.LastName = updatedDoctor.LastName;
 
@@ -52,7 +48,10 @@ namespace Shafam.DataAccess.Repositories
 
         public void AssignPatient(int doctorId, int patientId)
         {
-            throw new NotImplementedException();
+            Doctor doctor = GetDoctor(doctorId);
+            Patient patient = _dataContext.Patients.First(p => p.PatientId == patientId);
+            doctor.Patients.Add(patient);
+            _dataContext.Save();
         }
     }
 }
