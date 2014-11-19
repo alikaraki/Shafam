@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shafam.BusinessLogic.Visitation_Management
+namespace Shafam.BusinessLogic.VisitationManagement
 {
     class VisitationManagementService
     {
