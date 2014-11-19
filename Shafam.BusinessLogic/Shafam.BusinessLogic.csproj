@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContainerConfigurator.cs" />
+    <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />
+    <Compile Include="Notification\NotificationManagementService.cs" />
     <Compile Include="PatientManagement\PatientManagementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
