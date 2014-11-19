@@ -4,7 +4,6 @@ namespace Shafam.Common.DataModel
 {
     public class Patient : User
     {
-        public int PatientId { get; set; }
         public int Age { get; set; }
         public Gender Gender { get; set; }
         public string HealthCardNumber { get; set; }

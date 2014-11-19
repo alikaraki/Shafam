@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Shafam.Common.DataModel;
 
 namespace Shafam.DataAccess.Infrastructure
@@ -28,7 +30,30 @@ namespace Shafam.DataAccess.Infrastructure
 
         public IDbSet<Visitation> Visitations { get; set; }
 
-        public IDbSet<Staff> Staff { get; set; } 
+        public IDbSet<Staff> Staff { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<User>()
+                        .HasKey(u => u.UserId)
+                        .Map(m => m.MapInheritedProperties()).ToTable("User")
+                        .Property(p => p.UserId)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Patient>()
+                        .HasKey(u => u.UserId)
+                        .Map(m => m.MapInheritedProperties()).ToTable("Patient");
+
+            modelBuilder.Entity<Doctor>()
+                        .HasKey(u => u.UserId)
+                        .Map(m => m.MapInheritedProperties()).ToTable("Doctor");
+
+            modelBuilder.Entity<Staff>()
+                        .HasKey(u => u.UserId)
+                        .Map(m => m.MapInheritedProperties()).ToTable("Staff");
+        }
 
         public void Save()
         {

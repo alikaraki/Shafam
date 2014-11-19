@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess.Infrastructure;
-using System.Threading.Tasks;
 
 namespace Shafam.DataAccess.Repositories
 {
     public class VisitationRepository : IVisitationRepository
     {
         private readonly IShafamDataContext _dataContext;
+        
         public VisitationRepository(IShafamDataContext dataContext)
         {
             _dataContext = dataContext;
         }
+
         public Visitation CreateVisitation(int doctorId, int patientId, DateTime dateTime, string reason, string notes = null)
         {
-            Patient patient = _dataContext.Patients.First(p => p.PatientId == patientId);
-            Appointment appointment = _dataContext.Appointments.First(a => a.PatientId == patientId);
-
             var visitation = new Visitation
                             {
                                 DoctorId = doctorId,
                                 PatientId = patientId,
                                 DateTime = dateTime,
                                 Reason = reason,
-                                Notes = notes,
-                                AppointmentId = appointment.AppointmentId,
-                                Medications = patient.Medications,
-                                Tests = patient.Tests,
-                                Treatments = patient.Treatments
+                                Notes = notes
                             };
+
             _dataContext.Visitations.Add(visitation);
             _dataContext.Save();
 
