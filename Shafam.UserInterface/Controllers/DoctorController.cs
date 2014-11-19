@@ -34,9 +34,10 @@ namespace Shafam.UserInterface.Controllers
 
         //
         // GET: /Patient/
-        public ActionResult Patients()
+        public ActionResult Patients(int doctorId)
         {
-            IEnumerable<Patient> patients = _patientRepository.GetPatients();
+            //IEnumerable<Patient> patients = _patientRepository.GetPatients();
+            IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
 
             return View(patients);
         }
