@@ -35,7 +35,8 @@
                     @if (User.IsDoctor())
                     {
                         <li @if (action == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Home", "Doctor")</li>
-                        <li @if (action != "Home") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                            //<li @if (action != "Home") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                            <li @if (action != "Home") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "RandomPatients", "Doctor")</li>
                     }
                     
                     @if (User.IsFinance())

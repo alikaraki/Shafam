@@ -253,6 +253,7 @@
     <Content Include="Views\Staff\Medication.cshtml" />
     <Content Include="Views\Staff\Treatments.cshtml" />
     <Content Include="Views\Staff\Tests.cshtml" />
+    <Content Include="Views\Doctor\RandomPatients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

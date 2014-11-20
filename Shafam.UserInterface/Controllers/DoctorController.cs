@@ -42,6 +42,17 @@ namespace Shafam.UserInterface.Controllers
             return View(patients);
         }
 
+        // GETS RANDOM PATIENTS FROM DATABASE
+        // *NOTE*: THIS FUNCTION IS FOR TESTING PURPOSES 
+        // GET: /Patient/
+        public ActionResult RandomPatients()
+        {
+            IEnumerable<Patient> patients = _patientRepository.GetPatients();
+            //IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
+
+            return View(patients);
+        }
+
         public ActionResult AddRandomPatient()
         {
             int id = new Random().Next(100);
@@ -55,7 +66,7 @@ namespace Shafam.UserInterface.Controllers
 
             _patientRepository.AddPatient(patient);
 
-            return RedirectToAction("Patients");
+            return RedirectToAction("RandomPatients");
         }
 
         public ActionResult PatientProfile(int patientId)
