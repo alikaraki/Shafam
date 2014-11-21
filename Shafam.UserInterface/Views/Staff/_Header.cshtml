@@ -19,6 +19,7 @@
     <li role="presentation" @if (action == "Medication") { <text> class="active" </text>  }>@Html.ActionLink("Medication", "Medication", new { patientId = Model.PatientId })</li>
     <li role="presentation" @if (action == "Treatments") { <text> class="active" </text>  }>@Html.ActionLink("Treatments", "Treatments", new { patientId = Model.PatientId })</li>
     <li role="presentation" @if (action == "Tests") { <text> class="active" </text>  }>@Html.ActionLink("Tests", "Tests", new { patientId = Model.PatientId })</li>
+    <li role="presentation" @if (action == "Schedule") { <text> class="active" </text>   }>@Html.ActionLink("Schedule", "PatientSchedule", new { patientId = Model.PatientId })</li>
 </ul>
 
 <br />
