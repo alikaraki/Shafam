@@ -78,9 +78,18 @@ namespace Shafam.UserInterface.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult LoginAsDoctor(string returnUrl)
+        public ActionResult LoginAsDoctorAmy(string returnUrl)
         {
-            Account account = _accountRepository.GetAccount("Doctor");
+            Account account = _accountRepository.GetAccount("Amy");
+            SignInAsync(account, true);
+
+            return RedirectToAction("Index", "Doctor");
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginAsDoctorJohn(string returnUrl)
+        {
+            Account account = _accountRepository.GetAccount("John");
             SignInAsync(account, true);
 
             return RedirectToAction("Index", "Doctor");

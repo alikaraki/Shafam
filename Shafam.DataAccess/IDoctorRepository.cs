@@ -20,5 +20,7 @@ namespace Shafam.DataAccess
         void DeleteDoctor(int doctorId);
 
         void AssignPatient(int doctorId, int patientId);
+
+        List<Patient> GetPatientsForDoctor(int doctorId);
     }
 }

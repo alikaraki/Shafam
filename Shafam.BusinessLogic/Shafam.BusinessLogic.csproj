@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\IdentityProvider.cs" />
     <Compile Include="ContainerConfigurator.cs" />
+    <Compile Include="IIdentityProvider.cs" />
     <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />
     <Compile Include="IVisitationManagementService.cs" />
@@ -56,9 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisitationManagement\VisitationManagementService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Authentication\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Shafam.Common\Shafam.Common.csproj">
       <Project>{6c336dda-8cf0-414f-811c-970e99fcfbf9}</Project>

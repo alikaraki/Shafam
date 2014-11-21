@@ -15,6 +15,12 @@ namespace Shafam.DataAccess.Repositories
             _dataContext = shafamDataContext;
         }
 
+        public void CreateAccount(Account account)
+        {
+            _dataContext.Accounts.Add(account);
+            _dataContext.Save();
+        }
+
         public IEnumerable<Account> GetAccounts()
         {
             return _dataContext.Accounts.ToList();
@@ -23,6 +29,11 @@ namespace Shafam.DataAccess.Repositories
         public Account GetAccount(string username)
         {
             return _dataContext.Accounts.First(u => u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public Account GetAccountByUserId(int userId)
+        {
+            return _dataContext.Accounts.First(a => a.UserId == userId);
         }
 
         public Account VerifyAccount(string username, string password)

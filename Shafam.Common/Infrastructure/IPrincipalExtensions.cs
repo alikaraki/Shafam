@@ -39,5 +39,10 @@ namespace Shafam.Common.Infrastructure
         {
             return !principal.IsAnonymous() && principal.IsInRole(UserRole.Finance.ToString());
         }
+
+        public static string GetUsername(this IPrincipal principal)
+        {
+            return principal.Identity.Name;
+        }
     }
 }
