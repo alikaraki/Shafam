@@ -13,6 +13,8 @@ namespace Shafam.UserInterface.Controllers
     public class StaffController : Controller
     {
         private readonly IPatientRepository _patientRepository;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
 
         public StaffController(IPatientRepository patientRepository)
         {
@@ -50,6 +52,12 @@ namespace Shafam.UserInterface.Controllers
         }
 
         public ActionResult Tests(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            return View(patient);
+        }
+
+        public ActionResult DoctorSchedule(int doctorId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
             return View(patient);
