@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
+using Shafam.BusinessLogic.NotificationManagement;
 
 namespace Shafam.BusinessLogic.PatientManagement
 {
@@ -15,9 +16,32 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// Constructor
         /// </summary>
         /// <param name="patientRepository"></param>
-        public PatientManagementService(IPatientRepository patientRepository)
+        public PatientManagementService(IPatientRepository patientRepository,
+                                        IDoctorRepository doctorRepository)
         {
             _patientRepository = patientRepository;
+            _doctorRepository = doctorRepository;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="patientRepository"></param>
+        public PatientManagementService(IPatientRepository patientRepository, IDoctorRepository doctorRepository)
+        {
+            _patientRepository = patientRepository;
+            _doctorRepository = doctorRepository;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="patientRepository"></param>
+        public PatientManagementService(IPatientRepository patientRepository, IDoctorRepository doctorRepository, IVisitationRepository visitationRepository)
+        {
+            _patientRepository = patientRepository;
+            _doctorRepository = doctorRepository;
+            _visitationRepository = visitationRepository;
         }
 
         /// <summary>
@@ -37,9 +61,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>list of Patients from Patient Repository for the doctor with doctorID in the Doctor Repository</returns>
         public List<Patient> ViewAllPatients(int doctorId)
         {
-            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            List<Patient> list = new List<Patient>(doctor.Patients);
-            return list;
+            return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
         /// <summary>
@@ -76,7 +98,9 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>true if patient successfully referred, else false</returns>
         public bool ReferPatient(int patientId, int referringDocId, int referredDocId)
         {
-            throw new NotImplementedException();
+            AddPatient(_patientRepository.GetPatient(patientId), referredDocId);
+            INotificationManagementService notificationService = new NotificationManagementService(_doctorRepository);
+            return notificationService.SendNotification(referringDocId, referredDocId);
         }
     }
 }

@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 
-namespace Shafam.BusinessLogic.Notification
+namespace Shafam.BusinessLogic.NotificationManagement
 {
     public class NotificationManagementService : INotificationManagementService
     {
-        public void SendNotification(int referringDocId, int referredDocId)
+        IDoctorRepository _doctorRepository;
+        ITestRepository _testRepository;
+
+        public NotificationManagementService(IDoctorRepository doctorRepository)
         {
+            _doctorRepository = doctorRepository;
+        }
+
+        public NotificationManagementService (IDoctorRepository doctorRepository, ITestRepository testRepository)
+        {
+            _doctorRepository = doctorRepository;
+            _testRepository = testRepository;
+        }
+
+        public bool SendNotification(int referringDocId, int referredDocId)
+        {
+            return true; //if notification sent successfully
             throw new NotImplementedException();
         }
 

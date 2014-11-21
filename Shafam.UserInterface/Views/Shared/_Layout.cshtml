@@ -36,7 +36,7 @@
                     {
                         <li @if (action == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Home", "Doctor")</li>
                             //<li @if (action != "Home") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
-                            <li @if (action != "Home") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "RandomPatients", "Doctor")</li>
+                            <li @if (action != "Home") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
                     }
                     
                     @if (User.IsFinance())
@@ -63,7 +63,8 @@
                     
                     @if (User.IsStaff())
                     {
-                        <li class="active">@Html.ActionLink("Patients", "Patients", "Staff")</li>
+                        <li @if (action == "Patients") { <text> class="active" </text>     }>@Html.ActionLink("Patients", "Patients", "Staff")</li>
+                        <li @if (action == "Doctors") { <text> class="active" </text>     }>@Html.ActionLink("Doctors", "Doctors", "Staff")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

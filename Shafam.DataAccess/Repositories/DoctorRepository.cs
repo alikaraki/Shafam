@@ -52,6 +52,25 @@ namespace Shafam.DataAccess.Repositories
             Patient patient = _dataContext.Patients.First(p => p.PatientId == patientId);
             doctor.Patients.Add(patient);
             _dataContext.Save();
+<<<<<<< HEAD
         }
+
+
+        public List<Patient> GetPatientsForDoctor(int doctorId)
+        {
+            return _dataContext.Doctors
+                        .Include("Patients")
+                        .First(d => d.DoctorId == doctorId)
+                        .Patients.ToList();
+        }
+=======
+        }
+
+        public List<Patient> GetPatientsForDoctor(int doctorId)
+        {
+            Doctor doctor = GetDoctor(doctorId);
+            return doctor.Patients.ToList();
+        }
+>>>>>>> FETCH_HEAD
     }
 }

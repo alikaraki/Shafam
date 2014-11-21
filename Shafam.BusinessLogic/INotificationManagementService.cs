@@ -9,7 +9,7 @@ namespace Shafam.BusinessLogic
 {
     public interface INotificationManagementService
     {
-        void SendNotification(int referringDocId, int referredDocId);
+        bool SendNotification(int referringDocId, int referredDocId);
 
         void ViewNotification();
     }
