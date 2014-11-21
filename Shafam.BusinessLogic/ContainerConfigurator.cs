@@ -3,12 +3,9 @@ using Microsoft.Practices.Unity;
 using Shafam.BusinessLogic.Authentication;
 using Shafam.BusinessLogic.PatientManagement;
 using Shafam.Common.Infrastructure;
-<<<<<<< HEAD
 using Shafam.BusinessLogic.NotificationManagement;
-=======
-using Shafam.BusinessLogic.Notification;
 using Shafam.BusinessLogic.Scheduling;
->>>>>>> FETCH_HEAD
+
 
 namespace Shafam.BusinessLogic
 {

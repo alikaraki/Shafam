@@ -24,27 +24,6 @@ namespace Shafam.BusinessLogic.PatientManagement
         }
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="patientRepository"></param>
-        public PatientManagementService(IPatientRepository patientRepository, IDoctorRepository doctorRepository)
-        {
-            _patientRepository = patientRepository;
-            _doctorRepository = doctorRepository;
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="patientRepository"></param>
-        public PatientManagementService(IPatientRepository patientRepository, IDoctorRepository doctorRepository, IVisitationRepository visitationRepository)
-        {
-            _patientRepository = patientRepository;
-            _doctorRepository = doctorRepository;
-            _visitationRepository = visitationRepository;
-        }
-
-        /// <summary>
         /// Gets a patient with specific patiendId from patient repository
         /// </summary>
         /// <param name="patientId"></param>
@@ -61,7 +40,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>list of Patients from Patient Repository for the doctor with doctorID in the Doctor Repository</returns>
         public List<Patient> ViewAllPatients(int doctorId)
         {
-            return _doctorRepository.GetPatientsForDoctor(doctorId);
+            //return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
         /// <summary>
