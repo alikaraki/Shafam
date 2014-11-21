@@ -12,12 +12,15 @@ namespace Shafam.UserInterface.Controllers
     [Authorize(Roles = UserRoles.Doctor)]
     public class DoctorController : Controller
     {
+        private readonly IIdentityProvider _identityProvider;
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
 
-        public DoctorController(IPatientRepository patientRepository, 
+        public DoctorController(IIdentityProvider identityProvider,
+                                IPatientRepository patientRepository, 
                                 IPatientManagementService patientManagementService)
         {
+            _identityProvider = identityProvider;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
         }
@@ -34,9 +37,10 @@ namespace Shafam.UserInterface.Controllers
 
         //
         // GET: /Patient/
-        public ActionResult Patients(int doctorId)
+        public ActionResult Patients()
         {
             //IEnumerable<Patient> patients = _patientRepository.GetPatients();
+            int doctorId = _identityProvider.GetAuthenticatedUserId();
             IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
 
             return View(patients);

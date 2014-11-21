@@ -53,5 +53,11 @@ namespace Shafam.DataAccess.Repositories
             doctor.Patients.Add(patient);
             _dataContext.Save();
         }
+
+        public List<Patient> GetPatientsForDoctor(int doctorId)
+        {
+            Doctor doctor = GetDoctor(doctorId);
+            return doctor.Patients.ToList();
+        }
     }
 }

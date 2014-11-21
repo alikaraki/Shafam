@@ -15,9 +15,11 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// Constructor
         /// </summary>
         /// <param name="patientRepository"></param>
-        public PatientManagementService(IPatientRepository patientRepository)
+        public PatientManagementService(IPatientRepository patientRepository,
+                                        IDoctorRepository doctorRepository)
         {
             _patientRepository = patientRepository;
+            _doctorRepository = doctorRepository;
         }
 
         /// <summary>
@@ -37,9 +39,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>list of Patients from Patient Repository for the doctor with doctorID in the Doctor Repository</returns>
         public List<Patient> ViewAllPatients(int doctorId)
         {
-            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            List<Patient> list = new List<Patient>(doctor.Patients);
-            return list;
+            return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
         /// <summary>
