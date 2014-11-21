@@ -73,7 +73,7 @@ namespace Shafam.UserInterface
                 FirstName = "John",
                 LastName = "Smith",
                 Gender = Gender.Male,
-                Speciality = "Family doctor"
+                Specialty = "Family doctor"
             };
 
             var doctor2 = new Doctor
@@ -81,7 +81,7 @@ namespace Shafam.UserInterface
                 FirstName = "Amy",
                 LastName = "Montrose",
                 Gender = Gender.Male,
-                Speciality = "Neurologist"
+                Specialty = "Neurologist"
             };
 
             _doctorRepository.AddDoctor(doctor1);

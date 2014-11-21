@@ -74,5 +74,12 @@ namespace Shafam.UserInterface.Controllers
             List<Appointment> appointments = _schedulingService.ViewDoctorSchedule(doctorId);
             return View(appointments);
         }
+
+        public ActionResult Doctors()
+        {
+            IEnumerable<Doctor> doctors = _doctorRepository.GetDoctors();
+
+            return View(doctors);
+        }
 	}
 }

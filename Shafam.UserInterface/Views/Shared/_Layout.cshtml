@@ -64,6 +64,7 @@
                     @if (User.IsStaff())
                     {
                         <li @if (action == "Patients") { <text> class="active" </text>     }>@Html.ActionLink("Patients", "Patients", "Staff")</li>
+                        <li @if (action == "Doctors") { <text> class="active" </text>     }>@Html.ActionLink("Doctors", "Doctors", "Staff")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

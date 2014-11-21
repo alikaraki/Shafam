@@ -1,0 +1,27 @@
+﻿@using Shafam.Common.DataModel
+
+@{
+    ViewBag.Title = "Doctors";
+}
+
+<h2>Doctors</h2>
+
+<table class="table">
+    <tr>
+        <th>Doctor ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Specialty</th>
+        <th>Gender</th>
+    </tr>
+    @foreach (Doctor doctor in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@doctor.DoctorId.ToString(), "DoctorProfile", new { doctorid = @doctor.DoctorId }) </td>
+            <td>@doctor.FirstName</td>
+            <td>@doctor.LastName</td>
+            <td>@doctor.Specialty</td>
+            <td>@doctor.Gender</td>
+        </tr>
+    }
+</table>
