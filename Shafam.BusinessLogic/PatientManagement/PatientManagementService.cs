@@ -40,7 +40,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>list of Patients from Patient Repository for the doctor with doctorID in the Doctor Repository</returns>
         public List<Patient> ViewAllPatients(int doctorId)
         {
-            //return _doctorRepository.GetPatientsForDoctor(doctorId);
+            return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
         /// <summary>
