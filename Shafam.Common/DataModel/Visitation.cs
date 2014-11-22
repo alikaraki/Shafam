@@ -11,6 +11,7 @@ namespace Shafam.Common.DataModel
         public int PatientId { get; set; }
         public DateTime DateTime { get; set; }
         public string Reason { get; set; }
+        public float Rate { get; set; }
 
         public ICollection<Medication> Medications { get; set; } 
         public ICollection<Test> Tests { get; set; } 
