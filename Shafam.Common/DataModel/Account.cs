@@ -7,5 +7,6 @@
         public string Password { get; set; }
         public UserRole Role { get; set; }
         public int? UserId { get; set; }
+        public bool Disabled { get; set; }
     }
 }

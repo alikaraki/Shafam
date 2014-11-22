@@ -39,11 +39,16 @@ namespace Shafam.UserInterface.Controllers
             return View(GetDoctors().Concat(GetStaff()));
         }
 
-        public ActionResult Details(int id, UserRole role, bool showUserCreatedAlert = false)
+        public ActionResult Details(int id, UserRole role, bool showUserCreatedAlert = false, bool showEnabledDisabledAlert = false)
         {
             if (showUserCreatedAlert)
             {
                 ViewBag.ShowUserCreatedAlert = true;
+            }
+
+            if (showEnabledDisabledAlert)
+            {
+                ViewBag.ShowEnabledDisabledAlert = true;
             }
 
             if (role == UserRole.Doctor)
@@ -87,62 +92,17 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("Details", new {id, role, showUserCreatedAlert = true});
         }
 
-        //public ActionResult DeleteDoctor(int id)
-        //{
-        //    return View(_doctorRepository.GetDoctor(id));
-        //}
+        public ActionResult Disable(int id, UserRole role)
+        {
+            _accountRepository.DisableAccount(id);
+            return RedirectToAction("Details", new { id, role, showEnabledDisabledAlert = true});
+        }
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteDoctorConfirmed(int id)
-        //{
-        //    return RedirectToAction("Doctors");
-        //}
-
-        //public ActionResult Staff()
-        //{
-        //    return View(_staffRepository.GetAllStaff());
-        //}
-
-        //public ActionResult StaffDetails(int id)
-        //{
-        //    return View(_staffRepository.GetStaff(id));
-        //}
-
-        //public ActionResult CreateStaff()
-        //{
-        //    return View();
-        //}
-
-        //// POST: /StaffTest/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult CreateStaff([Bind(Include = "StaffId,FirstName,LastName,PhoneNumber,Address,Department")] Staff staff)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _staffRepository.AddStaff(staff);
-        //        return RedirectToAction("Staff");
-        //    }
-
-        //    return View(staff);
-        //}
-
-        //public ActionResult DeleteStaff(int id)
-        //{
-        //    return View(_staffRepository.GetStaff(id));
-        //}
-
-        //// POST: /StaffTest/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    _staffRepository.DeleteStaff(id);
-        //    return RedirectToAction("Staff");
-        //}
+        public ActionResult Enable(int id, UserRole role)
+        {
+            _accountRepository.EnableAccount(id);
+            return RedirectToAction("Details", new { id, role, showEnabledDisabledAlert = true });
+        }
 
         private IEnumerable<UserViewModel> GetDoctors()
         {

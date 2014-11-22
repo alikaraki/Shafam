@@ -9,10 +9,76 @@
     <div class="alert alert-success" role="alert">User has been created! Default username/password is <strong>@Model.Username</strong></div>
 }
 
+@if (ViewBag.ShowEnabledDisabledAlert == true)
+{
+    <div class="alert alert-success" role="alert">User account has been <strong>@Model.AccountStatus</strong>!</div>
+}
+
 <h3>@ViewBag.Title</h3>
 
+<hr />
+
+@if (Model.AccountStatus == "Enabled")
+{
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Disable User</button>
+    </div>
+
+    using (Html.BeginForm("Disable", "IT", new {id = Model.UserViewModelId, role = Model.UserRole}, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Disable User</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to disable this user?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Disable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Enable User</button>
+    </div>
+
+    using (Html.BeginForm("Enable", "IT", new { id = Model.UserViewModelId, role = Model.UserRole }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Enable User</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to enable this user?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Enable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<br />
+
 <div>
-	<hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserViewModelId)
@@ -76,6 +142,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Username)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountStatus)
         </dd>
 
     </dl>

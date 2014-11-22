@@ -25,6 +25,7 @@ namespace Shafam.UserInterface.Models
             {
                 userViewModel.UserRole = account.Role;
                 userViewModel.Username = account.Username;
+                userViewModel.AccountStatus = account.Disabled ? "Disabled" : "Enabled";
             }
 
             return userViewModel;

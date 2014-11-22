@@ -30,6 +30,9 @@ namespace Shafam.UserInterface.Models
         [Display(Name = "Role")]
         public string SelectedRole { get; set; }
 
+        [Display(Name = "Account Status")]
+        public string AccountStatus { get; set; }
+
         public IEnumerable<SelectListItem> Roles
         {
             get

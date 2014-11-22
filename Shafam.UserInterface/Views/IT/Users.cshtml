@@ -10,27 +10,29 @@
     </div>
 </p>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserRole)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpecialtyDepartment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialtyDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+{
+    <tr onclick="window.location.href='@Url.Action("Details", new { id = item.UserViewModelId, role = item.UserRole })'">
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -46,10 +48,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Username)
         </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.UserViewModelId, role=item.UserRole }) |
-        </td>
     </tr>
 }
 
 </table>
+
+@section scripts
+{
+    
+}
