@@ -28,7 +28,7 @@ namespace Shafam.DataAccess.Repositories
 
         public Account GetAccount(string username)
         {
-            return _dataContext.Accounts.First(u => u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+            return _dataContext.Accounts.FirstOrDefault(u => u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public Account GetAccountByUserId(int userId)

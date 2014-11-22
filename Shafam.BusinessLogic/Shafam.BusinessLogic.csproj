@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManagement\AccountManagementService.cs" />
     <Compile Include="Authentication\IdentityProvider.cs" />
     <Compile Include="ContainerConfigurator.cs" />
+    <Compile Include="IAccountManagementService.cs" />
     <Compile Include="IIdentityProvider.cs" />
     <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />

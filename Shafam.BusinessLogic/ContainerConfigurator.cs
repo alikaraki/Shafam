@@ -1,10 +1,14 @@
 ﻿using System.Configuration;
 using Microsoft.Practices.Unity;
+using Shafam.BusinessLogic.AccountManagement;
 using Shafam.BusinessLogic.Authentication;
 using Shafam.BusinessLogic.PatientManagement;
 using Shafam.Common.Infrastructure;
-using Shafam.BusinessLogic.Notification;
+using Shafam.BusinessLogic.NotificationManagement;
 using Shafam.BusinessLogic.Scheduling;
+using Shafam.Common.Infrastructure;
+using Shafam.BusinessLogic.Scheduling;
+
 
 namespace Shafam.BusinessLogic
 {
@@ -13,6 +17,7 @@ namespace Shafam.BusinessLogic
         public void Configure(IUnityContainer container)
         {
             container.RegisterSingleton<IIdentityProvider, IdentityProvider>();
+            container.RegisterSingleton<IAccountManagementService, AccountManagementService>();
             container.RegisterSingleton<IPatientManagementService, PatientManagementService>();
             container.RegisterSingleton<INotificationManagementService, NotificationManagementService>();
             container.RegisterSingleton<ISchedulingService, SchedulingService>();

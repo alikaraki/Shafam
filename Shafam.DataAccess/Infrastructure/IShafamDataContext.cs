@@ -5,16 +5,16 @@ namespace Shafam.DataAccess.Infrastructure
 {
     public interface IShafamDataContext
     {
-        IDbSet<Patient> Patients { get; set; }
-        IDbSet<Doctor> Doctors { get; set; }
-        IDbSet<Account> Accounts { get; set; }
-        IDbSet<Medication> Medications { get; set; }
-        IDbSet<Treatment> Treatments { get; set; }
-        IDbSet<Test> Tests { get; set; }
-        IDbSet<Appointment> Appointments { get; set; }
-        IDbSet<AppointmentRequest> AppointmentRequests { get; set; }
-        IDbSet<Visitation> Visitations { get; set; }
-        IDbSet<Staff> Staffs { get; set; } 
+        DbSet<Patient> Patients { get; set; }
+        DbSet<Doctor> Doctors { get; set; }
+        DbSet<Account> Accounts { get; set; }
+        DbSet<Medication> Medications { get; set; }
+        DbSet<Treatment> Treatments { get; set; }
+        DbSet<Test> Tests { get; set; }
+        DbSet<Appointment> Appointments { get; set; }
+        DbSet<AppointmentRequest> AppointmentRequests { get; set; }
+        DbSet<Visitation> Visitations { get; set; }
+        DbSet<Staff> Staffs { get; set; } 
 
         void Save();
     }

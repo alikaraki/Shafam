@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
+using Shafam.BusinessLogic.NotificationManagement;
 
 namespace Shafam.BusinessLogic.PatientManagement
 {
@@ -76,7 +77,9 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>true if patient successfully referred, else false</returns>
         public bool ReferPatient(int patientId, int referringDocId, int referredDocId)
         {
-            throw new NotImplementedException();
+            AddPatient(_patientRepository.GetPatient(patientId), referredDocId);
+            INotificationManagementService notificationService = new NotificationManagementService(_doctorRepository);
+            return notificationService.SendNotification(referringDocId, referredDocId);
         }
     }
 }

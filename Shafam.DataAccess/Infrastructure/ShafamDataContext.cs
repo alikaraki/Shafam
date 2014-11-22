@@ -12,25 +12,25 @@ namespace Shafam.DataAccess.Infrastructure
         {
         }
 
-        public IDbSet<Patient> Patients { get; set; }
+        public DbSet<Patient> Patients { get; set; }
 
-        public IDbSet<Doctor> Doctors { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
-        public IDbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
-        public IDbSet<Medication> Medications { get; set; }
+        public DbSet<Medication> Medications { get; set; }
 
-        public IDbSet<Treatment> Treatments { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
 
-        public IDbSet<Test> Tests { get; set; }
+        public DbSet<Test> Tests { get; set; }
 
-        public IDbSet<Appointment> Appointments { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
 
-        public IDbSet<AppointmentRequest> AppointmentRequests { get; set; }
+        public DbSet<AppointmentRequest> AppointmentRequests { get; set; }
 
-        public IDbSet<Visitation> Visitations { get; set; }
+        public DbSet<Visitation> Visitations { get; set; }
 
-        public IDbSet<Staff> Staffs { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
