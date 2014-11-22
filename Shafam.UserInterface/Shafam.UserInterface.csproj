@@ -257,6 +257,7 @@
     <Content Include="Views\Staff\DoctorSchedule.cshtml" />
     <Content Include="Views\Staff\PatientSchedule.cshtml" />
     <Content Include="Views\Staff\Doctors.cshtml" />
+    <Content Include="Views\Staff\DoctorProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
