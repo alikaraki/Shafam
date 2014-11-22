@@ -6,8 +6,6 @@ using Shafam.BusinessLogic.PatientManagement;
 using Shafam.Common.Infrastructure;
 using Shafam.BusinessLogic.NotificationManagement;
 using Shafam.BusinessLogic.Scheduling;
-using Shafam.Common.Infrastructure;
-using Shafam.BusinessLogic.Scheduling;
 
 
 namespace Shafam.BusinessLogic
