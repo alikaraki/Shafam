@@ -4,6 +4,7 @@
     {
         public int TreatmentId { get; set; }
         public string TreatmentType { get; set; }
+        public float Rate { get; set; }
 
         public int DoctorId { get; set; }
         public int PatientId { get; set; }

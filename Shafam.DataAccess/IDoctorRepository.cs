@@ -22,5 +22,8 @@ namespace Shafam.DataAccess
         void AssignPatient(int doctorId, int patientId);
 
         List<Patient> GetPatientsForDoctor(int doctorId);
+
+        List<Appointment> GetAppointmentsForDoctor(int doctorId);
+
     }
 }

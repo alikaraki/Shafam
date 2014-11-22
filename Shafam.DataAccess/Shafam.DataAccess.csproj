@@ -66,11 +66,17 @@
     <Compile Include="Infrastructure\IShafamDataContext.cs" />
     <Compile Include="Infrastructure\ShafamDataContext.cs" />
     <Compile Include="Infrastructure\ShafamDropCreateAlwaysInitializer.cs" />
+    <Compile Include="Infrastructure\ShafamMigrateDatabaseInitializer.cs" />
     <Compile Include="IPatientRepository.cs" />
     <Compile Include="IStaffRepository.cs" />
     <Compile Include="ITestRepository.cs" />
     <Compile Include="IAccountRepository.cs" />
     <Compile Include="IVisitationRepository.cs" />
+    <Compile Include="Migrations\201411212258477_InitialCreate.cs" />
+    <Compile Include="Migrations\201411212258477_InitialCreate.Designer.cs">
+      <DependentUpon>201411212258477_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ShafamMigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppointmentRepository.cs" />
     <Compile Include="Repositories\AppointmentRequestRepository.cs" />
@@ -84,7 +90,11 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\VisitationRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201411212258477_InitialCreate.resx">
+      <DependentUpon>201411212258477_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shafam.Common\Shafam.Common.csproj">
       <Project>{6c336dda-8cf0-414f-811c-970e99fcfbf9}</Project>

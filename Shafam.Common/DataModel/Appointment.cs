@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 
 namespace Shafam.Common.DataModel
 {
@@ -9,5 +10,8 @@ namespace Shafam.Common.DataModel
         public int PatientId { get; set; }
         public DateTime DateTime { get; set; }  
         public string Reason { get; set; }
+
+        public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<Patient> Patients { get; set; }
     }
 }

@@ -47,12 +47,12 @@
                     
                     @if (User.IsIT())
                     {
-                        <li class="active">@Html.ActionLink("Accounts", "Users", "IT")</li>
+                        <li class="active">@Html.ActionLink("Users", "Users", "IT")</li>
                     }
                     
                     @if (User.IsLegal())
                     {
-                        <li @if (action == "Complaints") { <text> class="active" </text>     }>@Html.ActionLink("Complaints", "Complaints", "Legal")</li>
+                        <li @if (action == "Complaints") { <text> class="active" </text> }>@Html.ActionLink("Complaints", "Complaints", "Legal")</li>
                         <li @if (action == "Reports") { <text> class="active" </text>     }>@Html.ActionLink("Reports", "Reports", "Legal")</li>
                     }
                     

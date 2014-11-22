@@ -9,6 +9,7 @@ namespace Shafam.Common.DataModel
         public DateTime? Completed { get; set; }
         public string Result { get; set; }
         public bool SeenByDoctor { get; set; }
+        public float Rate { get; set; }
 
         public int DoctorId { get; set; }
         public int PatientId { get; set; }

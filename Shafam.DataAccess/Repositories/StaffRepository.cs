@@ -28,6 +28,11 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Staffs.First(s => s.StaffId == staffId);
         }
 
+        public List<Staff> GetAllStaff()
+        {
+            return _dataContext.Staffs.ToList();
+        }
+
         public List<Staff> GetDepartmentStaff(string department)
         {
             return _dataContext.Staffs.Where(s => s.Department == department).ToList();

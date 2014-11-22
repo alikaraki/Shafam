@@ -27,7 +27,7 @@ namespace Shafam.DataAccess
 
         private static void InitializeDatabase(IUnityContainer container)
         {
-            container.Resolve<ShafamDropCreateAlwaysInitializer>().Initialize();
+            container.Resolve<ShafamMigrateDatabaseInitializer>().Initialize();
         }
     }
 }
