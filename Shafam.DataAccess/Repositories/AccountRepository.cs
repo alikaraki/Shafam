@@ -33,7 +33,7 @@ namespace Shafam.DataAccess.Repositories
 
         public Account GetAccountByUserId(int userId)
         {
-            return _dataContext.Accounts.First(a => a.UserId == userId);
+            return _dataContext.Accounts.FirstOrDefault(a => a.UserId == userId);
         }
 
         public Account VerifyAccount(string username, string password)

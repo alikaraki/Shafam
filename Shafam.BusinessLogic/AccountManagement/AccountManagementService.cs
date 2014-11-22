@@ -48,7 +48,7 @@ namespace Shafam.BusinessLogic.AccountManagement
 
         private string GenerateUsername(string suggestedUsername)
         {
-            string username = suggestedUsername;
+            string username = string.IsNullOrEmpty(suggestedUsername) ? "user" : suggestedUsername;
             int postfix = 1;
 
             while (_accountRepository.GetAccount(username) != null)
