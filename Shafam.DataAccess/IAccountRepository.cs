@@ -16,5 +16,9 @@ namespace Shafam.DataAccess
         Account VerifyAccount(string username, string password);
 
         bool ChangePassword(string username, string oldPassword, string newPassword);
+
+        void DisableAccount(int userId);
+
+        void EnableAccount(int userId);
     }
 }

@@ -33,13 +33,27 @@ namespace Shafam.DataAccess.Repositories
 
         public Account GetAccountByUserId(int userId)
         {
-            return _dataContext.Accounts.First(a => a.UserId == userId);
+            return _dataContext.Accounts.FirstOrDefault(a => a.UserId == userId);
         }
 
         public Account VerifyAccount(string username, string password)
         {
             return _dataContext.Accounts.FirstOrDefault(u => u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase)
-                                                       && u.Password.Equals(password));
+                                                             && u.Password.Equals(password) && !u.Disabled);
+        }
+
+        public void DisableAccount(int userId)
+        {
+            Account account = GetAccountByUserId(userId);
+            account.Disabled = true;
+            _dataContext.Save();
+        }
+
+        public void EnableAccount(int userId)
+        {
+            Account account = GetAccountByUserId(userId);
+            account.Disabled = false;
+            _dataContext.Save();
         }
 
         public bool ChangePassword(string username, string oldPassword, string newPassword)

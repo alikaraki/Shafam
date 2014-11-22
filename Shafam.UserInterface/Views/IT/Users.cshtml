@@ -1,7 +1,59 @@
-﻿@{
-    ViewBag.Title = "System Accounts";
+﻿@model IEnumerable<Shafam.UserInterface.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
 }
 
-<h3>@ViewBag.Title</h3>
+<p>
+    <div>
+        @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})
+    </div>
+</p>
 
-<p>Add users.</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialtyDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+{
+    <tr onclick="window.location.href='@Url.Action("Details", new { id = item.UserViewModelId, role = item.UserRole })'">
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecialtyDepartment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts
+{
+    
+}

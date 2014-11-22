@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -44,8 +45,15 @@ namespace Shafam.DataAccess.Migrations
                 Specialty = "Neurologist"
             };
 
-            context.Doctors.AddOrUpdate(d => d.FirstName, doctor1);
-            context.Doctors.AddOrUpdate(d => d.FirstName, doctor2);
+            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor1.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                context.Doctors.AddOrUpdate(d => d.FirstName, doctor1);
+            }
+
+            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor2.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                context.Doctors.AddOrUpdate(d => d.FirstName, doctor2);
+            }
 
             var doctor1Account = new Account { Username = "John", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
             var doctor2Account = new Account { Username = "Amy", Password = "amy", Role = UserRole.Doctor, UserId = doctor2.DoctorId };
@@ -64,7 +72,11 @@ namespace Shafam.DataAccess.Migrations
                                       new Patient {FirstName = "Jarrod", LastName = "Kenley", Gender = Gender.Male, Age = 71},
                                   };
 
-            patients.ForEach(p => context.Patients.AddOrUpdate(pt => pt.FirstName, p));
+            patients.ForEach(p =>
+            {
+                if (!context.Patients.Any(ps => ps.FirstName.Equals(p.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+                    context.Patients.AddOrUpdate(pt => pt.FirstName, p);
+            });
 
             context.SaveChanges();
 
