@@ -51,7 +51,9 @@
     <Compile Include="Authentication\IdentityProvider.cs" />
     <Compile Include="ContainerConfigurator.cs" />
     <Compile Include="IAccountManagementService.cs" />
+    <Compile Include="IBillingManagementService.cs" />
     <Compile Include="IIdentityProvider.cs" />
+    <Compile Include="ILegalService.cs" />
     <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />
     <Compile Include="ISchedulingService.cs" />
