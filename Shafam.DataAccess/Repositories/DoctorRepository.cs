@@ -59,5 +59,11 @@ namespace Shafam.DataAccess.Repositories
             Doctor doctor = GetDoctor(doctorId);
             return doctor.Patients.ToList();
         }
+
+        public List<Appointment> GetAppointmentsForDoctor(int doctorId)
+        {
+            Doctor doctor = GetDoctor(doctorId);
+            return doctor.Appointments.ToList();
+        }
     }
 }

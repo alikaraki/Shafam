@@ -1,11 +1,18 @@
-﻿
-@using Shafam.Common.DataModel
+﻿@using Shafam.Common.DataModel
 
 @{
     ViewBag.Title = "Doctor Schedule";
 }
 
-<h2>Schedule</h2>
+<div class="row">
+    <div class="col-md-10">
+        <h3>Schedule</h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment")</p>
+    </div>
+</div>
 
 <table class="table">
     <tr>

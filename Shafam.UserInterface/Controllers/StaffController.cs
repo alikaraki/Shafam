@@ -87,5 +87,11 @@ namespace Shafam.UserInterface.Controllers
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
             return View(doctor);
         }
+
+        public ActionResult NewAppointment(int doctorId)
+        {
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            return View(doctor);
+        }
 	}
 }
