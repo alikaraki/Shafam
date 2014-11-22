@@ -263,6 +263,8 @@
     <Content Include="Views\IT\Users.cshtml" />
     <Content Include="Views\IT\Details.cshtml" />
     <Content Include="Views\IT\Create.cshtml" />
+    <Content Include="Views\Staff\DoctorProfile.cshtml" />
+    <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

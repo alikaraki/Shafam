@@ -4,6 +4,8 @@
 
 @model Shafam.Common.DataModel.Doctor
 
+@Html.Partial("_DoctorProfileHeader", @Model)
+
 
 <form class="form-horizontal" role="form">
     <div class="form-group">
@@ -13,16 +15,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">First Name</label>
+        <label class="col-sm-2 control-label">Doctor Name</label>
         <div class="col-sm-10">
-            <p class="form-control-static">@Model.FirstName</p>
+            <p class="form-control-static">@Model.FirstName @Model.LastName</p>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Last Name</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">@Model.LastName</p>
-        </div>
-    </div>
+    </div>   
 </form>
 
