@@ -1,10 +1,29 @@
-﻿
+﻿@using Shafam.Common.DataModel
 @{
     ViewBag.Title = "Visitations";
 }
 
-@model Shafam.Common.DataModel.Patient
+@model Shafam.UserInterface.Models.VisitationViewModel
 
-@Html.Partial("_Header", @Model)
+@Html.Partial("_Header", @Model.Patient)
 
-<p>Add visitations</p>
+<p>@Html.ActionLink("Add Visitation", "AddVisitation", new { patientId = @Model.Patient.PatientId }) </p>
+
+<table class="table">
+    <tr>
+        <th>Visitation ID</th>
+        <th>Date &amp; Time</th>
+        <th>Reason</th>
+        <th>Notes</th>
+    </tr>
+    @foreach (Visitation visitation in Model.Visitations)
+    {
+        <tr>
+            <td>@visitation.VisitationId</td>
+            <td>@visitation.DateTime</td>
+            <td>@visitation.Reason</td>
+            <td>@visitation.Notes</td>
+        </tr>
+    }
+</table>
+

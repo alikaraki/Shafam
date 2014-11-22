@@ -1,10 +1,25 @@
-﻿
+﻿@using Shafam.Common.DataModel
+@using Shafam.UserInterface.Models
 @{
     ViewBag.Title = "Treatments";
 }
 
-@model Shafam.Common.DataModel.Patient
+@model TreatmentViewModel
 
-@Html.Partial("_Header", @Model)
+@Html.Partial("_Header", @Model.Patient)
 
-<p>Add treatments</p>
+<table class="table">
+    <tr>
+        <th>Date &amp; Time</th>
+        <th>Reason</th>
+        <th>Treatment Prescribed</th>
+    </tr>
+    @foreach (SingleTreatmentModel treatment in Model.Treatments)
+    {
+        <tr>
+            <td>@treatment.DateTime</td>
+            <td>@treatment.Reason</td>
+            <td>@treatment.Treatment.TreatmentType</td>
+        </tr>
+    }
+</table>

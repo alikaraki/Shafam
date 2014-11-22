@@ -1,10 +1,27 @@
-﻿
+﻿@using Shafam.Common.DataModel
+@using Shafam.UserInterface.Models
 @{
     ViewBag.Title = "Tests";
 }
 
-@model Shafam.Common.DataModel.Patient
+@model TestViewModel
 
-@Html.Partial("_Header", @Model)
+@Html.Partial("_Header", @Model.Patient)
 
-<p>Add tests</p>
+<table class="table">
+    <tr>
+        <th>Date &amp; Time</th>
+        <th>Reason</th>
+        <th>Test Prescribed</th>
+        <th>Test Result</th>
+    </tr>
+    @foreach (SingleTestModel test in Model.Tests)
+    {
+        <tr>
+            <td>@test.DateTime</td>
+            <td>@test.Reason</td>
+            <td>@test.Test.Type</td>
+            <td>@test.Test.Result</td>
+        </tr>
+    }
+</table>

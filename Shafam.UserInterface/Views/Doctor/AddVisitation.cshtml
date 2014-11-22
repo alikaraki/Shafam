@@ -5,12 +5,51 @@
 
 <h2>@ViewBag.Title</h2>
 
-@model Shafam.UserInterface.Models.VisitationViewModel
+@model Shafam.UserInterface.Models.VisitationInputModel
 
-@using(Html.BeginForm("AddVisitation", "Visitation", new {patientId = Model.Patient.PatientId}))
+@using (Html.BeginForm("AddVisitation", "Doctor", new { patientId = Model.Patient.PatientId }))
 {
-    @Html.LabelFor(m => m.Reason)
-    @Html.TextAreaFor(m => m.Reason)
-
-    <input type="submit" value="Save" />
-}
+    <div>
+        @Html.LabelFor(m => m.Reason)
+        <br />
+        @Html.TextBoxFor(m => m.Reason, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Notes)
+        <br />
+        @Html.TextAreaFor(m => m.Notes, new { style = "width: 600px; height: 150px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MedicationName)
+        <br />
+        @Html.TextBoxFor(m => m.MedicationName, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MedicationQuantity)
+        <br />
+        @Html.TextBoxFor(m => m.MedicationQuantity, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MedicationInstructions)
+        <br />
+        @Html.TextBoxFor(m => m.MedicationInstructions, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Treatment)
+        <br />
+        @Html.TextBoxFor(m => m.Treatment, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Test)
+        <br />
+        @Html.TextBoxFor(m => m.Test, new { style = "width: 600px;" })
+        <br /><br />
+    </div>
+        <input type="submit" value="Save" />
+ }
