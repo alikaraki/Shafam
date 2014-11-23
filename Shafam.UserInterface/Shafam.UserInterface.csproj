@@ -175,9 +175,12 @@
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppointmentInputViewModel.cs" />
+    <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
+    <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
@@ -193,10 +196,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShafamDatabase.mdf" />
-    <Content Include="App_Data\ShafamDatabase_log.ldf">
-      <DependentUpon>ShafamDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -278,14 +277,13 @@
     <Content Include="Views\IT\Create.cshtml" />
     <Content Include="Views\Staff\DoctorProfile.cshtml" />
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Staff\NewAppointment.cshtml" />
-=======
     <Content Include="Views\Staff\AddPatient.cshtml" />
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
->>>>>>> 379509f60536216d294cdbeb91a28145f8b30803
+    <Content Include="Views\Staff\NewAppointment.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
