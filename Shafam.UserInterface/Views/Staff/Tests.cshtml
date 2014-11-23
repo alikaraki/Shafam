@@ -8,20 +8,24 @@
 
 @Html.Partial("_Header", @Model.Patient)
 
-<table class="table">
-    <tr>
-        <th>Date &amp; Time</th>
-        <th>Reason</th>
-        <th>Test Prescribed</th>
-        <th>Test Result</th>
-    </tr>
-    @foreach (SingleTestModel test in Model.Tests)
-    {
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>@test.DateTime</td>
-            <td>@test.Reason</td>
-            <td>@test.Test.Type</td>
-            <td>@test.Test.Result</td>
+            <th>Date &amp; Time</th>
+            <th>Reason</th>
+            <th>Test Prescribed</th>
+            <th>Test Result</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (SingleTestModel test in Model.Tests)
+        {
+            <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = test.VisitationId })'">
+                <td>@test.DateTime</td>
+                <td>@test.Reason</td>
+                <td>@test.Test.Type</td>
+                <td>@test.Test.Result</td>
+            </tr>
+        }
+    </tbody>
 </table>

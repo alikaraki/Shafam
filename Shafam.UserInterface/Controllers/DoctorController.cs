@@ -130,7 +130,8 @@ namespace Shafam.UserInterface.Controllers
                         {
                             DateTime = visitation.DateTime, 
                             Reason = visitation.Reason,
-                            Medication = medication
+                            Medication = medication,
+                            VisitationId = visitation.VisitationId
                         };
                     medicationViewModel.Medications.Add(singleMedication);
                 } 
@@ -153,7 +154,8 @@ namespace Shafam.UserInterface.Controllers
                     {
                         DateTime = visitation.DateTime,
                         Reason = visitation.Reason,
-                        Treatment = treatment
+                        Treatment = treatment,
+                        VisitationId = visitation.VisitationId
                     };
                     treatmentViewModel.Treatments.Add(singleTreatment);
                 }
@@ -176,7 +178,8 @@ namespace Shafam.UserInterface.Controllers
                     {
                         DateTime = visitation.DateTime,
                         Reason = visitation.Reason,
-                        Test = test
+                        Test = test,
+                        VisitationId = visitation.VisitationId
                     };
                     testViewModel.Tests.Add(singleTest);
                 }
