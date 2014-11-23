@@ -13,6 +13,7 @@
         <th>Date &amp; Time</th>
         <th>Reason</th>
         <th>Treatment Prescribed</th>
+        <th>Treatment Completed</th>
     </tr>
     @foreach (SingleTreatmentModel treatment in Model.Treatments)
     {
@@ -20,6 +21,8 @@
             <td>@treatment.DateTime</td>
             <td>@treatment.Reason</td>
             <td>@treatment.Treatment.TreatmentType</td>
+            @if (treatment.Treatment.TreatmentCompleted == false) {<td>Not Completed</td>}
+            else{<td>Completed</td>}
         </tr>
     }
 </table>

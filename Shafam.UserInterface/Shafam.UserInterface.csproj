@@ -278,6 +278,7 @@
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Staff\AddPatient.cshtml" />
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
+    <Content Include="Views\Staff\AddTestResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

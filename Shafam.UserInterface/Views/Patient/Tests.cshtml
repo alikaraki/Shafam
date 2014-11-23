@@ -1,7 +1,26 @@
-﻿@{
+﻿@using Shafam.Common.DataModel
+@using Shafam.UserInterface.Models
+@{
     ViewBag.Title = "Tests";
 }
 
+@model TestViewModel
+
 @Html.Partial("_Header")
 
-<p>Add tests</p>
+<table class="table">
+    <tr>
+        <th>Date &amp; Time</th>
+        <th>Test Prescribed</th>
+        <th>Test Completed</th>
+    </tr>
+    @foreach (SingleTestModel test in Model.Tests)
+    {
+        <tr>
+            <td>@test.DateTime</td>
+            <td>@test.Test.Type</td>
+            @if(test.Test.Result == null) {<td>Not Done</td>}
+            else {<td>Done</td>}
+        </tr>
+    }
+</table>
