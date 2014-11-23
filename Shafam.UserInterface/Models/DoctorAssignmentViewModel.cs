@@ -20,36 +20,29 @@ namespace Shafam.UserInterface.Models
         {
             get
             {
-                //var items = new List<SelectListItem>();
-                //var itemsText = new List<string>();
+                var items = new List<SelectListItem>();                
                 var itemsDict = new Dictionary<string,int>();
 
-                foreach (Doctor doctor in Doctors)
-                {
-                    //itemsText.Add(doctor.LastName + ", " + doctor.FirstName);
-                    itemsDict.Add(doctor.LastName + ", " + doctor.FirstName, doctor.DoctorId);
+                foreach (Doctor doctor in Doctors)                
+                    itemsDict.Add(doctor.LastName + ", " + doctor.FirstName, doctor.DoctorId);                
 
-                    /*items.Add(new SelectListItem
-                              {
-                                  Text = doctor.LastName + ", " + doctor.FirstName,
-                                  Value = doctor.DoctorId.ToString()
-                              });
-                     */
-                }
+                var sortedDocNames = new List<string>(itemsDict.Keys);
+                sortedDocNames.Sort();
 
-                var itemsText = new List<string>(itemsDict.Keys);
-                itemsText.Sort();
-                
-                var itemsSelectList = new SelectList(itemsText);
-
-                foreach (SelectListItem item in itemsSelectList)
+                foreach (string docName in sortedDocNames)
                 {
                     int docId;
-                    if (itemsDict.TryGetValue(item.Text, out docId))
-                        item.Value = docId.ToString();
+                    if (itemsDict.TryGetValue(docName, out docId))
+                    {
+                        items.Add(new SelectListItem
+                        {
+                            Text = docName,
+                            Value = docId.ToString()
+                        });
+                    }
                 }
 
-                return itemsSelectList;
+                return items;
             }
         }
     }
