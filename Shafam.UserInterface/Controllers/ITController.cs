@@ -94,13 +94,13 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult Disable(int id, UserRole role)
         {
-            _accountRepository.DisableAccount(id);
+            _accountRepository.DisableAccount(id, role);
             return RedirectToAction("Details", new { id, role, showEnabledDisabledAlert = true});
         }
 
         public ActionResult Enable(int id, UserRole role)
         {
-            _accountRepository.EnableAccount(id);
+            _accountRepository.EnableAccount(id, role);
             return RedirectToAction("Details", new { id, role, showEnabledDisabledAlert = true });
         }
 
@@ -119,13 +119,37 @@ namespace Shafam.UserInterface.Controllers
         private UserViewModel GetDoctor(int id)
         {
             var doctor = _doctorRepository.GetDoctor(id);
-            return doctor.GetUserViewModel(_accountRepository.GetAccountByUserId(doctor.DoctorId));
+            return doctor.GetUserViewModel(_accountRepository.GetAccountByUserId(doctor.DoctorId, UserRole.Doctor));
         }
         
         private UserViewModel GetStaff(int id)
         {
             var staff = _staffRepository.GetStaff(id);
-            return staff.GetUserViewModel(_accountRepository.GetAccountByUserId(staff.StaffId));
+            return staff.GetUserViewModel(GetAccountForStaff(id));
+        }
+
+        private Account GetAccountForStaff(int id)
+        {
+            Account account = _accountRepository.GetAccountByUserId(id, UserRole.Finance);
+            if (account != null)
+            {
+                return account;
+            }
+
+            account = _accountRepository.GetAccountByUserId(id, UserRole.IT);
+            if (account != null)
+            {
+                return account;
+            }
+
+            account = _accountRepository.GetAccountByUserId(id, UserRole.Legal);
+            if (account != null)
+            {
+                return account;
+            }
+
+            account = _accountRepository.GetAccountByUserId(id, UserRole.Staff);
+            return account;
         }
     }
 }
