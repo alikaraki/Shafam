@@ -1,19 +1,29 @@
 ﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.DoctorScheduleViewModel
 
 @{
     ViewBag.Title = "Doctor Schedule";
 }
 
+<<<<<<< HEAD
 @{
     var doctorId = Request.QueryString["doctorId"];
 }
+=======
+@Html.Partial("_DoctorProfileHeader", @Model.Doctor)
+
+>>>>>>> 379509f60536216d294cdbeb91a28145f8b30803
 <div class="row">
     <div class="col-md-10">
         <h3>Schedule</h3>
     </div>
     <div class="col-md-2">
         <br />
+<<<<<<< HEAD
         <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = doctorId })</p>
+=======
+        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = @Model.Doctor.DoctorId })</p>
+>>>>>>> 379509f60536216d294cdbeb91a28145f8b30803
     </div>
 </div>
 
@@ -25,7 +35,7 @@
         <th>Patient ID</th>
         <th>Date Time</th>
     </tr>
-    @foreach (Appointment appointment in Model)
+    @foreach (Appointment appointment in Model.Appoitnemnts)
     {
         <tr>
             <td>@appointment.PatientId</td>

@@ -15,14 +15,17 @@ namespace Shafam.UserInterface.Controllers
         private readonly IIdentityProvider _identityProvider;
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
+        private readonly IVisitationManagementService _visitationManagementService;
 
         public DoctorController(IIdentityProvider identityProvider,
                                 IPatientRepository patientRepository, 
-                                IPatientManagementService patientManagementService)
+                                IPatientManagementService patientManagementService,
+                                IVisitationManagementService visitationManagementService)
         {
             _identityProvider = identityProvider;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
+            _visitationManagementService = visitationManagementService;
         }
 
         public ActionResult Index()
@@ -82,25 +85,77 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Visitations(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
+            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient});
         }
 
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            MedicationViewModel medicationViewModel = new MedicationViewModel { Patient = patient, Medications = new List<SingleMedicationModel>() };
+            
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                IEnumerable<Medication> medicationsForVisitation = _visitationManagementService.GetMedicationsForVisitation(visitation.VisitationId);
+                foreach (Medication medication in medicationsForVisitation)
+                {
+                    SingleMedicationModel singleMedication = new SingleMedicationModel 
+                        {
+                            DateTime = visitation.DateTime, 
+                            Reason = visitation.Reason,
+                            Medication = medication
+                        };
+                    medicationViewModel.Medications.Add(singleMedication);
+                } 
+            }
+            return View(medicationViewModel);
         }
 
         public ActionResult Treatments(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            TreatmentViewModel treatmentViewModel = new TreatmentViewModel { Patient = patient, Treatments = new List<SingleTreatmentModel>() };
+
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                IEnumerable<Treatment> treatmentsForVisitation = _visitationManagementService.GetTreatmentsforVisitation(visitation.VisitationId);
+                foreach (Treatment treatment in treatmentsForVisitation) 
+                {
+                    SingleTreatmentModel singleTreatment = new SingleTreatmentModel
+                    {
+                        DateTime = visitation.DateTime,
+                        Reason = visitation.Reason,
+                        Treatment = treatment
+                    };
+                    treatmentViewModel.Treatments.Add(singleTreatment);
+                }
+            }
+            return View(treatmentViewModel);
         }
 
         public ActionResult Tests(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            TestViewModel testViewModel = new TestViewModel { Patient = patient, Tests = new List<SingleTestModel>() };
+
+            foreach (Visitation visitation in visitationsForPatient) 
+            {
+                IEnumerable<Test> testsForVisitation = _visitationManagementService.GetTestsforVisitation(visitation.VisitationId);
+                foreach (Test test in testsForVisitation) 
+                {
+                    SingleTestModel singleTest = new SingleTestModel
+                    {
+                        DateTime = visitation.DateTime,
+                        Reason = visitation.Reason,
+                        Test = test
+                    };
+                    testViewModel.Tests.Add(singleTest);
+                }
+            }
+            return View(testViewModel);
         }
 
         [HttpGet]
@@ -108,16 +163,23 @@ namespace Shafam.UserInterface.Controllers
         {
             Patient patient = _patientRepository.GetPatient(patientId);
 
-            return View(new VisitationViewModel { Patient = patient });
+            return View(new VisitationInputModel { Patient = patient });
         }
 
         [HttpPost]
-        public ActionResult AddVisitation(int patientId, VisitationViewModel viewModel)
+        public ActionResult AddVisitation(int patientId, VisitationInputModel inputModel)
         {
             // Add visitation record to repository
-            // Redirect to patient details
+            int doctorId = _identityProvider.GetAuthenticatedUserId();
+            Visitation visitation = _visitationManagementService.AddVisitation(doctorId, patientId, inputModel.Reason, inputModel.Notes,
+                                                                                inputModel.MedicationName, inputModel.MedicationQuantity,
+                                                                                inputModel.MedicationInstructions,
+                                                                                inputModel.Treatment, inputModel.Test);
 
-            return RedirectToAction("PatientProfile", "Doctor", new { patientId = patientId });
+            // Redirect to patient details
+            return RedirectToAction("Visitations", "Doctor", new { patientId = patientId });
         }
     }
 }
+
+

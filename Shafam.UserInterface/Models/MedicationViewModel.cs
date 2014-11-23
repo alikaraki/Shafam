@@ -4,9 +4,10 @@ using System.Web.Mvc;
 
 namespace Shafam.UserInterface.Models
 {
-    public class VisitationViewModel
+    public class MedicationViewModel
     {
         public Patient Patient { get; set; }
-        public IEnumerable<Visitation> Visitations { get; set; }
+        public List<SingleMedicationModel> Medications { get; set; }
+
     }
 }

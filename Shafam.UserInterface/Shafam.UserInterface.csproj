@@ -175,6 +175,15 @@
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DoctorAssignmentViewModel.cs" />
+    <Compile Include="Models\MedicationViewModel.cs" />
+    <Compile Include="Models\PatientInputModel.cs" />
+    <Compile Include="Models\SingleMedicationModel.cs" />
+    <Compile Include="Models\SingleTestModel.cs" />
+    <Compile Include="Models\SingleTreatmentModel.cs" />
+    <Compile Include="Models\TestViewModel.cs" />
+    <Compile Include="Models\TreatmentViewModel.cs" />
+    <Compile Include="Models\VisitationInputModel.cs" />
     <Compile Include="Models\DoctorExtensions.cs" />
     <Compile Include="Models\StaffExtensions.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -269,7 +278,12 @@
     <Content Include="Views\IT\Create.cshtml" />
     <Content Include="Views\Staff\DoctorProfile.cshtml" />
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Staff\NewAppointment.cshtml" />
+=======
+    <Content Include="Views\Staff\AddPatient.cshtml" />
+    <Content Include="Views\Staff\AssignDoctor.cshtml" />
+>>>>>>> 379509f60536216d294cdbeb91a28145f8b30803
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

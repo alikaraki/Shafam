@@ -5,12 +5,37 @@
 
 <h2>@ViewBag.Title</h2>
 
-@model Shafam.UserInterface.Models.VisitationViewModel
+@model Shafam.UserInterface.Models.VisitationInputModel
 
-@using(Html.BeginForm("AddVisitation", "Visitation", new {patientId = Model.Patient.PatientId}))
+@using (Html.BeginForm("AddVisitation", "Doctor", new { patientId = Model.Patient.PatientId }))
 {
-    @Html.LabelFor(m => m.Reason)
-    @Html.TextAreaFor(m => m.Reason)
-
-    <input type="submit" value="Save" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Reason)
+        @Html.TextBoxFor(m => m.Reason, new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Notes)
+        @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MedicationName)
+        @Html.TextBoxFor(m => m.MedicationName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MedicationQuantity)
+        @Html.TextBoxFor(m => m.MedicationQuantity, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MedicationInstructions)
+        @Html.TextBoxFor(m => m.MedicationInstructions, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Treatment)
+        @Html.TextBoxFor(m => m.Treatment, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Test)
+        @Html.TextBoxFor(m => m.Test, new { @class = "form-control" })
+    </div>
+    <input type="submit" value="Save" class="btn btn-default" />
 }

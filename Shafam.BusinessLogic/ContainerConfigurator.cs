@@ -6,6 +6,7 @@ using Shafam.BusinessLogic.PatientManagement;
 using Shafam.Common.Infrastructure;
 using Shafam.BusinessLogic.NotificationManagement;
 using Shafam.BusinessLogic.Scheduling;
+using Shafam.BusinessLogic.VisitationManagement;
 
 
 namespace Shafam.BusinessLogic
@@ -19,6 +20,8 @@ namespace Shafam.BusinessLogic
             container.RegisterSingleton<IPatientManagementService, PatientManagementService>();
             container.RegisterSingleton<INotificationManagementService, NotificationManagementService>();
             container.RegisterSingleton<ISchedulingService, SchedulingService>();
+            container.RegisterSingleton<IVisitationManagementService, VisitationManagementService>();
+
         }
     }
 }

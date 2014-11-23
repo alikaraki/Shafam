@@ -1,0 +1,42 @@
+﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.DoctorAssignmentViewModel
+
+@{
+    ViewBag.Title = "Assign Doctor";
+}
+
+@Html.Partial("_Header", @Model)
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssignedDoctor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AssignedDoctor, Model.DoctorNames, null, new { @class="form-control" })
+            </div>
+        </div>
+
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>Doctor ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Specialty</th>
+        <th>Gender</th>
+    </tr>
+    @foreach (Doctor doctor in Model.Doctors)
+    {
+        <tr>
+            <td>@doctor.DoctorId.ToString()</td>
+            <td>@doctor.FirstName</td>
+            <td>@doctor.LastName</td>
+            <td>@doctor.Specialty</td>
+            <td>@doctor.Gender</td>
+        </tr>
+    }
+</table>

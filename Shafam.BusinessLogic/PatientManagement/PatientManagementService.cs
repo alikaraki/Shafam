@@ -10,7 +10,6 @@ namespace Shafam.BusinessLogic.PatientManagement
     {
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
-        private readonly IVisitationRepository _visitationRepository;
 
         /// <summary>
         /// Constructor
@@ -43,29 +42,76 @@ namespace Shafam.BusinessLogic.PatientManagement
             return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
+
+        /// <summary>
+        /// Adds patient to patient repository
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <returns>patientID if successfully added, else invalue value '-1'</returns>
+        public Patient AddPatient(string firstName, string lastName, int age, Gender gender, 
+                            string healthCardNumber, string phoneNumber, string address)
+        {
+            var patient = new Patient
+                            {
+                                FirstName = firstName,
+                                LastName = lastName,
+                                Age = age,
+                                Gender = gender,
+                                HealthCardNumber = healthCardNumber,
+                                PhoneNumber = phoneNumber,
+                                Address = address
+                            };
+            _patientRepository.AddPatient(patient);
+            return patient;
+        }
+
         /// <summary>
         /// Adds Patient to specific doctor's list of patients
         /// </summary>
         /// <param name="patient"></param>
         /// <param name="doctorId"></param>
         /// <returns>patientID if successfully added patient, else invalid value ‘-1’</returns>
-        public int AddPatient(Patient patient, int doctorId)
+        public Patient AddPatient(int doctorId, string firstName, string lastName, int age, Gender gender, 
+                            string healthCardNumber, string phoneNumber, string address)
         {
+            var patient = new Patient
+                            {
+                                FirstName = firstName,
+                                LastName = lastName,
+                                Age = age,
+                                Gender = gender,
+                                HealthCardNumber = healthCardNumber,
+                                PhoneNumber = phoneNumber,
+                                Address = address
+                            };
             _patientRepository.AddPatient(patient);
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            // TODO: ASSIGN patient to doctor
-            return patient.PatientId;
+            _doctorRepository.AssignPatient(doctorId, patient.PatientId);
+            return patient;
         }
 
         /// <summary>
-        /// Updates a patient profile with a newly added visitation
+        /// 
         /// </summary>
         /// <param name="patient"></param>
-        /// <param name="visitationId"></param>
-        /// <returns>true if patient updated successfully with a new visitationID, else false</returns>
-        public bool AddVisitation(Patient patient, int visitationId)
+        /// <param name="doctorId"></param>
+        /// <returns></returns>
+        public Patient AddPatient(Patient patient, int doctorId)
         {
-            throw new NotImplementedException();
+            _patientRepository.AddPatient(patient);
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            _doctorRepository.AssignPatient(doctorId, patient.PatientId);
+            return patient;
+        }
+
+        /// <summary>
+        /// Assigns patient to a specific doctor
+        /// </summary>
+        /// <param name="doctorId"></param>
+        /// <param name="patientId"></param>
+        public void AssignDoctorToPatient(int doctorId, int patientId)
+        {
+            _doctorRepository.AssignPatient(doctorId, patientId);
         }
 
         /// <summary>

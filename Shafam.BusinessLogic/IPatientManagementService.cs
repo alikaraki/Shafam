@@ -9,10 +9,14 @@ namespace Shafam.BusinessLogic
 
         List<Patient> ViewAllPatients(int doctorId);
 
-        int AddPatient(Patient patient, int doctorId);
+        Patient AddPatient(string firstName, string lastName, int age, Gender gender, string healthCardNumber, string phoneNumber, string address);
 
-        bool AddVisitation(Patient patient, int visitationId);
+        Patient AddPatient(int doctorId, string firstName, string lastName, int age, Gender gender, string healthCardNumber, string phoneNumber, string address);
 
+        Patient AddPatient(Patient patient, int doctorId);
+
+        void AssignDoctorToPatient(int doctorId, int patientId);
+        
         bool ReferPatient(int patientId, int referringDocId, int referredDocId);
     }
 }

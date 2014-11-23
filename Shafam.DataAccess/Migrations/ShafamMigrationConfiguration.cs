@@ -45,14 +45,22 @@ namespace Shafam.DataAccess.Migrations
                 Specialty = "Neurologist"
             };
 
-            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor1.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor1.FirstName) && d.LastName.Equals(doctor1.LastName)))
             {
                 context.Doctors.AddOrUpdate(d => d.FirstName, doctor1);
             }
+            else
+            {
+                doctor1 = context.Doctors.First(d => d.FirstName.Equals(doctor1.FirstName) && d.LastName.Equals(doctor1.LastName));
+            }
 
-            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor2.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor2.FirstName) && d.LastName.Equals(doctor2.LastName)))
             {
                 context.Doctors.AddOrUpdate(d => d.FirstName, doctor2);
+            }
+            else
+            {
+                doctor2 = context.Doctors.First(d => d.FirstName.Equals(doctor2.FirstName) && d.LastName.Equals(doctor2.LastName));
             }
 
             var doctor1Account = new Account { Username = "John", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
@@ -96,7 +104,7 @@ namespace Shafam.DataAccess.Migrations
 
         private void AddPatient(Doctor doctor, Patient patient)
         {
-            if (doctor.Patients.FirstOrDefault(p => p.PatientId == patient.PatientId) == null)
+            if (doctor.Patients.FirstOrDefault(p => p.FirstName == patient.FirstName && p.LastName == patient.LastName) == null)
             {
                 doctor.Patients.Add(patient);
             }
