@@ -53,11 +53,12 @@
     <Compile Include="IAccountManagementService.cs" />
     <Compile Include="IBillingManagementService.cs" />
     <Compile Include="IIdentityProvider.cs" />
-    <Compile Include="ILegalService.cs" />
+    <Compile Include="ILegalManagementService.cs" />
     <Compile Include="INotificationManagementService.cs" />
     <Compile Include="IPatientManagementService.cs" />
     <Compile Include="ISchedulingService.cs" />
     <Compile Include="IVisitationManagementService.cs" />
+    <Compile Include="LegalManagement\LegalManagementService.cs" />
     <Compile Include="NotificationManagement\NotificationManagementService.cs" />
     <Compile Include="PatientManagement\PatientManagementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
