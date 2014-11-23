@@ -100,12 +100,41 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("AssignDoctor", "Staff");
         }
 
+        public ActionResult VisitationDetails(int patientId, int visitationId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            Visitation visitation = _visitationManagementService.GetVisitationForVisitationId(visitationId);
+            List<Medication> medicationList = _visitationManagementService.GetMedicationsForVisitation(visitationId).ToList<Medication>();
+            List<Treatment> treatmentList = _visitationManagementService.GetTreatmentsforVisitation(visitationId).ToList<Treatment>();
+            List<Test> testList = _visitationManagementService.GetTestsforVisitation(visitationId).ToList<Test>();
+
+            Medication medication = null;
+            Treatment treatment = null;
+            Test test = null;
+
+            if (medicationList.Count != 0) medication = medicationList.ElementAt(0);
+            if (treatmentList.Count != 0) treatment = treatmentList.ElementAt(0);
+            if (testList.Count != 0) test = testList.ElementAt(0);
+
+            VisitationDetailModel visitationDetailModel = new VisitationDetailModel
+            {
+                Patient = patient,
+                Visitation = visitation,
+                Medication = medication,
+                Treatment = treatment,
+                Test = test
+            };
+
+            return View(visitationDetailModel);
+        }
+
         public ActionResult Visitations(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
             IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
             return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
         }
+
 
         public ActionResult Medication(int patientId)
         {

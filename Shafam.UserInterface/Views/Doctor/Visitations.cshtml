@@ -9,21 +9,25 @@
 
 <p>@Html.ActionLink("Add Visitation", "AddVisitation", new { patientId = @Model.Patient.PatientId }) </p>
 
-<table class="table">
-    <tr>
-        <th>Visitation ID</th>
-        <th>Date &amp; Time</th>
-        <th>Reason</th>
-        <th>Notes</th>
-    </tr>
-    @foreach (Visitation visitation in Model.Visitations)
-    {
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>@visitation.VisitationId</td>
-            <td>@visitation.DateTime</td>
-            <td>@visitation.Reason</td>
-            <td>@visitation.Notes</td>
+            <th>Visitation ID</th>
+            <th>Date &amp; Time</th>
+            <th>Reason</th>
+            <th>Notes</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (Visitation visitation in Model.Visitations)
+        {
+            <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = visitation.VisitationId })'">
+                <td>@visitation.VisitationId</td>
+                <td>@visitation.DateTime</td>
+                <td>@visitation.Reason</td>
+                <td>@visitation.Notes</td>
+            </tr>
+        }
+    </tbody>
 </table>
 
