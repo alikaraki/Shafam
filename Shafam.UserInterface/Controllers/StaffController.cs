@@ -73,7 +73,7 @@ namespace Shafam.UserInterface.Controllers
         }
 
         //
-        // GET: /Staff/AssignDoctorToPatient
+        // GET: /Staff/AssignDoctor
         [HttpGet]
         public ActionResult AssignDoctor(int patientId)
         {
@@ -84,11 +84,10 @@ namespace Shafam.UserInterface.Controllers
         }
 
         //
-        // POST: /Staff/AssignDoctorToPatient
+        // POST: /Staff/AssignDoctor
         [HttpPost]
         public ActionResult AssignDoctor(DoctorAssignmentViewModel model)
         {
-
             // Assign patient to a specific doctor
             _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), model.Patient.PatientId);
 

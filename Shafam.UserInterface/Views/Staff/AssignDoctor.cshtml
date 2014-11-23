@@ -5,8 +5,15 @@
     ViewBag.Title = "Assign Doctor";
 }
 
-@Html.Partial("_Header", @Model)
-
+<div class="row">
+    <div class="col-md-10">
+        <h3>Patient @Model.Patient.PatientId - @Model.Patient.LastName, @Model.Patient.FirstName</h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("< Back to patients", "Patients")</p>
+    </div>
+</div>
 
 @using (Html.BeginForm())
 {

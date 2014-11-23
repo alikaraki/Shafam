@@ -14,6 +14,7 @@ namespace Shafam.UserInterface.Models
 
         public List<Doctor> Doctors { get; set; }
 
+        // drop-down list for Doctors 
         public IEnumerable<SelectListItem> DoctorList
         {
             get
