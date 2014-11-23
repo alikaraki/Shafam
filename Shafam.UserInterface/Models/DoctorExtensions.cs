@@ -18,7 +18,8 @@ namespace Shafam.UserInterface.Models
                 LastName = doctor.LastName,
                 Address = doctor.Address,
                 PhoneNumber = doctor.PhoneNumber,
-                SpecialtyDepartment = doctor.Specialty
+                Speciality = doctor.Specialty,
+                Department = doctor.Department.ToString()
             };
 
             if (account != null)

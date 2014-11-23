@@ -15,7 +15,7 @@ namespace Shafam.DataAccess
 
         List<Staff> GetAllStaff();
         
-        List<Staff> GetDepartmentStaff(string department);
+        List<Staff> GetDepartmentStaff(Department department);
 
         void DeleteStaff(int staffIdId);
 

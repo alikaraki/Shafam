@@ -15,6 +15,7 @@ namespace Shafam.UserInterface.Controllers
     public class StaffController : Controller
     {
         private readonly IPatientRepository _patientRepository;
+        private readonly IIdentityProvider _identityProvider;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly ISchedulingService _schedulingService;
@@ -22,6 +23,7 @@ namespace Shafam.UserInterface.Controllers
         private readonly IVisitationManagementService _visitationManagementService;
 
         public StaffController(IPatientRepository patientRepository, 
+                                IIdentityProvider identityProvider,
                                 ISchedulingService schedulingService,
                                 IAppointmentRepository appointmentRepository, 
                                 IDoctorRepository doctorRepository,
@@ -29,6 +31,7 @@ namespace Shafam.UserInterface.Controllers
                                 IVisitationManagementService visitationManagementService)
         {
             _patientRepository = patientRepository;
+            _identityProvider = identityProvider;
             _schedulingService = schedulingService;
             _appointmentRepository = appointmentRepository;
             _doctorRepository = doctorRepository;
@@ -43,7 +46,7 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult Patients()
         {
-            IEnumerable<Patient> patients = _patientRepository.GetPatients();
+            IEnumerable<Patient> patients = _patientManagementService.ViewPatientsForStaff(_identityProvider.GetAuthenticatedUserId());
 
             return View(patients);
         }

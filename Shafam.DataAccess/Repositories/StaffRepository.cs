@@ -33,7 +33,7 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Staffs.ToList();
         }
 
-        public List<Staff> GetDepartmentStaff(string department)
+        public List<Staff> GetDepartmentStaff(Department department)
         {
             return _dataContext.Staffs.Where(s => s.Department == department).ToList();
         }

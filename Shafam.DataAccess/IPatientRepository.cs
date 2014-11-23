@@ -14,5 +14,7 @@ namespace Shafam.DataAccess
         List<Doctor> GetDoctorsForPatient(int patientId);
 
         void DeletePatient(int patientId);
+
+        IEnumerable<Patient> GetUnassignedPatients();
     }
 }

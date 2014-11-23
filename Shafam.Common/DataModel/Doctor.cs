@@ -15,6 +15,7 @@ namespace Shafam.Common.DataModel
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Specialty { get; set; }
+        public Department? Department { get; set; }
         public Gender Gender { get; set; }
 
         public virtual ICollection<Patient> Patients { get; set; }

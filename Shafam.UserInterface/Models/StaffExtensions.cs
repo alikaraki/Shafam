@@ -18,7 +18,7 @@ namespace Shafam.UserInterface.Models
                                     LastName = staff.LastName,
                                     Address = staff.Address,
                                     PhoneNumber = staff.PhoneNumber,
-                                    SpecialtyDepartment = staff.Department
+                                    Department = staff.Department.ToString()
                                 };
 
             if (account != null)

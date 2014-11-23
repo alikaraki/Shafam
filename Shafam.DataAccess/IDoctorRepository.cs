@@ -15,6 +15,8 @@ namespace Shafam.DataAccess
 
         Doctor GetDoctor(int doctorId);
 
+        IEnumerable<Doctor> GetDoctorsInDepartment(Department department);
+
         void UpdateDoctor(Doctor doctor);
 
         void DeleteDoctor(int doctorId);
