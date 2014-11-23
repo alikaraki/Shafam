@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 using Shafam.UserInterface.Models;
+using Shafam.UserInterface.Infrastructure;
 
 namespace Shafam.UserInterface.Controllers
 {

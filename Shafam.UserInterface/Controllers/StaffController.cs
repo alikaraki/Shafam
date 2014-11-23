@@ -7,6 +7,7 @@ using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 using Shafam.UserInterface.Infrastructure;
 using Shafam.BusinessLogic;
+using Shafam.UserInterface.Models;
 
 namespace Shafam.UserInterface.Controllers
 {
@@ -42,10 +43,26 @@ namespace Shafam.UserInterface.Controllers
             return View(patients);
         }
 
+        // 
+        // GET: /Staff/AddPatient
+        [HttpGet]
         public ActionResult AddPatient()
         {
-           
-            return View();
+            ViewBag.ReturnUrl = Url.Action("AddPatient");
+            return View(new PatientInputModel());
+        }
+
+        // 
+        // POST: /Staff/AddPatient
+        [HttpPost]
+        public ActionResult AddPatient(PatientInputModel model)
+        {
+            // Add Patient to patient repository
+            Patient patient = _patientManagementService.AddPatient(model.FirstName, model.LastName, model.Age, 
+                                                                    model.Gender, model.HealthCardNumber, model.PhoneNumber, model.Address);
+
+            // Redirect to All Patients
+            return RedirectToAction("Patients","Staff");
         }
 
         // --- FOR TESTING PURPOSES ---

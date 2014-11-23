@@ -1,76 +1,74 @@
-﻿@model Shafam.Common.DataModel.Patient
+﻿@model Shafam.UserInterface.Models.PatientInputModel
 
 @{
-    ViewBag.Title = "AddPatient";
+    ViewBag.Title = "Add Patient";
 }
 
-<h2>Add Patient</h2>
+<h2>@ViewBag.Title</h2>
 <hr />
 
 <section id="patientForm">
-    <form class="form-horizontal" role="form">
+    @using (Html.BeginForm("AddPatient", "Staff", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
         <div class="form-group">
-            <label class="col-sm-2 control-label">Patient ID</label>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">First Name</label>
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Last Name</label>
+            @Html.LabelFor(m => m.LastName, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Phone Number</label>
+            @Html.LabelFor(m => m.Age, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @placeholder = "Age" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Address</label>
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="phone" placeholder="Address">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Age</label>
+            @Html.LabelFor(m => m.Address, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="number" class="form-control" min="1" max="150" id="phone" placeholder="Age">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Health Card Number</label>
+            @Html.LabelFor(m => m.HealthCardNumber, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="phone" placeholder="Health Card Number">
+                @Html.TextBoxFor(m => m.HealthCardNumber, new { @class = "form-control", @placeholder = "Health Card Number" })
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">Gender</label>
-            <div class="col-sm-10 radio">
+            @Html.LabelFor(m => m.Gender, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
                 <label class="col-sm-1">
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                    Male
+                    @Html.RadioButtonFor(m => m.Gender, new { @class = "form-control", @value = "option1" }) Male
                 </label>
-                <label class="col-sm-1">
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    Female
+                <label class="col-sm-2">
+                    @Html.RadioButtonFor(m => m.Gender, new { @class = "form-control", @value = "option2" }) Female
                 </label>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Brief Medical History</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" rows="5" placeholder="(Optional) important notes about patient's medical history"></textarea>
-            </div>
-        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
-    </form>
+
+    }
 </section>
