@@ -7,6 +7,9 @@
         Physiology,
         Cardiology,
         EarNoseThroat,
-        Neurology
+        Neurology,
+        IT,
+        Finance,
+        Legal
     }
 }

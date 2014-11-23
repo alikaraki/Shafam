@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System.Security.Claims;
+using System.Security.Principal;
 using Shafam.Common.DataModel;
 
 namespace Shafam.Common.Infrastructure
@@ -43,6 +44,23 @@ namespace Shafam.Common.Infrastructure
         public static string GetUsername(this IPrincipal principal)
         {
             return principal.Identity.Name;
+        }
+
+        public static string GetDepartment(this IPrincipal principal)
+        {
+            if (principal.IsAnonymous())
+            {
+                return null;
+            }
+
+            var claims = principal as ClaimsPrincipal;
+            if (claims != null)
+            {
+                Claim department = claims.FindFirst(ClaimTypes.UserData);
+                return department.Value;
+            }
+
+            return null;
         }
     }
 }
