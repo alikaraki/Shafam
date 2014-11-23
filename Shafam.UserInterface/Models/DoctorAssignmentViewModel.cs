@@ -1,46 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web.Mvc;
 using Shafam.Common.DataModel;
 
 namespace Shafam.UserInterface.Models
 {
     public class DoctorAssignmentViewModel
     {
-        private static List<string> _names;
-        private static List<Doctor> _doctors;
-
         public Patient Patient { get; set; }
+
         [DisplayName("Select Doctor")]
-        public Doctor AssignedDoctor { get; set; }
-        public List<Doctor> Doctors
-        { 
-            get 
-            {
-                return _doctors;
-            } 
-            set
-            {
-                _doctors = value;
-            }
-        }
-        public List<string> DoctorNames
+        public string AssignedDoctorId { get; set; }
+
+        public List<Doctor> Doctors { get; set; }
+
+        public IEnumerable<SelectListItem> DoctorList
         {
             get
             {
-                return GetDoctorNames();
-            }
-        }
+                var items = new List<SelectListItem>();
 
-        private static List<string> GetDoctorNames()
-        {
-            foreach (Doctor doctor in _doctors)
-            {
-                _names.Add(doctor.LastName + ", " + doctor.FirstName);
+                foreach (Doctor doctor in Doctors)
+                {
+                    items.Add(new SelectListItem
+                              {
+                                  Text = doctor.LastName + ", " + doctor.FirstName,
+                                  Value = doctor.DoctorId.ToString()
+                              });
+                }
+
+                return items;
             }
-            return _names;
         }
     }
 }

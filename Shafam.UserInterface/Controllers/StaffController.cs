@@ -90,7 +90,7 @@ namespace Shafam.UserInterface.Controllers
         {
 
             // Assign patient to a specific doctor
-            _patientManagementService.AssignDoctorToPatient(model.AssignedDoctor.DoctorId, model.Patient.PatientId);
+            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), model.Patient.PatientId);
 
             // Redirect to doctor assignment page
             return RedirectToAction("AssignDoctor", "Staff");
