@@ -176,8 +176,10 @@
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
+    <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
+    <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
