@@ -30,27 +30,28 @@
             </th>
         </tr>
     </thead>
-    @foreach (var item in Model)
-{
-    <tr onclick="window.location.href='@Url.Action("Details", new { id = item.UserViewModelId, role = item.UserRole })'">
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserRole)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpecialtyDepartment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-    </tr>
-}
-
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr onclick="window.location.href='@Url.Action("Details", new { id = item.UserViewModelId, role = item.UserRole })'">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialtyDepartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 @section scripts
