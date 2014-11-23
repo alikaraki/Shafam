@@ -10,5 +10,6 @@ namespace Shafam.Common.DataModel
     {
         public int BillId { get; set; }
 
+        public List<Visitation> Visitations { get; set; }
     }
 }

@@ -9,47 +9,33 @@
 
 @using (Html.BeginForm("AddVisitation", "Doctor", new { patientId = Model.Patient.PatientId }))
 {
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Reason)
-        <br />
-        @Html.TextBoxFor(m => m.Reason, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.Reason, new {@class = "form-control"})
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Notes)
-        <br />
-        @Html.TextAreaFor(m => m.Notes, new { style = "width: 600px; height: 150px;" })
-        <br /><br />
+        @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.MedicationName)
-        <br />
-        @Html.TextBoxFor(m => m.MedicationName, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.MedicationName, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.MedicationQuantity)
-        <br />
-        @Html.TextBoxFor(m => m.MedicationQuantity, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.MedicationQuantity, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.MedicationInstructions)
-        <br />
-        @Html.TextBoxFor(m => m.MedicationInstructions, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.MedicationInstructions, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Treatment)
-        <br />
-        @Html.TextBoxFor(m => m.Treatment, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.Treatment, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Test)
-        <br />
-        @Html.TextBoxFor(m => m.Test, new { style = "width: 600px;" })
-        <br /><br />
+        @Html.TextBoxFor(m => m.Test, new { @class = "form-control" })
     </div>
-        <input type="submit" value="Save" />
- }
+    <input type="submit" value="Save" class="btn btn-default" />
+}

@@ -1,8 +1,11 @@
 ﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.PatientScheduleViewModel
 
 @{
     ViewBag.Title = "Patient Schedule";
 }
+
+@Html.Partial("_Header", @Model.Patient)
 
 <h2>Schedule</h2>
 
@@ -11,7 +14,7 @@
         <th>Doctor ID</th>
         <th>Date Time</th>
     </tr>
-    @foreach (Appointment appointment in Model)
+    @foreach (Appointment appointment in Model.Appoitnemnts)
     {
         <tr>
             <td>@appointment.DoctorId</td>
