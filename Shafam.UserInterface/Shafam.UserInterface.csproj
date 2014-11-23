@@ -272,6 +272,7 @@
     <Content Include="Views\IT\Create.cshtml" />
     <Content Include="Views\Staff\DoctorProfile.cshtml" />
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
+    <Content Include="Views\Staff\AddPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

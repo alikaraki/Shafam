@@ -17,14 +17,17 @@ namespace Shafam.UserInterface.Controllers
         private readonly IDoctorRepository _doctorRepository;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly ISchedulingService _schedulingService;
+        private readonly IPatientManagementService _patientManagementService;
 
         public StaffController(IPatientRepository patientRepository, ISchedulingService schedulingService,
-                                IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository)
+                                IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository,
+                                 IPatientManagementService patientManagementService)
         {
             _patientRepository = patientRepository;
             _schedulingService = schedulingService;
             _appointmentRepository = appointmentRepository;
             _doctorRepository = doctorRepository;
+            _patientManagementService = patientManagementService;
         }
 
         public ActionResult Index()
@@ -37,6 +40,29 @@ namespace Shafam.UserInterface.Controllers
             IEnumerable<Patient> patients = _patientRepository.GetPatients();
 
             return View(patients);
+        }
+
+        public ActionResult AddPatient()
+        {
+           
+            return View();
+        }
+
+        // --- FOR TESTING PURPOSES ---
+        public ActionResult AddRandomPatient()
+        {
+            int id = new Random().Next(100);
+
+            var patient = new Patient
+            {
+                FirstName = "First Name " + id,
+                LastName = "Last Name " + id,
+                Age = id
+            };
+
+            _patientRepository.AddPatient(patient);
+
+            return RedirectToAction("Patients");
         }
 
         public ActionResult PatientProfile(int patientId)

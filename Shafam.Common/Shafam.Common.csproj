@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DataModel\Appointment.cs" />
     <Compile Include="DataModel\AppointmentRequest.cs" />
+    <Compile Include="DataModel\Bill.cs" />
     <Compile Include="DataModel\Doctor.cs" />
     <Compile Include="DataModel\Gender.cs" />
     <Compile Include="DataModel\Medication.cs" />

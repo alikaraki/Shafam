@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shafam.Common.DataModel
 {
-    class Bill
+    public class Bill
     {
         public int BillId { get; set; }
 

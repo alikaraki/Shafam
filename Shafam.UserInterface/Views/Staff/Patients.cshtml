@@ -1,10 +1,14 @@
 ﻿@using Shafam.Common.DataModel
 
 @{
-    ViewBag.Title = "Patients";
+    ViewBag.Title = "All Patients";
 }
 
 <h2>Patients</h2>
+
+<p>
+    @Html.ActionLink("Add patient", "AddPatient")
+</p>
 
 <table class="table">
     <tr>
