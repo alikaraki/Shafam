@@ -184,6 +184,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ShafamDatabase.mdf" />
+    <Content Include="App_Data\ShafamDatabase_log.ldf">
+      <DependentUpon>ShafamDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -265,10 +269,9 @@
     <Content Include="Views\IT\Create.cshtml" />
     <Content Include="Views\Staff\DoctorProfile.cshtml" />
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
+    <Content Include="Views\Staff\NewAppointment.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

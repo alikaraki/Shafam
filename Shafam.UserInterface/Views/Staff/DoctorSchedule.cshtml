@@ -4,15 +4,21 @@
     ViewBag.Title = "Doctor Schedule";
 }
 
+@{
+    var doctorId = Request.QueryString["doctorId"];
+}
 <div class="row">
     <div class="col-md-10">
         <h3>Schedule</h3>
     </div>
     <div class="col-md-2">
         <br />
-        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment")</p>
+        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = doctorId })</p>
     </div>
 </div>
+
+<p> @doctorId
+</p>
 
 <table class="table">
     <tr>

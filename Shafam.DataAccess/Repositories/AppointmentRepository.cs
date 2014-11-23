@@ -40,12 +40,16 @@ namespace Shafam.DataAccess.Repositories
 
         public List<Appointment> GetAppointmentsForDoctor(int doctorId)
         {
-            return _dataContext.Appointments.Where(a => a.DoctorId == doctorId).ToList();
+            List<Appointment> appointments  =  _dataContext.Appointments.Where(a => a.DoctorId == doctorId).ToList();
+            List<Appointment> SortedList = appointments.OrderBy(a => a.DateTime).ToList();
+            return appointments;
         }
 
         public List<Appointment> GetAppointmentsForPatient(int patientId)
         {
-            return _dataContext.Appointments.Where(a => a.PatientId == patientId).ToList();
+            List<Appointment> appointments = _dataContext.Appointments.Where(a => a.PatientId == patientId).ToList();
+            List<Appointment> SortedList = appointments.OrderBy(a => a.DateTime).ToList();
+            return appointments;
         }
 
 
