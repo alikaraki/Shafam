@@ -40,7 +40,7 @@ namespace Shafam.BusinessLogic.Scheduling
             return _appointmentRepository.GetAppointmentsForPatient(patientId);
         }
 
-        public int RequestAppointment(int patientId, int? doctorId, string reason = null)
+        public int RequestAppointment(int patientId, int? doctorId = null, string reason = null)
         {
             AppointmentRequest appRequest = _appointmentRequestRepository.RequestAppointment(patientId, doctorId, reason);
             return appRequest.AppointmentRequestId;

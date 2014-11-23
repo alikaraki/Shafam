@@ -175,6 +175,8 @@
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppointmentInputViewModel.cs" />
+    <Compile Include="Models\AppointmentRequestViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
@@ -195,6 +197,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ShafamDatabase.mdf" />
+    <Content Include="App_Data\ShafamDatabase_log.ldf">
+      <DependentUpon>ShafamDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -280,10 +286,12 @@
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
     <Content Include="Views\Staff\AddTestResult.cshtml" />
     <Content Include="Views\Staff\Visitations.cshtml" />
+    <Content Include="Views\Doctor\Schedule.cshtml" />
+    <Content Include="Views\Staff\NewAppointment.cshtml" />
+    <Content Include="Views\Patient\RequestAppointment.cshtml" />
+    <Content Include="Views\Patient\RequestMessage.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

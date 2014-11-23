@@ -5,19 +5,8 @@
     ViewBag.Title = "Doctor Schedule";
 }
 
-@Html.Partial("_DoctorProfileHeader", @Model.Doctor)
 
-<div class="row">
-    <div class="col-md-10">
-        <h3>Schedule</h3>
-    </div>
-    <div class="col-md-2">
-        <br />
-
-        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = @Model.Doctor.DoctorId })</p>
-
-    </div>
-</div>
+<h2> Schedule</h2>
 
 
 <table class="table">
