@@ -15,7 +15,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AssignDoctor", "Staff", new {patientId = Model.Patient.PatientId}, FormMethod.Post))
 {
     <div class="form-horizontal">
         <div class="form-group">
@@ -24,25 +24,10 @@
                 @Html.DropDownListFor(model => model.AssignedDoctorId, Model.DoctorList, null, new { @class = "form-control" })
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Assign" class="btn btn-default" />
+            </div>
+        </div>
     </div>
 }
-
-<table class="table">
-    <tr>
-        <th>Doctor ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Specialty</th>
-        <th>Gender</th>
-    </tr>
-    @foreach (Doctor doctor in Model.Doctors)
-    {
-        <tr>
-            <td>@doctor.DoctorId.ToString()</td>
-            <td>@doctor.FirstName</td>
-            <td>@doctor.LastName</td>
-            <td>@doctor.Specialty</td>
-            <td>@doctor.Gender</td>
-        </tr>
-    }
-</table>
