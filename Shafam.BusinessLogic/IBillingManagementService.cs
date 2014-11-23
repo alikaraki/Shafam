@@ -9,8 +9,9 @@ namespace Shafam.BusinessLogic
 {
     public interface IBillingManagementService
     {
-        Bill GenerateDoctorBill(int doctorid);
-        Bill GenerateTimePeriodBill (DateTime start, DateTime end);
+        Bill GenerateBill(int doctorid);
+        Bill GenerateBill (DateTime start, DateTime end);
+        //Bill GenerateBill (Department DepartmentId);
         
         bool SendBill(Bill bill, string emailAddress);
     }

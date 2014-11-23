@@ -88,6 +88,18 @@ namespace Shafam.DataAccess.Migrations
 
             context.SaveChanges();
 
+            patients.ForEach(p =>
+            {
+                if (!context.Accounts.Any(a => a.Username.Equals(p.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+                { 
+                    Patient patient = context.Patients.First(pt => pt.FirstName == p.FirstName && pt.LastName == p.LastName);
+                    Account account = new Account { Username = patient.FirstName.ToLower(), Password = patient.FirstName.ToLower(), Role = UserRole.Patient, UserId = patient.PatientId };
+                    context.Accounts.AddOrUpdate(a => a.Username, account);
+                }
+            });
+
+            context.SaveChanges();
+
             AddPatient(doctor1, patients[0]);
             AddPatient(doctor1, patients[2]);
             AddPatient(doctor1, patients[3]);

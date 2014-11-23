@@ -51,12 +51,12 @@ namespace Shafam.BusinessLogic.AccountManagement
             string username = string.IsNullOrEmpty(suggestedUsername) ? "user" : suggestedUsername;
             int postfix = 1;
 
-            while (_accountRepository.GetAccount(username) != null)
+            while (_accountRepository.GetAccount(username + postfix) != null)
             {
-                username += postfix++;
+                postfix++;
             }
 
-            return username;
+            return username + postfix;
         }
 
         private Account CreateAccount(string username, UserRole role, int userId)

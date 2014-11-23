@@ -10,6 +10,9 @@ namespace Shafam.Common.DataModel
     {
         public int BillId { get; set; }
 
-        public List<Visitation> Visitations { get; set; }
+        public virtual ICollection<Visitation> Visitations { get; set; }
+        public virtual ICollection<Medication> Medications { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
+        public virtual ICollection<Treatment> Treatments { get; set; }
     }
 }

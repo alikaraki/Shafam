@@ -175,9 +175,8 @@
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AppointmentInputViewModel.cs" />
-    <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
+    <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
@@ -279,7 +278,8 @@
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Staff\AddPatient.cshtml" />
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
-    <Content Include="Views\Staff\NewAppointment.cshtml" />
+    <Content Include="Views\Staff\AddTestResult.cshtml" />
+    <Content Include="Views\Staff\Visitations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

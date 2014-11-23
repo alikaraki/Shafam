@@ -31,9 +31,9 @@ namespace Shafam.BusinessLogic.VisitationManagement
                                         string treatmentPrescribed, string testPrescribed) 
         {
             Visitation visitation = _visitationRepository.CreateVisitation(doctorId, patientId, DateTime.Now, reason, notes);
-            Medication medication = _medicationRepository.AddMedication(visitation.VisitationId, medicationName, medicationQuantity, medicationInstructions);
-            Test test = _testRepository.AddTest(visitation.VisitationId, testPrescribed);
-            Treatment treatment = _treatmentRepository.AddTreatment(visitation.VisitationId, treatmentPrescribed);
+            if (medicationName != null) {Medication medication = _medicationRepository.AddMedication(visitation.VisitationId, medicationName, medicationQuantity, medicationInstructions);}
+            if (testPrescribed != null) {Test test = _testRepository.AddTest(visitation.VisitationId, testPrescribed);}
+            if (treatmentPrescribed != null) {Treatment treatment = _treatmentRepository.AddTreatment(visitation.VisitationId, treatmentPrescribed);}
 
             return visitation;
         }

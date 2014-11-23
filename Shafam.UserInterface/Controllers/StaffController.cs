@@ -19,16 +19,21 @@ namespace Shafam.UserInterface.Controllers
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly ISchedulingService _schedulingService;
         private readonly IPatientManagementService _patientManagementService;
+        private readonly IVisitationManagementService _visitationManagementService;
 
-        public StaffController(IPatientRepository patientRepository, ISchedulingService schedulingService,
-                                IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository,
-                                 IPatientManagementService patientManagementService)
+        public StaffController(IPatientRepository patientRepository, 
+                                ISchedulingService schedulingService,
+                                IAppointmentRepository appointmentRepository, 
+                                IDoctorRepository doctorRepository,
+                                IPatientManagementService patientManagementService,
+                                IVisitationManagementService visitationManagementService)
         {
             _patientRepository = patientRepository;
             _schedulingService = schedulingService;
             _appointmentRepository = appointmentRepository;
             _doctorRepository = doctorRepository;
             _patientManagementService = patientManagementService;
+            _visitationManagementService = visitationManagementService;
         }
 
         public ActionResult Index()
@@ -73,7 +78,7 @@ namespace Shafam.UserInterface.Controllers
         }
 
         //
-        // GET: /Staff/AssignDoctorToPatient
+        // GET: /Staff/AssignDoctor
         [HttpGet]
         public ActionResult AssignDoctor(int patientId)
         {
@@ -84,34 +89,91 @@ namespace Shafam.UserInterface.Controllers
         }
 
         //
-        // POST: /Staff/AssignDoctorToPatient
+        // POST: /Staff/AssignDoctor
         [HttpPost]
         public ActionResult AssignDoctor(DoctorAssignmentViewModel model)
         {
-
             // Assign patient to a specific doctor
-            _patientManagementService.AssignDoctorToPatient(model.AssignedDoctor.DoctorId, model.Patient.PatientId);
+            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), model.Patient.PatientId);
 
             // Redirect to doctor assignment page
             return RedirectToAction("AssignDoctor", "Staff");
         }
-        
+
+        public ActionResult Visitations(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
+            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
+        }
+
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            MedicationViewModel medicationViewModel = new MedicationViewModel { Patient = patient, Medications = new List<SingleMedicationModel>() };
+
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                IEnumerable<Medication> medicationsForVisitation = _visitationManagementService.GetMedicationsForVisitation(visitation.VisitationId);
+                foreach (Medication medication in medicationsForVisitation)
+                {
+                    SingleMedicationModel singleMedication = new SingleMedicationModel
+                    {
+                        DateTime = visitation.DateTime,
+                        Reason = visitation.Reason,
+                        Medication = medication
+                    };
+                    medicationViewModel.Medications.Add(singleMedication);
+                }
+            }
+            return View(medicationViewModel);
         }
 
         public ActionResult Treatments(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            TreatmentViewModel treatmentViewModel = new TreatmentViewModel { Patient = patient, Treatments = new List<SingleTreatmentModel>() };
+
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                IEnumerable<Treatment> treatmentsForVisitation = _visitationManagementService.GetTreatmentsforVisitation(visitation.VisitationId);
+                foreach (Treatment treatment in treatmentsForVisitation)
+                {
+                    SingleTreatmentModel singleTreatment = new SingleTreatmentModel
+                    {
+                        DateTime = visitation.DateTime,
+                        Reason = visitation.Reason,
+                        Treatment = treatment
+                    };
+                    treatmentViewModel.Treatments.Add(singleTreatment);
+                }
+            }
+            return View(treatmentViewModel);
         }
 
         public ActionResult Tests(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            return View(patient);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patientId);
+            TestViewModel testViewModel = new TestViewModel { Patient = patient, Tests = new List<SingleTestModel>() };
+
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                IEnumerable<Test> testsForVisitation = _visitationManagementService.GetTestsforVisitation(visitation.VisitationId);
+                foreach (Test test in testsForVisitation)
+                {
+                    SingleTestModel singleTest = new SingleTestModel
+                    {
+                        DateTime = visitation.DateTime,
+                        Reason = visitation.Reason,
+                        Test = test
+                    };
+                    testViewModel.Tests.Add(singleTest);
+                }
+            }
+            return View(testViewModel);
         }
 
         // Show the schedule of a patient.

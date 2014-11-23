@@ -11,14 +11,14 @@ namespace Shafam.DataAccess
 
         Account GetAccount(string username);
 
-        Account GetAccountByUserId(int userId);
+        Account GetAccountByUserId(int userId, UserRole role);
 
         Account VerifyAccount(string username, string password);
 
         bool ChangePassword(string username, string oldPassword, string newPassword);
 
-        void DisableAccount(int userId);
+        void DisableAccount(int userId, UserRole role);
 
-        void EnableAccount(int userId);
+        void EnableAccount(int userId, UserRole role);
     }
 }
