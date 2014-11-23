@@ -105,20 +105,20 @@ namespace Shafam.UserInterface.Controllers
             Patient patient = _patientManagementService.ViewPatient(patientId);
             List<Doctor> allDoctors = _doctorRepository.GetDoctors();
             List<Doctor> assignedDoctors = _patientRepository.GetDoctorsForPatient(patientId);
-            ViewBag.ReturnUrl = Url.Action("AssignDoctor");
+
             return View(new DoctorAssignmentViewModel { Patient = patient, Doctors = allDoctors, AssignedDoctors = assignedDoctors });
         }
 
         //
         // POST: /Staff/AssignDoctor
         [HttpPost]
-        public ActionResult AssignDoctor(DoctorAssignmentViewModel model)
+        public ActionResult AssignDoctor(DoctorAssignmentViewModel model, int patientId)
         {
             // Assign patient to a specific doctor
-            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), model.Patient.PatientId);
+            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), patientId);
 
             // Redirect to doctor assignment page
-            return RedirectToAction("AssignDoctor", "Staff", model.Patient.PatientId);
+            return RedirectToAction("PatientProfile", "Staff", new {patientId = patientId});
         }
 
         public ActionResult VisitationDetails(int patientId, int visitationId)
