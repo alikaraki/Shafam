@@ -178,6 +178,7 @@
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
+    <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
@@ -278,6 +279,7 @@
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Staff\AddPatient.cshtml" />
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
+    <Content Include="Views\Staff\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,9 @@
     </div>
 </div>
 
-@using (Html.BeginForm())
+<hr />
+
+@using (Html.BeginForm("AssignDoctor","Staff",FormMethod.Post))
 {
     <div class="form-horizontal">
         <div class="form-group">
@@ -27,6 +29,15 @@
     </div>
 }
 
+<div class="row">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Assign" class="btn btn-primary" />
+    </div>
+</div>
+
+<hr />
+<h3>Assigned Doctors</h3>
+
 <table class="table">
     <tr>
         <th>Doctor ID</th>
@@ -35,7 +46,7 @@
         <th>Specialty</th>
         <th>Gender</th>
     </tr>
-    @foreach (Doctor doctor in Model.Doctors)
+    @foreach (Doctor doctor in Model.AssignedDoctors)
     {
         <tr>
             <td>@doctor.DoctorId.ToString()</td>
