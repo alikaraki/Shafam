@@ -8,18 +8,29 @@
 
 @Html.Partial("_Header", @Model.Patient)
 
-<table class="table">
-    <tr>
-        <th>Date &amp; Time</th>
-        <th>Reason</th>
-        <th>Treatment Prescribed</th>
-    </tr>
-    @foreach (SingleTreatmentModel treatment in Model.Treatments)
-    {
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>@treatment.DateTime</td>
-            <td>@treatment.Reason</td>
-            <td>@treatment.Treatment.TreatmentType</td>
+            <th>Date &amp; Time</th>
+            <th>Reason</th>
+            <th>Treatment Prescribed</th>
+            <th>Treatment Completed</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (SingleTreatmentModel treatment in Model.Treatments)
+        {
+            <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = treatment.VisitationId })'">
+                <td>@treatment.DateTime</td>
+                <td>@treatment.Reason</td>
+                <td>@treatment.Treatment.TreatmentType</td>
+                @if (treatment.Treatment.TreatmentCompleted == false)
+                {
+                    <td>Not Completed</td>}
+                else
+                {
+                    <td>Completed</td>}
+            </tr>
+        }
+    </tbody>
 </table>

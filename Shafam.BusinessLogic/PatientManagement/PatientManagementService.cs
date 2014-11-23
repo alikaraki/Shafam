@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 using Shafam.BusinessLogic.NotificationManagement;
@@ -10,16 +11,20 @@ namespace Shafam.BusinessLogic.PatientManagement
     {
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IStaffRepository _staffRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="patientRepository"></param>
+        /// <param name="staffRepository"></param>
         public PatientManagementService(IPatientRepository patientRepository,
-                                        IDoctorRepository doctorRepository)
+                                        IDoctorRepository doctorRepository,
+                                        IStaffRepository staffRepository)
         {
             _patientRepository = patientRepository;
             _doctorRepository = doctorRepository;
+            _staffRepository = staffRepository;
         }
 
         /// <summary>
@@ -42,6 +47,23 @@ namespace Shafam.BusinessLogic.PatientManagement
             return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
+        public IEnumerable<Patient> ViewPatientsForStaff(int staffId)
+        {
+            var patients = new List<Patient>();
+            patients.AddRange(_patientRepository.GetUnassignedPatients());
+
+            Staff staff = _staffRepository.GetStaff(staffId);
+            if (staff.Department.HasValue)
+            {
+                IEnumerable<Doctor> doctors = _doctorRepository.GetDoctorsInDepartment(staff.Department.Value);
+                foreach (var doctor in doctors)
+                {
+                    patients.AddRange(_doctorRepository.GetPatientsForDoctor(doctor.DoctorId));
+                }
+            }
+
+            return patients.GroupBy(p => p.PatientId).Select(grp => grp.First());
+        }
 
         /// <summary>
         /// Adds patient to patient repository

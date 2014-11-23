@@ -7,6 +7,7 @@ namespace Shafam.UserInterface.Models
 {
     public class SingleTestModel
     {
+        public int VisitationId { get; set; }
         public DateTime DateTime { get; set; }
         public string Reason { get; set; }
         public Test Test { get; set; }

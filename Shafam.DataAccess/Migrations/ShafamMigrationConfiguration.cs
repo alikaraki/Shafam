@@ -19,7 +19,6 @@ namespace Shafam.DataAccess.Migrations
         {
             var defaultUsers = new List<Account>
                                {
-                                   new Account {Username = "Doctor", Password = "doctor", Role = UserRole.Doctor},
                                    new Account {Username = "Patient", Password = "patient", Role = UserRole.Patient},
                                    new Account {Username = "Staff", Password = "staff", Role = UserRole.Staff},
                                    new Account {Username = "IT", Password = "it", Role = UserRole.IT},
@@ -34,7 +33,8 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "John",
                 LastName = "Smith",
                 Gender = Gender.Male,
-                Specialty = "Family doctor"
+                Specialty = "Surgeant",
+                Department = Department.Surgery
             };
 
             var doctor2 = new Doctor
@@ -42,32 +42,47 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "Amy",
                 LastName = "Montrose",
                 Gender = Gender.Female,
-                Specialty = "Neurologist"
+                Specialty = "Neurologist",
+                Department = Department.Neurology
             };
 
-            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor1.FirstName) && d.LastName.Equals(doctor1.LastName)))
+            doctor1 = AddOrUpdate(context, doctor1);
+            doctor2 = AddOrUpdate(context, doctor2);
+
+            var staff1 = new Staff {FirstName = "Michael", Department = Department.Neurology};
+            var staff2 = new Staff {FirstName = "Sara", Department = Department.Surgery};
+
+            if (!context.Staffs.Any(s => s.FirstName.Equals(staff1.FirstName) && s.Department == staff1.Department))
             {
-                context.Doctors.AddOrUpdate(d => d.FirstName, doctor1);
+                context.Staffs.AddOrUpdate(s => s.FirstName, staff1);
             }
             else
             {
-                doctor1 = context.Doctors.First(d => d.FirstName.Equals(doctor1.FirstName) && d.LastName.Equals(doctor1.LastName));
+                staff1 = context.Staffs.First(s => s.FirstName.Equals(staff1.FirstName) && s.Department == staff1.Department);
             }
 
-            if (!context.Doctors.Any(d => d.FirstName.Equals(doctor2.FirstName) && d.LastName.Equals(doctor2.LastName)))
+            if (!context.Staffs.Any(s => s.FirstName.Equals(staff2.FirstName) && s.Department == staff2.Department))
             {
-                context.Doctors.AddOrUpdate(d => d.FirstName, doctor2);
+                context.Staffs.AddOrUpdate(s => s.FirstName, staff2);
             }
             else
             {
-                doctor2 = context.Doctors.First(d => d.FirstName.Equals(doctor2.FirstName) && d.LastName.Equals(doctor2.LastName));
+                staff2 = context.Staffs.First(s => s.FirstName.Equals(staff2.FirstName) && s.Department == staff2.Department);
             }
 
-            var doctor1Account = new Account { Username = "John", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
+            context.SaveChanges();
+
+            var doctor1Account = new Account { Username = "JoBhn", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
             var doctor2Account = new Account { Username = "Amy", Password = "amy", Role = UserRole.Doctor, UserId = doctor2.DoctorId };
+            var staff1Account = new Account { Username = "Michael", Password = "michael", Role = UserRole.Staff, UserId = staff1.StaffId};
+            var staff2Account = new Account { Username = "Sara", Password = "sara", Role = UserRole.Staff, UserId = staff2.StaffId};
 
             context.Accounts.AddOrUpdate(a => a.Username, doctor1Account);
             context.Accounts.AddOrUpdate(a => a.Username, doctor2Account);
+            context.Accounts.AddOrUpdate(a => a.Username, staff1Account);
+            context.Accounts.AddOrUpdate(a => a.Username, staff2Account);
+
+            context.SaveChanges();
 
             var patients = new List<Patient>()
                                   {
@@ -84,6 +99,18 @@ namespace Shafam.DataAccess.Migrations
             {
                 if (!context.Patients.Any(ps => ps.FirstName.Equals(p.FirstName, StringComparison.InvariantCultureIgnoreCase)))
                     context.Patients.AddOrUpdate(pt => pt.FirstName, p);
+            });
+
+            context.SaveChanges();
+
+            patients.ForEach(p =>
+            {
+                if (!context.Accounts.Any(a => a.Username.Equals(p.FirstName, StringComparison.InvariantCultureIgnoreCase)))
+                { 
+                    Patient patient = context.Patients.First(pt => pt.FirstName == p.FirstName && pt.LastName == p.LastName);
+                    Account account = new Account { Username = patient.FirstName.ToLower(), Password = patient.FirstName.ToLower(), Role = UserRole.Patient, UserId = patient.PatientId };
+                    context.Accounts.AddOrUpdate(a => a.Username, account);
+                }
             });
 
             context.SaveChanges();
@@ -108,6 +135,25 @@ namespace Shafam.DataAccess.Migrations
             {
                 doctor.Patients.Add(patient);
             }
+        }
+
+        private Doctor AddOrUpdate(ShafamDataContext context, Doctor doctor)
+        {
+            Doctor existing = context.Doctors.FirstOrDefault(d => d.FirstName == doctor.FirstName && d.LastName == doctor.LastName);
+
+            if (existing != null)
+            {
+                existing.Department = doctor.Department;
+                existing.Specialty = doctor.Specialty;
+            }
+            else
+            {
+                context.Doctors.Add(doctor);
+            }
+
+            context.SaveChanges();
+
+            return context.Doctors.FirstOrDefault(d => d.FirstName == doctor.FirstName && d.LastName == doctor.LastName);
         }
     }
 }

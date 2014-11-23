@@ -39,10 +39,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SpecialtyDepartment, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Speciality, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SpecialtyDepartment, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SpecialtyDepartment)
+                @Html.TextBoxFor(model => model.Speciality, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Speciality)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Department, Model.Departments, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Department)
             </div>
         </div>
 

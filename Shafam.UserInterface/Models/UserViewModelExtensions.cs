@@ -1,4 +1,5 @@
-﻿using Shafam.Common.DataModel;
+﻿using System;
+using Shafam.Common.DataModel;
 
 namespace Shafam.UserInterface.Models
 {
@@ -17,7 +18,8 @@ namespace Shafam.UserInterface.Models
                        LastName = viewModel.LastName,
                        Address = viewModel.Address,
                        PhoneNumber = viewModel.PhoneNumber,
-                       Specialty = viewModel.SpecialtyDepartment,
+                       Specialty = viewModel.Speciality,
+                       Department = (Department?) Enum.Parse(typeof(Department), viewModel.Department)
                    };
         }        
         
@@ -34,7 +36,7 @@ namespace Shafam.UserInterface.Models
                        LastName = viewModel.LastName,
                        Address = viewModel.Address,
                        PhoneNumber = viewModel.PhoneNumber,
-                       Department = viewModel.SpecialtyDepartment,
+                       Department = (Department?)Enum.Parse(typeof(Department), viewModel.Department),
                    };
         }
     }

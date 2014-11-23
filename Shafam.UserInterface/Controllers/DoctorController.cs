@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Shafam.BusinessLogic;
 using Shafam.Common.DataModel;
+using System.Linq;
 using Shafam.DataAccess;
 using Shafam.UserInterface.Infrastructure;
 using Shafam.UserInterface.Models;
@@ -82,6 +83,31 @@ namespace Shafam.UserInterface.Controllers
             return View(patient);
         }
 
+        public ActionResult VisitationDetails(int patientId, int visitationId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            Visitation visitation = _visitationManagementService.GetVisitationForVisitationId(visitationId);
+            List<Medication> medicationList = _visitationManagementService.GetMedicationsForVisitation(visitationId).ToList<Medication>();
+            List<Treatment> treatmentList = _visitationManagementService.GetTreatmentsforVisitation(visitationId).ToList<Treatment>();
+            List<Test> testList = _visitationManagementService.GetTestsforVisitation(visitationId).ToList<Test>();
+
+            Medication medication = null;
+            Treatment treatment = null;
+            Test test = null;
+
+            if (medicationList.Count != 0) medication = medicationList.ElementAt(0);
+            if (treatmentList.Count != 0) treatment = treatmentList.ElementAt(0);
+            if (testList.Count != 0) test = testList.ElementAt(0);
+
+            VisitationDetailModel visitationDetailModel = new VisitationDetailModel {Patient = patient, 
+                                                                                    Visitation = visitation, 
+                                                                                    Medication = medication,
+                                                                                    Treatment = treatment,
+                                                                                    Test = test};
+
+            return View(visitationDetailModel);
+        }
+
         public ActionResult Visitations(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -104,7 +130,8 @@ namespace Shafam.UserInterface.Controllers
                         {
                             DateTime = visitation.DateTime, 
                             Reason = visitation.Reason,
-                            Medication = medication
+                            Medication = medication,
+                            VisitationId = visitation.VisitationId
                         };
                     medicationViewModel.Medications.Add(singleMedication);
                 } 
@@ -127,7 +154,8 @@ namespace Shafam.UserInterface.Controllers
                     {
                         DateTime = visitation.DateTime,
                         Reason = visitation.Reason,
-                        Treatment = treatment
+                        Treatment = treatment,
+                        VisitationId = visitation.VisitationId
                     };
                     treatmentViewModel.Treatments.Add(singleTreatment);
                 }
@@ -150,7 +178,8 @@ namespace Shafam.UserInterface.Controllers
                     {
                         DateTime = visitation.DateTime,
                         Reason = visitation.Reason,
-                        Test = test
+                        Test = test,
+                        VisitationId = visitation.VisitationId
                     };
                     testViewModel.Tests.Add(singleTest);
                 }

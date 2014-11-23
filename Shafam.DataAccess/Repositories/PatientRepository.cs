@@ -41,5 +41,10 @@ namespace Shafam.DataAccess.Repositories
             Patient patient = GetPatient(patientId);
             _context.Patients.Remove(patient);
         }
+
+        public IEnumerable<Patient> GetUnassignedPatients()
+        {
+            return _context.Patients.Where(p => !p.Doctors.Any()).ToList();
+        }
     }
 }

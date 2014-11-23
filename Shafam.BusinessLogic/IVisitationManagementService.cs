@@ -14,6 +14,8 @@ namespace Shafam.BusinessLogic
                                         string medicationName, string medicationQuantity, string medicationInstructions,
                                         string treatmentPrescribed, string testPrescribed);
 
+        Visitation GetVisitationForVisitationId(int visitationId);
+
         IEnumerable<Visitation> GetVisitationsForPatient(int patientId);
 
         IEnumerable<Medication> GetMedicationsForVisitation(int visitationId);
