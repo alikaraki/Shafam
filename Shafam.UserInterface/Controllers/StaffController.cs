@@ -99,7 +99,14 @@ namespace Shafam.UserInterface.Controllers
             // Redirect to doctor assignment page
             return RedirectToAction("AssignDoctor", "Staff");
         }
-        
+
+        public ActionResult Visitations(int patientId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
+            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
+        }
+
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);

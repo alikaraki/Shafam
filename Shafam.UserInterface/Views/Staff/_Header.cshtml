@@ -16,6 +16,7 @@
 
 <ul class="nav nav-tabs">
     <li role="presentation" @if (action == "PatientProfile") { <text> class="active" </text>  }>@Html.ActionLink("Profile", "PatientProfile", new { patientId = Model.PatientId })</li>
+    <li role="presentation" @if (action == "Visitations") { <text> class="active" </text>   }>@Html.ActionLink("Visitations", "Visitations", new { patientId = Model.PatientId })</li>
     <li role="presentation" @if (action == "Medication") { <text> class="active" </text>  }>@Html.ActionLink("Medication", "Medication", new { patientId = Model.PatientId })</li>
     <li role="presentation" @if (action == "Treatments") { <text> class="active" </text>  }>@Html.ActionLink("Treatments", "Treatments", new { patientId = Model.PatientId })</li>
     <li role="presentation" @if (action == "Tests") { <text> class="active" </text>  }>@Html.ActionLink("Tests", "Tests", new { patientId = Model.PatientId })</li>
