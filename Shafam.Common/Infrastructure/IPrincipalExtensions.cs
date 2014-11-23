@@ -57,7 +57,7 @@ namespace Shafam.Common.Infrastructure
             if (claims != null)
             {
                 Claim department = claims.FindFirst(ClaimTypes.UserData);
-                return department.Value;
+                return department != null ? department.Value : null;
             }
 
             return null;
