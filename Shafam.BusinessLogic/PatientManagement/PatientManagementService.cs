@@ -90,6 +90,12 @@ namespace Shafam.BusinessLogic.PatientManagement
             return patient;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <param name="doctorId"></param>
+        /// <returns></returns>
         public Patient AddPatient(Patient patient, int doctorId)
         {
             _patientRepository.AddPatient(patient);
@@ -98,6 +104,15 @@ namespace Shafam.BusinessLogic.PatientManagement
             return patient;
         }
 
+        /// <summary>
+        /// Assigns patient to a specific doctor
+        /// </summary>
+        /// <param name="doctorId"></param>
+        /// <param name="patientId"></param>
+        public void AssignDoctorToPatient(int doctorId, int patientId)
+        {
+            _doctorRepository.AssignPatient(doctorId, patientId);
+        }
 
         /// <summary>
         /// Initiates a patient referral from one doctor to another

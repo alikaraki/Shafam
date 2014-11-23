@@ -30,6 +30,12 @@ namespace Shafam.DataAccess.Repositories
             return _context.Patients.First(p => p.PatientId == patientid);
         }
 
+        public List<Doctor> GetDoctorsForPatient(int patientId)
+        {
+            Patient patient = GetPatient(patientId);
+            return patient.Doctors.ToList();
+        }
+
         public void DeletePatient(int patientId)
         {
             Patient patient = GetPatient(patientId);
