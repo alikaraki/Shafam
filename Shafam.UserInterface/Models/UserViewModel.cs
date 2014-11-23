@@ -19,8 +19,11 @@ namespace Shafam.UserInterface.Models
         public string PhoneNumber { get; set; }
         [Display(Name = "Address")]
         public string Address { get; set; }
-        [Display(Name = "Speciality / Dept")]
-        public string SpecialtyDepartment { get; set; }
+        [Display(Name = "Speciality")]
+        public string Speciality { get; set; }
+
+        [Display(Name = "Department")]
+        public string Department { get; set; }
 
         [Display(Name = "Username")]
         public string Username { get; set; }
@@ -44,6 +47,25 @@ namespace Shafam.UserInterface.Models
                            new SelectListItem {Value = "Staff", Text = "Staff"},
                            new SelectListItem {Value = "Finance", Text = "Finance"},
                            new SelectListItem {Value = "IT", Text = "IT"},
+                       };
+            }
+        }
+
+        public IEnumerable<SelectListItem> Departments
+        {
+            get
+            {
+                return new List<SelectListItem>
+                       {
+                           new SelectListItem {Value = "Surgery", Text = "Surgery"},
+                           new SelectListItem {Value = "Dentistry", Text = "Dentistry"},
+                           new SelectListItem {Value = "Physiology", Text = "Physiology"},
+                           new SelectListItem {Value = "Cardiology", Text = "Cardiology"},
+                           new SelectListItem {Value = "EarNoseThroat", Text = "EarNoseThroat"},
+                           new SelectListItem {Value = "Neurology", Text = "Neurology"},
+                           new SelectListItem {Value = "IT", Text = "IT"},
+                           new SelectListItem {Value = "Finance", Text = "Finance"},
+                           new SelectListItem {Value = "Legal", Text = "Legal"},
                        };
             }
         }

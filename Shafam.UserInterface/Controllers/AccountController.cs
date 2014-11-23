@@ -16,10 +16,16 @@ namespace Shafam.UserInterface.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IStaffRepository _staffRepository;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(IAccountRepository accountRepository,
+                                 IDoctorRepository doctorRepository,
+                                 IStaffRepository staffRepository)
         {
             _accountRepository = accountRepository;
+            _doctorRepository = doctorRepository;
+            _staffRepository = staffRepository;
         }
 
         //
@@ -94,6 +100,24 @@ namespace Shafam.UserInterface.Controllers
             SignInAsync(account, true);
 
             return RedirectToAction("Index", "Doctor");
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginAsStaffMichael(string returnUrl)
+        {
+            Account account = _accountRepository.GetAccount("Michael");
+            SignInAsync(account, true);
+
+            return RedirectToAction("Index", "Staff");
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginAsStaffSara(string returnUrl)
+        {
+            Account account = _accountRepository.GetAccount("Sara");
+            SignInAsync(account, true);
+
+            return RedirectToAction("Index", "Staff");
         }
 
         [AllowAnonymous]
@@ -205,9 +229,29 @@ namespace Shafam.UserInterface.Controllers
             var nameClaim = new Claim(ClaimTypes.Name, account.Username);
             var userIdClaim = new Claim(ClaimTypes.NameIdentifier, account.Username);
             var roleClaim = new Claim(ClaimTypes.Role, account.Role.ToString());
-            var claims = new List<Claim> { nameClaim, userIdClaim, roleClaim };
+            var departmentClaim = new Claim(ClaimTypes.UserData, GetDepartment(account.UserId, account.Role).ToString());
+            var claims = new List<Claim> { nameClaim, userIdClaim, roleClaim, departmentClaim };
 
             return new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
+        }
+
+        private Department? GetDepartment(int? userId, UserRole role)
+        {
+            if (userId == null)
+            {
+                return null;
+            }
+
+            if (role == UserRole.Doctor)
+            {
+                return _doctorRepository.GetDoctor(userId.Value).Department;
+            }
+            else if (role == UserRole.Staff)
+            {
+                return _staffRepository.GetStaff(userId.Value).Department;
+            }
+
+            return null;
         }
 
         private void AddErrors(IdentityResult result)

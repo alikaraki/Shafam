@@ -175,11 +175,10 @@
     <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\UserRoles.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AppointmentInputViewModel.cs" />
-    <Compile Include="Models\AppointmentRequestViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
+    <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
@@ -187,6 +186,7 @@
     <Compile Include="Models\SingleTreatmentModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
+    <Compile Include="Models\VisitationDetailModel.cs" />
     <Compile Include="Models\VisitationInputModel.cs" />
     <Compile Include="Models\DoctorExtensions.cs" />
     <Compile Include="Models\StaffExtensions.cs" />
@@ -197,10 +197,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShafamDatabase.mdf" />
-    <Content Include="App_Data\ShafamDatabase_log.ldf">
-      <DependentUpon>ShafamDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -284,14 +280,11 @@
     <Content Include="Views\Staff\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Staff\AddPatient.cshtml" />
     <Content Include="Views\Staff\AssignDoctor.cshtml" />
-    <Content Include="Views\Staff\AddTestResult.cshtml" />
-    <Content Include="Views\Staff\Visitations.cshtml" />
-    <Content Include="Views\Doctor\Schedule.cshtml" />
-    <Content Include="Views\Staff\NewAppointment.cshtml" />
-    <Content Include="Views\Patient\RequestAppointment.cshtml" />
-    <Content Include="Views\Patient\RequestMessage.cshtml" />
+    <Content Include="Views\Staff\Details.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

@@ -30,6 +30,11 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Doctors.First(d => d.DoctorId == doctorId);
         }
 
+        public IEnumerable<Doctor> GetDoctorsInDepartment(Department department)
+        {
+            return _dataContext.Doctors.Where(d => d.Department == department).ToList();
+        }
+
         public void UpdateDoctor(Doctor updatedDoctor)
         {
             Doctor doctor = GetDoctor(updatedDoctor.DoctorId);
