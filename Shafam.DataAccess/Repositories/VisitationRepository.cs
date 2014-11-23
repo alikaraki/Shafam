@@ -37,12 +37,12 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Visitations.First(v => v.VisitationId == visitationId);
         }
 
-        public IEnumerable<Visitation> GetVisitationsForPatient(int patientId)
+        public List<Visitation> GetVisitationsForPatient(int patientId)
         {
             return _dataContext.Visitations.Where(v => v.PatientId == patientId).ToList();
         }
 
-        public IEnumerable<Visitation> GetVisitationsForDoctor(int doctorId)
+        public List<Visitation> GetVisitationsForDoctor(int doctorId)
         {
             return _dataContext.Visitations.Where(v => v.DoctorId == doctorId).ToList();
         }

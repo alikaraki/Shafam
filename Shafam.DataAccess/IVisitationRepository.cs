@@ -10,8 +10,8 @@ namespace Shafam.DataAccess
 
         Visitation GetVisitation(int visitationId);
 
-        IEnumerable<Visitation> GetVisitationsForPatient(int patientId);
+        List<Visitation> GetVisitationsForPatient(int patientId);
 
-        IEnumerable<Visitation> GetVisitationsForDoctor(int doctorId);
+        List<Visitation> GetVisitationsForDoctor(int doctorId);
     }
 }
