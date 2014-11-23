@@ -1,8 +1,11 @@
 ﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.DoctorScheduleViewModel
 
 @{
     ViewBag.Title = "Doctor Schedule";
 }
+
+@Html.Partial("_DoctorProfileHeader", @Model.Doctor)
 
 <div class="row">
     <div class="col-md-10">
@@ -10,7 +13,7 @@
     </div>
     <div class="col-md-2">
         <br />
-        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment")</p>
+        <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = @Model.Doctor.DoctorId })</p>
     </div>
 </div>
 
@@ -19,7 +22,7 @@
         <th>Patient ID</th>
         <th>Date Time</th>
     </tr>
-    @foreach (Appointment appointment in Model)
+    @foreach (Appointment appointment in Model.Appoitnemnts)
     {
         <tr>
             <td>@appointment.PatientId</td>

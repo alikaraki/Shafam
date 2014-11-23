@@ -7,6 +7,7 @@ using Shafam.Common.DataModel;
 using Shafam.DataAccess;
 using Shafam.UserInterface.Infrastructure;
 using Shafam.BusinessLogic;
+using Shafam.UserInterface.Models;
 
 namespace Shafam.UserInterface.Controllers
 {
@@ -44,7 +45,6 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult AddPatient()
         {
-           
             return View();
         }
 
@@ -92,13 +92,17 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult PatientSchedule(int patientId)
         {
             List<Appointment> appointments = _schedulingService.ViewPatientSchedule(patientId);
-            return View(appointments);
+            Patient patient = _patientRepository.GetPatient(patientId);
+
+            return View(new PatientScheduleViewModel { Patient = patient, Appoitnemnts = appointments });
         }
 
         public ActionResult DoctorSchedule(int doctorId)
         {
             List<Appointment> appointments = _schedulingService.ViewDoctorSchedule(doctorId);
-            return View(appointments);
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+
+            return View(new DoctorScheduleViewModel { Doctor = doctor, Appoitnemnts = appointments });
         }
 
         public ActionResult Doctors()
