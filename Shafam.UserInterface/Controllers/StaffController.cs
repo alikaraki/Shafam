@@ -232,8 +232,10 @@ namespace Shafam.UserInterface.Controllers
         // Show the schedule of a patient.
         public ActionResult PatientSchedule(int patientId)
         {
-            List<Appointment> appointments = _schedulingService.ViewPatientSchedule(patientId);
-            return View(appointments);
+            PatientScheduleViewModel patientAppointment = new PatientScheduleViewModel();
+            patientAppointment.Patient = _patientRepository.GetPatient(patientId);
+            patientAppointment.Appointments = _appointmentRepository.GetAppointmentsForPatient(patientId);
+            return View(patientAppointment);
         }
 
         // Show the schedule of a doctor.
