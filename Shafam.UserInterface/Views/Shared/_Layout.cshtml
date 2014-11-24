@@ -1,4 +1,5 @@
-﻿@using Shafam.Common.Infrastructure
+﻿@using System.Threading
+@using Shafam.Common.Infrastructure
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +36,8 @@
                     @if (User.IsDoctor())
                     {
                         <li @if (action == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Home", "Doctor")</li>
-                        //<li @if (action != "Home") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
-                        <li @if (action != "Home") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                        <li @if (action == "Patiens") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                        <li @if (action == "Schedule") { <text> class="active" </text>   }>@Html.ActionLink("Schedule", "Schedule", "Doctor")</li>
                     }
                     
                     @if (User.IsFinance())
@@ -75,7 +76,22 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Shafam Hospital Management System</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>&copy; @DateTime.Now.Year - Shafam Hospital Management System</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="pull-right">
+                        @{
+                            string department = Thread.CurrentPrincipal.GetDepartment();
+                            if (!string.IsNullOrEmpty(department))
+                            {
+                                <p class="pull-right">@department department</p>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
         </footer>
     </div>
 

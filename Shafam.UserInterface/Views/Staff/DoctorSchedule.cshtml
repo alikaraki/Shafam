@@ -13,20 +13,29 @@
     </div>
     <div class="col-md-2">
         <br />
+
         <p class="pull-right">@Html.ActionLink("Add Appointment", "NewAppointment", new { doctorId = @Model.Doctor.DoctorId })</p>
+
     </div>
 </div>
 
-<table class="table">
-    <tr>
-        <th>Patient ID</th>
-        <th>Date Time</th>
-    </tr>
-    @foreach (Appointment appointment in Model.Appoitnemnts)
-    {
+
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>@appointment.PatientId</td>
-            <td>@appointment.DateTime</td>
+            <th>Patient ID</th>
+            <th>Date & Time</th>
+            <th>Reason</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (Appointment appointment in Model.Appointments)
+        {
+            <tr onclick="window.location.href='@Url.Action("AppointmentDetails", new {appointmentId = appointment.AppointmentId})'">
+                <td>@appointment.PatientId</td>
+                <td>@appointment.DateTime</td>
+                <td>@appointment.Reason</td>
+            </tr>
+        }
+    </tbody>
 </table>

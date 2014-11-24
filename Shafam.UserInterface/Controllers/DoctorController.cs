@@ -14,19 +14,26 @@ namespace Shafam.UserInterface.Controllers
     public class DoctorController : Controller
     {
         private readonly IIdentityProvider _identityProvider;
+        private readonly IDoctorRepository _doctorRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
+        private readonly ISchedulingService _schedulingService;
+        
 
         public DoctorController(IIdentityProvider identityProvider,
+                                IDoctorRepository doctorRepository,
                                 IPatientRepository patientRepository, 
                                 IPatientManagementService patientManagementService,
-                                IVisitationManagementService visitationManagementService)
+                                IVisitationManagementService visitationManagementService,
+                                ISchedulingService schedulingService)
         {
             _identityProvider = identityProvider;
+            _doctorRepository = doctorRepository;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
             _visitationManagementService = visitationManagementService;
+            _schedulingService = schedulingService;
         }
 
         public ActionResult Index()
@@ -43,39 +50,12 @@ namespace Shafam.UserInterface.Controllers
         // GET: /Patient/
         public ActionResult Patients()
         {
-            //IEnumerable<Patient> patients = _patientRepository.GetPatients();
             int doctorId = _identityProvider.GetAuthenticatedUserId();
             IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
 
             return View(patients);
         }
 
-        // GETS RANDOM PATIENTS FROM DATABASE
-        // *NOTE*: THIS FUNCTION IS FOR TESTING PURPOSES 
-        // GET: /Patient/
-        public ActionResult RandomPatients()
-        {
-            IEnumerable<Patient> patients = _patientRepository.GetPatients();
-            //IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
-
-            return View(patients);
-        }
-
-        public ActionResult AddRandomPatient()
-        {
-            int id = new Random().Next(100);
-
-            var patient = new Patient
-                          {
-                              FirstName = "First Name " + id,
-                              LastName = "Last Name " + id,
-                              Age = id
-                          };
-
-            _patientRepository.AddPatient(patient);
-
-            return RedirectToAction("RandomPatients");
-        }
 
         public ActionResult PatientProfile(int patientId)
         {
@@ -207,6 +187,16 @@ namespace Shafam.UserInterface.Controllers
 
             // Redirect to patient details
             return RedirectToAction("Visitations", "Doctor", new { patientId = patientId });
+        }
+
+        // Show the schedule of a doctor.
+        public ActionResult Schedule()
+        {
+            int doctorId = _identityProvider.GetAuthenticatedUserId();
+            DoctorScheduleViewModel doctorAppointment = new DoctorScheduleViewModel();
+            doctorAppointment.Doctor = _doctorRepository.GetDoctor(doctorId);
+            doctorAppointment.Appointments = _schedulingService.ViewDoctorSchedule(doctorId);
+            return View(doctorAppointment);
         }
     }
 }

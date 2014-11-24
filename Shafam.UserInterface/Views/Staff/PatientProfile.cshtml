@@ -7,7 +7,6 @@
 @Html.Partial("_Header", @Model)
 
 <p>@Html.ActionLink("Assign Doctor", "AssignDoctor", new { patientId = @Model.PatientId }) </p>
-<p>@Html.ActionLink("Refer", "ReferPatient", new { patientId = @Model.PatientId }) </p>
 
 <form class="form-horizontal" role="form">
     <div class="form-group">

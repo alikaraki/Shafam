@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Shafam.Common.DataModel;
+using System;
 
 namespace Shafam.BusinessLogic
 {
     public interface ISchedulingService
     {
-        int AddAppointment(Appointment appointment);
+        void AddAppointment(int patientId, int doctorId, DateTime DateTime, string reason);
 
         int ModifyAppointment(int appointmentId, Appointment appointment);
 

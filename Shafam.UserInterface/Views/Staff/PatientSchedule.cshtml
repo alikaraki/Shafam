@@ -7,14 +7,14 @@
 
 @Html.Partial("_Header", @Model.Patient)
 
-<h2>Schedule</h2>
-
 <table class="table">
-    <tr>
-        <th>Doctor ID</th>
-        <th>Date Time</th>
-    </tr>
-    @foreach (Appointment appointment in Model.Appoitnemnts)
+    <thead>
+        <tr>
+            <th>Doctor ID</th>
+            <th>Date Time</th>
+        </tr>
+    </thead>
+    @foreach (Appointment appointment in Model.Appointments)
     {
         <tr>
             <td>@appointment.DoctorId</td>

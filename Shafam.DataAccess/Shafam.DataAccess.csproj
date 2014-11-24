@@ -68,6 +68,7 @@
     <Compile Include="Infrastructure\ShafamDropCreateAlwaysInitializer.cs" />
     <Compile Include="Infrastructure\ShafamMigrateDatabaseInitializer.cs" />
     <Compile Include="IPatientRepository.cs" />
+    <Compile Include="IReferralRepository.cs" />
     <Compile Include="IStaffRepository.cs" />
     <Compile Include="ITestRepository.cs" />
     <Compile Include="IAccountRepository.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="ITreatmentRepository.cs" />
     <Compile Include="Repositories\MedicationRepository.cs" />
     <Compile Include="Repositories\PatientRepository.cs" />
+    <Compile Include="Repositories\ReferralRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\TreatmentRepository.cs" />

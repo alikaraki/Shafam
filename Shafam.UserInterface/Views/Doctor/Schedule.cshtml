@@ -1,0 +1,26 @@
+﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.DoctorScheduleViewModel
+
+@{
+    ViewBag.Title = "Doctor Schedule";
+}
+
+
+<h2> Schedule</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Patient ID</th>
+        <th>Date & Time</th>
+        <th>Reason</th>
+    </tr>
+    @foreach (Appointment appointment in Model.Appointments)
+    {
+        <tr>
+            <td>@appointment.PatientId</td>
+            <td>@appointment.DateTime</td>
+            <td>@appointment.Reason</td>
+        </tr>
+    }
+</table>

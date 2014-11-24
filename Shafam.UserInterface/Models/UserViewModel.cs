@@ -63,6 +63,9 @@ namespace Shafam.UserInterface.Models
                            new SelectListItem {Value = "Cardiology", Text = "Cardiology"},
                            new SelectListItem {Value = "EarNoseThroat", Text = "EarNoseThroat"},
                            new SelectListItem {Value = "Neurology", Text = "Neurology"},
+                           new SelectListItem {Value = "IT", Text = "IT"},
+                           new SelectListItem {Value = "Finance", Text = "Finance"},
+                           new SelectListItem {Value = "Legal", Text = "Legal"},
                        };
             }
         }

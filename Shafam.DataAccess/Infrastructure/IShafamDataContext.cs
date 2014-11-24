@@ -14,7 +14,8 @@ namespace Shafam.DataAccess.Infrastructure
         DbSet<Appointment> Appointments { get; set; }
         DbSet<AppointmentRequest> AppointmentRequests { get; set; }
         DbSet<Visitation> Visitations { get; set; }
-        DbSet<Staff> Staffs { get; set; } 
+        DbSet<Staff> Staffs { get; set; }
+        DbSet<Referral> Referrals { get; set; }
 
         void Save();
     }

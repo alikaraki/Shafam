@@ -18,16 +18,19 @@ namespace Shafam.UserInterface.Controllers
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
+        private readonly ISchedulingService _schedulingService;
 
         public PatientController(IIdentityProvider identityProvider, 
                                 IPatientRepository patientRepository,
                                 IPatientManagementService patientManagementService, 
-                                IVisitationManagementService visitationManagementService)
+                                IVisitationManagementService visitationManagementService,
+                                ISchedulingService schedulingService)
         {
             _identityProvider = identityProvider;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
             _visitationManagementService = visitationManagementService;
+            _schedulingService = schedulingService;
         }
         public ActionResult Index()
         {
@@ -36,9 +39,35 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult Appointments()
         {
-            return View();
+            int patientId = _identityProvider.GetAuthenticatedUserId();
+            PatientScheduleViewModel patientAppointment = new PatientScheduleViewModel();
+            patientAppointment.Patient = _patientManagementService.ViewPatient(patientId);
+            patientAppointment.Appointments = _schedulingService.ViewPatientSchedule(patientId);
+            return View(patientAppointment);
         }
 
+        // Add a new appointment for a doctor.
+        [HttpGet]
+        public ActionResult RequestAppointment(int patientId)
+        {
+            Patient patient = _patientManagementService.ViewPatient(patientId);
+            ViewBag.ReturnUrl = Url.Action("RequestAppointment");
+            return View(new AppointmentRequestViewModel { Patient = patient });
+        }
+
+        [HttpPost]
+        public ActionResult RequestAppointment(AppointmentRequestViewModel appointmentRequest, int patientId)
+        {
+            _schedulingService.RequestAppointment(patientId, null, appointmentRequest.Reason);
+            // Redirect to Appointments
+            return RedirectToAction("RequestMessage", "Patient");
+        }
+
+        public ActionResult RequestMessage()
+        {
+            return View();
+        }
+        
         public ActionResult Medication()
         {
             int patientId = _identityProvider.GetAuthenticatedUserId();

@@ -18,8 +18,10 @@ namespace Shafam.UserInterface.Controllers
         private readonly IIdentityProvider _identityProvider;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly ISchedulingService _schedulingService;
         private readonly IPatientManagementService _patientManagementService;
+        private readonly IAccountManagementService _accountManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
 
         public StaffController(IPatientRepository patientRepository, 
@@ -28,7 +30,9 @@ namespace Shafam.UserInterface.Controllers
                                 IAppointmentRepository appointmentRepository, 
                                 IDoctorRepository doctorRepository,
                                 IPatientManagementService patientManagementService,
-                                IVisitationManagementService visitationManagementService)
+                                IVisitationManagementService visitationManagementService,
+                                IAccountRepository accountRepository,
+                                IAccountManagementService accountManagementService)
         {
             _patientRepository = patientRepository;
             _identityProvider = identityProvider;
@@ -36,6 +40,8 @@ namespace Shafam.UserInterface.Controllers
             _appointmentRepository = appointmentRepository;
             _doctorRepository = doctorRepository;
             _patientManagementService = patientManagementService;
+            _accountManagementService = accountManagementService;
+            _accountRepository = accountRepository;
             _visitationManagementService = visitationManagementService;
         }
 
@@ -68,14 +74,25 @@ namespace Shafam.UserInterface.Controllers
             // Add Patient to patient repository
             Patient patient = _patientManagementService.AddPatient(model.FirstName, model.LastName, model.Age, 
                                                                     model.Gender, model.HealthCardNumber, model.PhoneNumber, model.Address);
+            // Create patient account
+            _accountManagementService.CreateAccountForPatient(patient.PatientId);
 
             // Redirect to All Patients
-            return RedirectToAction("Patients", "Staff");
+            return RedirectToAction("Details", "Staff", new { id = patient.PatientId, role = UserRole.Patient, showUserCreatedAlert = true });
+        }
+
+        public ActionResult Details(int id, UserRole role, bool showUserCreatedAlert = false)
+        {
+            if (showUserCreatedAlert)
+            {
+                ViewBag.ShowUserCreatedAlert = true;
+            }
+
+            return View(GetPatient(id));
         }
 
         public ActionResult PatientProfile(int patientId)
         {
-            //Patient patient = _patientRepository.GetPatient(patientId);
             Patient patient = _patientManagementService.ViewPatient(patientId);
             return View(patient);
         }
@@ -86,21 +103,22 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult AssignDoctor(int patientId)
         {
             Patient patient = _patientManagementService.ViewPatient(patientId);
-            List<Doctor> doctors = _patientRepository.GetDoctorsForPatient(patientId);
-            ViewBag.ReturnUrl = Url.Action("AssignDoctor");
-            return View(new DoctorAssignmentViewModel { Patient = patient, Doctors = doctors });
+            List<Doctor> allDoctors = _doctorRepository.GetDoctors();
+            List<Doctor> assignedDoctors = _patientRepository.GetDoctorsForPatient(patientId);
+
+            return View(new DoctorAssignmentViewModel { Patient = patient, Doctors = allDoctors, AssignedDoctors = assignedDoctors });
         }
 
         //
         // POST: /Staff/AssignDoctor
         [HttpPost]
-        public ActionResult AssignDoctor(DoctorAssignmentViewModel model)
+        public ActionResult AssignDoctor(DoctorAssignmentViewModel model, int patientId)
         {
             // Assign patient to a specific doctor
-            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), model.Patient.PatientId);
+            _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), patientId);
 
             // Redirect to doctor assignment page
-            return RedirectToAction("AssignDoctor", "Staff");
+            return RedirectToAction("AssignDoctor", "Staff", new {patientId = patientId});
         }
 
         public ActionResult VisitationDetails(int patientId, int visitationId)
@@ -226,52 +244,78 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("Tests", "Staff", new { patientId = patientId });
         }
 
+        // Show the schedule of a patient.
         public ActionResult PatientSchedule(int patientId)
         {
-            List<Appointment> appointments = _schedulingService.ViewPatientSchedule(patientId);
-            return View(appointments);
+            PatientScheduleViewModel patientAppointment = new PatientScheduleViewModel();
+            patientAppointment.Patient = _patientRepository.GetPatient(patientId);
+            patientAppointment.Appointments = _appointmentRepository.GetAppointmentsForPatient(patientId);
+            return View(patientAppointment);
         }
 
+        // Show the schedule of a doctor.
         public ActionResult DoctorSchedule(int doctorId)
         {
-            List<Appointment> appointments = _schedulingService.ViewDoctorSchedule(doctorId);
-            return View(appointments);
+            DoctorScheduleViewModel doctorAppointment = new DoctorScheduleViewModel();
+            doctorAppointment.Doctor = _doctorRepository.GetDoctor(doctorId);
+            doctorAppointment.Appointments = _appointmentRepository.GetAppointmentsForDoctor(doctorId);
+            return View(doctorAppointment);
         }
 
+        // Show the details of a single appointment.
+        public ActionResult AppointmentDetails(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            return View(appointment);
+        }
+
+        // Cancel an appointment.
+        public ActionResult CancelAppointment(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            int doctorId = appointment.DoctorId;
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            _appointmentRepository.CancelAppointment(appointmentId);
+            return View(doctor);
+        }
+
+        // Show a list of all doctors.
         public ActionResult Doctors()
         {
             IEnumerable<Doctor> doctors = _doctorRepository.GetDoctors();
-
             return View(doctors);
         }
-
+        
+        // Show the details of a single doctor.
         public ActionResult DoctorProfile(int doctorId)
         {
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
             return View(doctor);
         }
 
+        // Add a new appointment for a doctor.
+        [HttpGet]
         public ActionResult NewAppointment(int doctorId)
         {
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            return View(doctor);
+            ViewBag.ReturnUrl = Url.Action("NewAppointment");
+            return View(new AppointmentInputViewModel {Doctor = doctor});
         }
 
-        // --- FOR TESTING PURPOSES ---
-        public ActionResult AddRandomPatient()
+        [HttpPost]
+        public ActionResult NewAppointment(AppointmentInputViewModel newAppointment, int doctorId)
         {
-            int id = new Random().Next(100);
-
-            var patient = new Patient
-            {
-                FirstName = "First Name " + id,
-                LastName = "Last Name " + id,
-                Age = id
-            };
-
-            _patientRepository.AddPatient(patient);
-
-            return RedirectToAction("Patients");
+            _schedulingService.AddAppointment(newAppointment.PatientID, doctorId,
+                                                newAppointment.DateTime, newAppointment.Reason); 
+            // Redirect to Doctor Schedule
+            return RedirectToAction("DoctorSchedule", "Staff", new { doctorId = doctorId });
         }
+
+        private UserViewModel GetPatient(int id)
+        {
+            var patient = _patientRepository.GetPatient(id);
+            return patient.GetUserViewModel(_accountRepository.GetAccountByUserId(patient.PatientId,UserRole.Patient));
+        }
+
 	}
 }

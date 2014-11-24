@@ -16,11 +16,9 @@ namespace Shafam.BusinessLogic.Scheduling
             _appointmentRequestRepository = appointmentRequestRepository;
         }
 
-        public int AddAppointment(Appointment appointment)
+        public void AddAppointment(int patientId, int doctorId, DateTime dateTime, string reason)
         {
-            _appointmentRepository.AddAppointment(appointment.PatientId, appointment.DoctorId, 
-                                                    appointment.DateTime, appointment.Reason);
-            return appointment.AppointmentId;
+            _appointmentRepository.AddAppointment(patientId, doctorId, dateTime, reason);
         }
 
         public int ModifyAppointment(int appointmentId, Appointment appointment)
@@ -42,10 +40,11 @@ namespace Shafam.BusinessLogic.Scheduling
             return _appointmentRepository.GetAppointmentsForPatient(patientId);
         }
 
-        public int RequestAppointment(int patientId, int? doctorId, string reason = null)
+        public int RequestAppointment(int patientId, int? doctorId = null, string reason = null)
         {
             AppointmentRequest appRequest = _appointmentRequestRepository.RequestAppointment(patientId, doctorId, reason);
             return appRequest.AppointmentRequestId;
         }
+
     }
 }
