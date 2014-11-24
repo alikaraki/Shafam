@@ -7,7 +7,7 @@ namespace Shafam.DataAccess
     {
         void AddPatient(Patient patient);
 
-        IEnumerable<Patient> GetPatients();
+        List<Patient> GetPatients();
 
         Patient GetPatient(int patientid);
 

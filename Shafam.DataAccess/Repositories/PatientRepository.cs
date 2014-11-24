@@ -20,7 +20,7 @@ namespace Shafam.DataAccess.Repositories
             _context.Save();
         }
 
-        public IEnumerable<Patient> GetPatients()
+        public List<Patient> GetPatients()
         {
             return _context.Patients.ToList();
         }

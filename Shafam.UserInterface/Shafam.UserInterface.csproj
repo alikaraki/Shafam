@@ -178,6 +178,7 @@
     <Compile Include="Models\AppointmentInputViewModel.cs" />
     <Compile Include="Models\AppointmentRequestViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
+    <Compile Include="Models\DoctorPatientViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientExtensions.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\AppointmentDetails.cshtml" />
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
+    <Content Include="Views\Legal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
