@@ -32,6 +32,8 @@ namespace Shafam.DataAccess.Infrastructure
 
         public DbSet<Staff> Staffs { get; set; }
 
+        public DbSet<Referral> Referrals { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
