@@ -24,5 +24,15 @@ namespace Shafam.UserInterface.Controllers
         {
             return View();
         }
+
+        public ActionResult Doctors()
+        {
+            return View();
+        }
+
+        public ActionResult Patients()
+        {
+            return View();
+        }
 	}
 }
