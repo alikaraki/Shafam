@@ -34,7 +34,7 @@ namespace Shafam.DataAccess.Migrations
                 LastName = "Smith",
                 Gender = Gender.Male,
                 Specialty = "Surgeant",
-                Department = Department.Surgery
+                Department = Department.Neurology
             };
 
             var doctor2 = new Doctor
@@ -43,7 +43,7 @@ namespace Shafam.DataAccess.Migrations
                 LastName = "Montrose",
                 Gender = Gender.Female,
                 Specialty = "Neurologist",
-                Department = Department.Neurology
+                Department = Department.Surgery
             };
 
             doctor1 = AddOrUpdate(context, doctor1);

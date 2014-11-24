@@ -45,6 +45,11 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Tests.Where(t => t.VisitationId == visitationId).ToList();
         }
 
+        public Test GetTestsForTestId(int testId)
+        {
+            return _dataContext.Tests.First(t => t.TestId == testId);
+        }
+
         public void AddTestResult(int testId, string result)
         {
             Test test = _dataContext.Tests.First(t => t.TestId == testId);

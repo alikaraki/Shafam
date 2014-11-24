@@ -1,9 +1,23 @@
 ﻿@using Shafam.Common.DataModel
 @using Shafam.UserInterface.Models
 @{
-    ViewBag.Title = "Tests";
+    ViewBag.Title = "AddTestResult";
 }
 
-@model TestViewModel
+@model TestResultInputModel
 
 @Html.Partial("_Header", @Model.Patient)
+
+@using (Html.BeginForm("AddTestResult", "Staff", new { patientId = @Model.Patient.PatientId, testId = @Model.Test.TestId}))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Test.Type)
+        @Html.TextBoxFor(m => m.Test.Type, new { @class = "form-control", @disabled = "true", style="cursor: default;" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Test.Result)
+        @Html.TextBoxFor(m => m.Test.Result, new { @class = "form-control" })
+    </div>
+    <input type="submit" value="Save" class="btn btn-default" />
+}

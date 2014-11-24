@@ -118,9 +118,10 @@ namespace Shafam.UserInterface.Controllers
             _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), patientId);
 
             // Redirect to doctor assignment page
-            return RedirectToAction("PatientProfile", "Staff", new {patientId = patientId});
+            return RedirectToAction("AssignDoctor", "Staff", new {patientId = patientId});
         }
 
+        // View all visitiation details for a patient's visit
         public ActionResult VisitationDetails(int patientId, int visitationId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -156,7 +157,7 @@ namespace Shafam.UserInterface.Controllers
             return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
         }
 
-
+        // View all Medications prescribed to a patient
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -181,6 +182,7 @@ namespace Shafam.UserInterface.Controllers
             return View(medicationViewModel);
         }
 
+        // View all Treatments prescribed to a patient
         public ActionResult Treatments(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -205,6 +207,7 @@ namespace Shafam.UserInterface.Controllers
             return View(treatmentViewModel);
         }
 
+        // View all Tests prescribed to a patient
         public ActionResult Tests(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -227,6 +230,22 @@ namespace Shafam.UserInterface.Controllers
                 }
             }
             return View(testViewModel);
+        }
+
+        //Add Test Result for a test prescribed
+        [HttpGet]
+        public ActionResult AddTestResult(int patientId, int testId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            Test test = _visitationManagementService.GetTestforTestId(testId);
+            return View(new TestResultInputModel { Patient = patient, Test = test});
+        }
+
+        [HttpPost]
+        public ActionResult AddTestResult(int patientId, int testId, TestResultInputModel inputModel)
+        {
+            _visitationManagementService.UpdateTestsResults(testId, inputModel.Test.Result);
+            return RedirectToAction("Tests", "Staff", new { patientId = patientId });
         }
 
         // Show the schedule of a patient.

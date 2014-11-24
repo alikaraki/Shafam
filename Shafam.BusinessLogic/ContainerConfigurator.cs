@@ -2,6 +2,7 @@
 using Microsoft.Practices.Unity;
 using Shafam.BusinessLogic.AccountManagement;
 using Shafam.BusinessLogic.Authentication;
+using Shafam.BusinessLogic.LegalService;
 using Shafam.BusinessLogic.PatientManagement;
 using Shafam.Common.Infrastructure;
 using Shafam.BusinessLogic.NotificationManagement;
@@ -21,6 +22,7 @@ namespace Shafam.BusinessLogic
             container.RegisterSingleton<INotificationManagementService, NotificationManagementService>();
             container.RegisterSingleton<ISchedulingService, SchedulingService>();
             container.RegisterSingleton<IVisitationManagementService, VisitationManagementService>();
+            container.RegisterSingleton<ILegalManagementService, LegalManagementService>();
 
         }
     }

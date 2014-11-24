@@ -54,6 +54,7 @@
     <Compile Include="DataModel\Gender.cs" />
     <Compile Include="DataModel\Medication.cs" />
     <Compile Include="DataModel\Patient.cs" />
+    <Compile Include="DataModel\Referral.cs" />
     <Compile Include="DataModel\Staff.cs" />
     <Compile Include="DataModel\Test.cs" />
     <Compile Include="DataModel\Treatment.cs" />
