@@ -46,5 +46,11 @@ namespace Shafam.DataAccess.Repositories
         {
             return _dataContext.Visitations.Where(v => v.DoctorId == doctorId).ToList();
         }
+
+
+        public List<Visitation> GetVisitationsForTime(DateTime begin, DateTime end)
+        {
+            return _dataContext.Visitations.Where(v => v.DateTime >= begin && v.DateTime <= end).ToList();
+        }
     }
 }

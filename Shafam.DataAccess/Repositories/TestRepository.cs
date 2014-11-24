@@ -63,5 +63,25 @@ namespace Shafam.DataAccess.Repositories
             test.SeenByDoctor = true;
             _dataContext.Save();
         }
+
+
+        public List<Test> GetTestsForDoctor(int doctorId)
+        {
+            return _dataContext.Tests.Where(t => t.DoctorId == doctorId).ToList();
+        }
+
+
+        public List<Test> GettestsForTime(DateTime begin, DateTime end)
+        {
+            List<Visitation> visitations = _dataContext.Visitations.Where(v => v.DateTime >= begin && v.DateTime <= end).ToList();
+            List<Test> tests = new List<Test>();
+            foreach (Visitation visitation in visitations)
+            {
+                int visitationId = visitation.VisitationId;
+                Test test = _dataContext.Tests.First(t => t.VisitationId == visitationId);
+                tests.Add(test);
+            }
+            return (tests);
+        }
     }
 }

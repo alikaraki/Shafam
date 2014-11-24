@@ -2,6 +2,7 @@
 using System.Linq;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess.Infrastructure;
+using System;
 
 namespace Shafam.DataAccess.Repositories
 {
@@ -47,6 +48,26 @@ namespace Shafam.DataAccess.Repositories
             Treatment treatment = _dataContext.Treatments.First(t => t.TreatmentId == treatmentId);
             treatment.TreatmentCompleted = true;
             _dataContext.Save();
+        }
+
+
+        public List<Treatment> GetTreatmentsForDoctor(int doctorId)
+        {
+            return _dataContext.Treatments.Where(t => t.DoctorId == doctorId).ToList();
+        }
+
+
+        public List<Treatment> GetTreatmentsForTime(DateTime begin, DateTime end)
+        {
+            List<Visitation> visitations = _dataContext.Visitations.Where(v => v.DateTime >= begin && v.DateTime <= end).ToList();
+            List<Treatment> treatments = new List<Treatment>();
+            foreach (Visitation visitation in visitations)
+            {
+                int visitationId = visitation.VisitationId;
+                Treatment treatment = _dataContext.Treatments.First(t => t.VisitationId == visitationId);
+                treatments.Add(treatment);
+            }
+            return (treatments);
         }
     }
 }

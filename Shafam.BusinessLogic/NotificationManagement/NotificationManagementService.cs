@@ -37,7 +37,6 @@ namespace Shafam.BusinessLogic.NotificationManagement
 
         public List<Notification> SendNotification(int SenderId, int ReceiverId, int PatientId, NotificationType notificationType)
         {
-<<<<<<< HEAD
             List<Notification> notificationList = new List<Notification>();
             switch(notificationType)
             {
@@ -96,11 +95,7 @@ namespace Shafam.BusinessLogic.NotificationManagement
                     break;
             }
             return (notificationList);
-=======
-
-            throw new NotImplementedException();
-            
->>>>>>> origin/master
+                                
         }
 
         public void ViewNotification()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Shafam.Common.DataModel;
+using System;
 
 namespace Shafam.DataAccess
 {
@@ -11,6 +12,11 @@ namespace Shafam.DataAccess
 
         List<Treatment> GetTreatmentsForVisitation(int visitationId);
 
+        List<Treatment> GetTreatmentsForDoctor(int doctorId);
+     
         void MarkAsCompleted(int treatmentId);
-    }
+
+        List<Treatment> GetTreatmentsForTime(DateTime begin, DateTime end);
+
+     }
 }

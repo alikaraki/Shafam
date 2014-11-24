@@ -33,49 +33,51 @@ namespace Shafam.BusinessLogic.BillingManagement
         {
             List<Visitation> visitations = _visitationRepository.GetVisitationsForDoctor(doctorId);
             int size = visitations.Count;
-            return (size);
+            return size;
         }
 
         public List<Treatment> GetTreatmentsForDoctor(int doctorId)
         {
-            throw new NotImplementedException();
+            return _treatmentRepository.GetTreatmentsForDoctor(doctorId);
         }
 
         public List<Test> GetTestsForDoctor(int doctorId)
         {
-            throw new NotImplementedException();
+            return _testRepository.GetTestsForDoctor(doctorId);
         }
 
         public int GetNumberOfVisitationsForPatient(int patientId)
         {
             List<Visitation> visitations = _visitationRepository.GetVisitationsForPatient(patientId);
             int size = visitations.Count;
-            return (size);
+            return size;
         }
 
         public List<Treatment> GetTreatmentsForPatient(int patientId)
         {
-            throw new NotImplementedException();
+            return _treatmentRepository.GetTreatmentsForPatient(patientId);
         }
 
         public List<Test> GetTestsForPatient(int patientId)
         {
-            throw new NotImplementedException();
+            return _testRepository.GetTestsForPatient(patientId);
         }
 
         public int GetNumberOfVisitationForTime(DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            List<Visitation> visitations = _visitationRepository.GetVisitationsForTime(begin, end);
+            int size = visitations.Count;
+            return (size);
         }
 
         public List<Treatment> GetTreatmentsForTime(DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return _treatmentRepository.GetTreatmentsForTime(begin, end);
         }
 
         public List<Test> GetTestsForTime(DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return _testRepository.GettestsForTime(begin, end);
         }
     }
 }

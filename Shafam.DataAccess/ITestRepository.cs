@@ -13,6 +13,8 @@ namespace Shafam.DataAccess
 
         List<Test> GetTestsForPatient(int patientId);
 
+        List<Test> GetTestsForDoctor(int doctorId);
+
         List<Test> GetTestsForVisitation(int visitationId);
 
         Test GetTestsForTestId(int testId);
@@ -20,5 +22,7 @@ namespace Shafam.DataAccess
         void AddTestResult(int testId, string result);
 
         void MarkAsSeen(int testId);
+
+        List<Test> GettestsForTime(DateTime begin, DateTime end);
     }
 }
