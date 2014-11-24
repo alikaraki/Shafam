@@ -14,6 +14,12 @@ namespace Shafam.BusinessLogic
 
         List<Appointment> ViewPatientSchedule(int patientId);
 
+        Doctor GetDoctorForAppointment(int appointmentId);
+
+        Patient GetPatientForAppointment(int appointmentId);
+
+        List<Doctor> GetDoctorsForAppointments(List<Appointment> appointments);
+
         int RequestAppointment(int patientId, int? doctorId, string reason = null);
     }
 }

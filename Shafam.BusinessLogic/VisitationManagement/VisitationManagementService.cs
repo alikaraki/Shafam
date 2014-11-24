@@ -78,5 +78,11 @@ namespace Shafam.BusinessLogic.VisitationManagement
             return test;
         }
 
+        public void CompleteTreatment(int treatmentId)
+        {
+            _treatmentRepository.MarkAsCompleted(treatmentId);
+            return;
+        }
+
     }
 }

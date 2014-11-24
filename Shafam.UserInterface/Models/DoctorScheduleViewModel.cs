@@ -9,6 +9,6 @@ namespace Shafam.UserInterface.Models
     public class DoctorScheduleViewModel
     {
         public Doctor Doctor { get; set; }
-        public List<Appointment> Appointments { get; set; }
+        public List<SingleAppointmentDoctorViewModel> SingleAppointmentDoctorViewModels { get; set; }
     }
 }

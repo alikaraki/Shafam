@@ -15,6 +15,7 @@ namespace Shafam.UserInterface.Controllers
     {
         private readonly IIdentityProvider _identityProvider;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
@@ -23,6 +24,7 @@ namespace Shafam.UserInterface.Controllers
 
         public DoctorController(IIdentityProvider identityProvider,
                                 IDoctorRepository doctorRepository,
+                                IAppointmentRepository appointmentRepository,
                                 IPatientRepository patientRepository, 
                                 IPatientManagementService patientManagementService,
                                 IVisitationManagementService visitationManagementService,
@@ -31,6 +33,7 @@ namespace Shafam.UserInterface.Controllers
         {
             _identityProvider = identityProvider;
             _doctorRepository = doctorRepository;
+            _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
             _visitationManagementService = visitationManagementService;
@@ -226,10 +229,18 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Schedule()
         {
             int doctorId = _identityProvider.GetAuthenticatedUserId();
-            DoctorScheduleViewModel doctorAppointment = new DoctorScheduleViewModel();
-            doctorAppointment.Doctor = _doctorRepository.GetDoctor(doctorId);
-            doctorAppointment.Appointments = _schedulingService.ViewDoctorSchedule(doctorId);
-            return View(doctorAppointment);
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            List<Appointment> appointmentsForDoctor = _schedulingService.ViewDoctorSchedule(doctorId);
+            DoctorScheduleViewModel doctorScheduleViewModel = new DoctorScheduleViewModel { Doctor = doctor, SingleAppointmentDoctorViewModels = new List<SingleAppointmentDoctorViewModel>() };
+
+            foreach (Appointment appointment in appointmentsForDoctor)
+            {
+                SingleAppointmentDoctorViewModel singleAppointment = new SingleAppointmentDoctorViewModel();
+                singleAppointment.SPatient = _schedulingService.GetPatientForAppointment(appointment.AppointmentId);
+                singleAppointment.SAppointment = _appointmentRepository.GetAppointment(appointment.AppointmentId);
+                doctorScheduleViewModel.SingleAppointmentDoctorViewModels.Add(singleAppointment);
+            }
+            return View(doctorScheduleViewModel); 
         }
     }
 }

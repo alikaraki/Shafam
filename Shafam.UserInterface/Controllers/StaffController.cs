@@ -121,6 +121,7 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("AssignDoctor", "Staff", new {patientId = patientId});
         }
 
+        // View all visitiation details for a patient's visit
         public ActionResult VisitationDetails(int patientId, int visitationId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -156,7 +157,7 @@ namespace Shafam.UserInterface.Controllers
             return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
         }
 
-
+        // View all Medications prescribed to a patient
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -181,6 +182,7 @@ namespace Shafam.UserInterface.Controllers
             return View(medicationViewModel);
         }
 
+        // View all Treatments prescribed to a patient
         public ActionResult Treatments(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -205,6 +207,7 @@ namespace Shafam.UserInterface.Controllers
             return View(treatmentViewModel);
         }
 
+        // View all Tests prescribed to a patient
         public ActionResult Tests(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -229,6 +232,8 @@ namespace Shafam.UserInterface.Controllers
             return View(testViewModel);
         }
 
+
+        //Add Test Result for a test prescribed
         [HttpGet]
         public ActionResult AddTestResult(int patientId, int testId)
         {
@@ -244,22 +249,47 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("Tests", "Staff", new { patientId = patientId });
         }
 
+        //Complete Treatment link for a treatment prescribed
+        [HttpGet]
+        public ActionResult MarkTreatmentAsCompleted(int patientId, int treatmentId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            _visitationManagementService.CompleteTreatment(treatmentId);
+            return RedirectToAction("Treatments", "Staff", new { patientId = patientId });
+        }
+
         // Show the schedule of a patient.
         public ActionResult PatientSchedule(int patientId)
         {
-            PatientScheduleViewModel patientAppointment = new PatientScheduleViewModel();
-            patientAppointment.Patient = _patientRepository.GetPatient(patientId);
-            patientAppointment.Appointments = _appointmentRepository.GetAppointmentsForPatient(patientId);
-            return View(patientAppointment);
+            Patient patient = _patientRepository.GetPatient(patientId);
+            List<Appointment> appointmentsForPatient = _schedulingService.ViewPatientSchedule(patientId);
+            PatientScheduleViewModel patientScheduleViewModel = new PatientScheduleViewModel { Patient = patient, SingleAppointmentViewModels = new List<SingleAppointmentViewModel>() };
+
+            foreach (Appointment appointment in appointmentsForPatient)
+            {
+                SingleAppointmentViewModel singleAppointment = new SingleAppointmentViewModel();
+                singleAppointment.SDoctor = _schedulingService.GetDoctorForAppointment(appointment.AppointmentId);
+                singleAppointment.SAppointment = _appointmentRepository.GetAppointment(appointment.AppointmentId);
+                patientScheduleViewModel.SingleAppointmentViewModels.Add(singleAppointment);
+            }
+            return View(patientScheduleViewModel);
         }
 
         // Show the schedule of a doctor.
         public ActionResult DoctorSchedule(int doctorId)
         {
-            DoctorScheduleViewModel doctorAppointment = new DoctorScheduleViewModel();
-            doctorAppointment.Doctor = _doctorRepository.GetDoctor(doctorId);
-            doctorAppointment.Appointments = _appointmentRepository.GetAppointmentsForDoctor(doctorId);
-            return View(doctorAppointment);
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            List<Appointment> appointmentsForDoctor = _schedulingService.ViewDoctorSchedule(doctorId);
+            DoctorScheduleViewModel doctorScheduleViewModel = new DoctorScheduleViewModel { Doctor = doctor, SingleAppointmentDoctorViewModels = new List<SingleAppointmentDoctorViewModel>() };
+
+            foreach (Appointment appointment in appointmentsForDoctor)
+            {
+                SingleAppointmentDoctorViewModel singleAppointment = new SingleAppointmentDoctorViewModel();
+                singleAppointment.SPatient = _schedulingService.GetPatientForAppointment(appointment.AppointmentId);
+                singleAppointment.SAppointment = _appointmentRepository.GetAppointment(appointment.AppointmentId);
+                doctorScheduleViewModel.SingleAppointmentDoctorViewModels.Add(singleAppointment);
+            }
+            return View(doctorScheduleViewModel);    
         }
 
         // Show the details of a single appointment.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Shafam.Common.DataModel;
 using Shafam.DataAccess;
@@ -9,11 +10,18 @@ namespace Shafam.BusinessLogic.Scheduling
     {
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IAppointmentRequestRepository _appointmentRequestRepository;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IPatientRepository _patientRepository;
 
-        public SchedulingService(IAppointmentRepository appointmentRepository, IAppointmentRequestRepository appointmentRequestRepository)
+        public SchedulingService(IAppointmentRepository appointmentRepository, 
+                                IAppointmentRequestRepository appointmentRequestRepository,
+                                IDoctorRepository doctorRepository,
+                                IPatientRepository patientRepository)
         {
             _appointmentRepository = appointmentRepository;
             _appointmentRequestRepository = appointmentRequestRepository;
+            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
         }
 
         public void AddAppointment(int patientId, int doctorId, DateTime dateTime, string reason)
@@ -46,5 +54,33 @@ namespace Shafam.BusinessLogic.Scheduling
             return appRequest.AppointmentRequestId;
         }
 
+
+
+        public List<Doctor> GetDoctorsForAppointments(List<Appointment> appointments)
+        {
+            List<int> doctorIds = new List<int>();
+            foreach (Appointment appointment in appointments) 
+            {
+                doctorIds.Add(appointment.DoctorId);
+            }
+            List<Doctor> doctors = doctorIds.Select(Id => _doctorRepository.GetDoctor(Id)).ToList();
+            return doctors;
+        }
+
+
+        public Doctor GetDoctorForAppointment(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            int doctorId = appointment.DoctorId;
+            return _doctorRepository.GetDoctor(doctorId);
+        }
+
+
+        public Patient GetPatientForAppointment(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            int patientId = appointment.PatientId;
+            return _patientRepository.GetPatient(patientId);
+        }
     }
 }
