@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,4 +56,43 @@ namespace Shafam.UserInterface.Controllers
 
 
 	}
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Shafam.UserInterface.Infrastructure;
+
+namespace Shafam.UserInterface.Controllers
+{
+    [Authorize(Roles = UserRoles.Finance)]
+    public class FinanceController : Controller
+    {
+        public ActionResult Index()
+        {
+            return RedirectToAction("Bills");
+        }
+
+        public ActionResult Bills()
+        {
+            return View();
+        }
+
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
+        public ActionResult Doctors()
+        {
+            return View();
+        }
+
+        public ActionResult Patients()
+        {
+            return View();
+        }
+	}
+>>>>>>> d29842eb0b6bbf8ab931708e265336d3e26ff5d8
 }

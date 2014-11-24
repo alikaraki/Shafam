@@ -1,0 +1,29 @@
+﻿@using Shafam.Common.DataModel
+
+@{
+    ViewBag.Title = "Patients";
+}
+
+<h2>Patients</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Patient patient in Model)
+        {
+            <tr onclick="window.location.href='@Url.Action("PatientProfile", new {patientid = @patient.PatientId})'">
+                <td>@patient.PatientId.ToString()</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.LastName</td>
+                <td>@patient.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
