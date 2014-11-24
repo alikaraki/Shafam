@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AccountManagement\AccountManagementService.cs" />
     <Compile Include="Authentication\IdentityProvider.cs" />
+    <Compile Include="BillingManagement\BillingManagementService.cs" />
     <Compile Include="ContainerConfigurator.cs" />
     <Compile Include="IAccountManagementService.cs" />
     <Compile Include="IBillingManagementService.cs" />
