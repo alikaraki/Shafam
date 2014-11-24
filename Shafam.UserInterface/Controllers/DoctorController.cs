@@ -21,6 +21,7 @@ namespace Shafam.UserInterface.Controllers
         private readonly IVisitationManagementService _visitationManagementService;
         private readonly ISchedulingService _schedulingService;
         private readonly IReferralRepository _referralRepository;
+        private readonly INotificationManagementService _notificationManagementService;
 
         public DoctorController(IIdentityProvider identityProvider,
                                 IDoctorRepository doctorRepository,
@@ -29,6 +30,7 @@ namespace Shafam.UserInterface.Controllers
                                 IPatientManagementService patientManagementService,
                                 IVisitationManagementService visitationManagementService,
                                 ISchedulingService schedulingService,
+                                INotificationManagementService notificationManagementService,
                                 IReferralRepository referralRepository)
         {
             _identityProvider = identityProvider;
@@ -39,6 +41,7 @@ namespace Shafam.UserInterface.Controllers
             _visitationManagementService = visitationManagementService;
             _schedulingService = schedulingService;
             _referralRepository = referralRepository;
+            
         }
 
         public ActionResult Index()
@@ -51,6 +54,12 @@ namespace Shafam.UserInterface.Controllers
             return View();
         }
 
+        //Get: /Doctor/Notification
+
+        public ActionResult UnseenNotification(int DoctorId)
+        {
+            return View(UnseenNotification);
+        }
         //
         // GET: /Doctor/Patients/
         public ActionResult Patients()
