@@ -57,5 +57,13 @@ namespace Shafam.DataAccess.Repositories
         {
             return _dataContext.Appointments.First(a => a.AppointmentId == appointmentId);
         }
+
+
+        public Doctor GetDoctorForAppointment(int appointmentId)
+        {
+            Appointment appointment = _dataContext.Appointments.First(a => a.AppointmentId == appointmentId);
+            int doctorId = appointment.DoctorId;
+            return _dataContext.Doctors.First(d => d.DoctorId == doctorId);
+        }
     }
 }
