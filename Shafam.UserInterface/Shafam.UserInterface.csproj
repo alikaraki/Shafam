@@ -296,11 +296,7 @@
     <Content Include="Views\Legal\DoctorProfile.cshtml" />
     <Content Include="Views\Legal\Doctors.cshtml" />
     <Content Include="Views\Legal\DoctorSchedule.cshtml" />
-    <Content Include="Views\Legal\Medication.cshtml" />
     <Content Include="Views\Legal\Patients.cshtml" />
-    <Content Include="Views\Legal\PatientSchedule.cshtml" />
-    <Content Include="Views\Legal\Tests.cshtml" />
-    <Content Include="Views\Legal\Treatments.cshtml" />
     <Content Include="Views\Staff\Visitations.cshtml" />
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
