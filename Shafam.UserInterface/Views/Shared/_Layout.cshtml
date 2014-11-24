@@ -51,17 +51,23 @@
                         <li class="active">@Html.ActionLink("Users", "Users", "IT")</li>
                     }
                     
-                    @if (User.IsLegal())
+                    @*@if (User.IsLegal())
                     {
                         <li @if (action == "Complaints") { <text> class="active" </text> }>@Html.ActionLink("Complaints", "Complaints", "Legal")</li>
                         <li @if (action == "Reports") { <text> class="active" </text>     }>@Html.ActionLink("Reports", "Reports", "Legal")</li>
-                    }
+                    }*@
                     
                     @if (User.IsPatient())
                     {
                         <li class="active">@Html.ActionLink("Home", "Index", "Patient")</li>
                     }
                     
+                    @if (User.IsLegal())
+                    {
+                        <li @if (action == "Patients") { <text> class="active" </text>      }>@Html.ActionLink("Patients", "Patients", "Legal")</li>
+                        <li @if (action == "Doctors") { <text> class="active" </text>      }>@Html.ActionLink("Doctors", "Doctors", "Legal")</li>
+                    }
+
                     @if (User.IsStaff())
                     {
                         <li @if (action == "Patients") { <text> class="active" </text>     }>@Html.ActionLink("Patients", "Patients", "Staff")</li>

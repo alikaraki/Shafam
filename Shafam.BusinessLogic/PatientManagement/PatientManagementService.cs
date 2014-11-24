@@ -50,6 +50,11 @@ namespace Shafam.BusinessLogic.PatientManagement
             return _doctorRepository.GetPatientsForDoctor(doctorId);
         }
 
+        public List<Patient> AllPatients()
+        {
+            return _patientRepository.GetPatients();
+        }
+
         public IEnumerable<Patient> ViewPatientsForStaff(int staffId)
         {
             var patients = new List<Patient>();

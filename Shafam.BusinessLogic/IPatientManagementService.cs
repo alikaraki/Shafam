@@ -9,6 +9,8 @@ namespace Shafam.BusinessLogic
 
         List<Patient> ViewAllPatients(int doctorId);
 
+        List<Patient> AllPatients();
+
         IEnumerable<Patient> ViewPatientsForStaff(int staffId);
             
         Patient AddPatient(string firstName, string lastName, int age, Gender gender, string healthCardNumber, string phoneNumber, string address);

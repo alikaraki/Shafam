@@ -178,7 +178,6 @@
     <Compile Include="Models\AppointmentInputViewModel.cs" />
     <Compile Include="Models\AppointmentRequestViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
-    <Compile Include="Models\DoctorPatientViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientExtensions.cs" />
@@ -268,8 +267,6 @@
     <Content Include="Views\Patient\Medication.cshtml" />
     <Content Include="Views\Patient\Tests.cshtml" />
     <Content Include="Views\Patient\_Header.cshtml" />
-    <Content Include="Views\Legal\Complaints.cshtml" />
-    <Content Include="Views\Legal\Reports.cshtml" />
     <Content Include="Views\Staff\Patients.cshtml" />
     <Content Include="Views\Staff\_Header.cshtml" />
     <Content Include="Views\Staff\PatientProfile.cshtml" />
@@ -290,7 +287,24 @@
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\AppointmentDetails.cshtml" />
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
-    <Content Include="Views\Legal\Index.cshtml" />
+    <Content Include="Views\Legal\_DoctorProfileHeader.cshtml" />
+    <Content Include="Views\Legal\_Header.cshtml" />
+    <Content Include="Views\Legal\AppointmentDetails.cshtml" />
+    <Content Include="Views\Legal\AssignDoctor.cshtml" />
+    <Content Include="Views\Legal\CancelAppointment.cshtml" />
+    <Content Include="Views\Legal\Details.cshtml" />
+    <Content Include="Views\Legal\DoctorProfile.cshtml" />
+    <Content Include="Views\Legal\Doctors.cshtml" />
+    <Content Include="Views\Legal\DoctorSchedule.cshtml" />
+    <Content Include="Views\Legal\Medication.cshtml" />
+    <Content Include="Views\Legal\Patients.cshtml" />
+    <Content Include="Views\Legal\PatientSchedule.cshtml" />
+    <Content Include="Views\Legal\Tests.cshtml" />
+    <Content Include="Views\Legal\Treatments.cshtml" />
+    <Content Include="Views\Staff\Visitations.cshtml" />
+    <Content Include="Views\Staff\VisitationDetails.cshtml" />
+    <Content Include="Views\Legal\Visitations.cshtml" />
+    <Content Include="Views\Legal\VisitationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

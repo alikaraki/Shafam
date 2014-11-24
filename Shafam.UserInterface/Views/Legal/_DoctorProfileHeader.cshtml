@@ -1,0 +1,22 @@
+﻿@model Shafam.Common.DataModel.Doctor
+
+<div class="row">
+    <div class="col-md-10">
+        <h3>Doctor @Model.FirstName @Model.LastName</h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("< Back to doctors", "Doctors")</p>
+    </div>
+</div>
+
+<br />
+
+@{string action = ViewContext.RouteData.Values["action"].ToString();}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" @if (action == "DoctorProfile") { <text> class="active" </text>   }>@Html.ActionLink("Profile", "DoctorProfile", new { doctorId = Model.DoctorId })</li>
+    <li role="presentation" @if (action == "DoctorSchedule") { <text> class="active" </text>   }>@Html.ActionLink("Schedule", "DoctorSchedule", new { doctorId = Model.DoctorId })</li>
+</ul>
+
+<br />
