@@ -248,6 +248,15 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("Tests", "Staff", new { patientId = patientId });
         }
 
+        //Complete Treatment link for a treatment prescribed
+        [HttpGet]
+        public ActionResult MarkTreatmentAsCompleted(int patientId, int treatmentId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            _visitationManagementService.CompleteTreatment(treatmentId);
+            return RedirectToAction("Treatments", "Staff", new { patientId = patientId });
+        }
+
         // Show the schedule of a patient.
         public ActionResult PatientSchedule(int patientId)
         {

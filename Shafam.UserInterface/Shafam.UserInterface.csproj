@@ -286,6 +286,7 @@
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\AppointmentDetails.cshtml" />
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
+    <Content Include="Views\Staff\AddTestResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

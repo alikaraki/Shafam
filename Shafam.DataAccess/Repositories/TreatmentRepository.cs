@@ -41,5 +41,12 @@ namespace Shafam.DataAccess.Repositories
         {
             return _dataContext.Treatments.Where(t => t.VisitationId == visitationId).ToList();
         }
+
+        public void MarkAsCompleted(int treatmentId)
+        {
+            Treatment treatment = _dataContext.Treatments.First(t => t.TreatmentId == treatmentId);
+            treatment.TreatmentCompleted = true;
+            _dataContext.Save();
+        }
     }
 }

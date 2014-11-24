@@ -27,5 +27,7 @@ namespace Shafam.BusinessLogic
         void UpdateTestsResults(int testId, string testResult);
 
         Test GetTestforTestId(int testId);
+
+        void CompleteTreatment(int treatmentId);
     }
 }
