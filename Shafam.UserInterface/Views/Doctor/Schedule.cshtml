@@ -1,4 +1,5 @@
 ﻿@using Shafam.Common.DataModel
+@using Shafam.UserInterface.Models
 @model Shafam.UserInterface.Models.DoctorScheduleViewModel
 
 @{
@@ -12,15 +13,17 @@
 <table class="table">
     <tr>
         <th>Patient ID</th>
+        <th>Patient Name</th>
         <th>Date & Time</th>
         <th>Reason</th>
     </tr>
-    @foreach (Appointment appointment in Model.Appointments)
+    @foreach (SingleAppointmentDoctorViewModel singleAppointment in @Model.SingleAppointmentDoctorViewModels)
     {
         <tr>
-            <td>@appointment.PatientId</td>
-            <td>@appointment.DateTime</td>
-            <td>@appointment.Reason</td>
+            <td>@singleAppointment.SPatient.PatientId</td>
+            <td>@singleAppointment.SPatient.FirstName @singleAppointment.SPatient.LastName</td>
+            <td>@singleAppointment.SAppointment.DateTime</td>
+            <td>@singleAppointment.SAppointment.Reason</td>
         </tr>
     }
 </table>

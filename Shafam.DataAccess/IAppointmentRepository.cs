@@ -15,5 +15,7 @@ namespace Shafam.DataAccess
         List<Appointment> GetAppointmentsForPatient(int patientId);
 
         Appointment GetAppointment(int appointmentId);
+
+        Doctor GetDoctorForAppointment(int doctorId);
     }
 }
