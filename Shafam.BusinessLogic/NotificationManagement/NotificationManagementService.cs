@@ -30,8 +30,8 @@ namespace Shafam.BusinessLogic.NotificationManagement
 
         public bool SendNotification(int SenderId, int ReceiverId, NotificationType notificationType)
         {
-            switch()
 
+            throw new NotImplementedException();
             
         }
 
@@ -45,5 +45,10 @@ namespace Shafam.BusinessLogic.NotificationManagement
                     throw new NotImplementedException();
 
     }
+
+        public bool SendNotification(int referringDoctorId, int referredDoctorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
