@@ -184,9 +184,13 @@
     <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
+    <Compile Include="Models\ReferPatientViewModel.cs" />
+    <Compile Include="Models\SingleAppointmentDoctorViewModel.cs" />
+    <Compile Include="Models\SingleAppointmentViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
+    <Compile Include="Models\TestResultInputModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
     <Compile Include="Models\VisitationDetailModel.cs" />
