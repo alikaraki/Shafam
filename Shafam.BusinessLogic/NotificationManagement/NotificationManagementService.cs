@@ -10,18 +10,22 @@ namespace Shafam.BusinessLogic.NotificationManagement
 {
     public class NotificationManagementService : INotificationManagementService
     {
-        IDoctorRepository _doctorRepository;
-        ITestRepository _testRepository;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IPatientRepository _patientRepository;
+        private readonly ITestRepository _testRepository;
+        private readonly IAppointmentRequestRepository _appointmentRequestRepository;
 
-        public NotificationManagementService(IDoctorRepository doctorRepository)
+       
+
+        public NotificationManagementService (IDoctorRepository doctorRepository,
+                                              IPatientRepository patientRepository, 
+                                              ITestRepository testRepository,
+                                              IAppointmentRequestRepository appointmentRequestRepository)
         {
             _doctorRepository = doctorRepository;
-        }
-
-        public NotificationManagementService (IDoctorRepository doctorRepository, ITestRepository testRepository)
-        {
-            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
             _testRepository = testRepository;
+            _appointmentRequestRepository = appointmentRequestRepository;
         }
 
         public bool SendNotification(int referringDocId, int referredDocId)
@@ -34,5 +38,11 @@ namespace Shafam.BusinessLogic.NotificationManagement
         {
             throw new NotImplementedException();
         }
+
+        public void MarkAsSeen(int referralId)
+    {
+                    throw new NotImplementedException();
+
+    }
     }
 }

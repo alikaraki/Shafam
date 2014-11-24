@@ -54,13 +54,7 @@ namespace Shafam.UserInterface.Controllers
             return View();
         }
 
-        //Get: /Doctor/Notification
-
-        public ActionResult UnseenNotification(int DoctorId)
-        {
-            return View(UnseenNotification);
-        }
-
+        
         //
         // GET: /Doctor/Patients/
         public ActionResult Patients()
