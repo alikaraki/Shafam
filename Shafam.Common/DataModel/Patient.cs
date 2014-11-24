@@ -4,6 +4,11 @@ namespace Shafam.Common.DataModel
 {
     public class Patient
     {
+        public Patient()
+        {
+            Doctors = new List<Doctor>();    
+        }
+
         public int PatientId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
