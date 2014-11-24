@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shafam.Common.DataModel
 {
-    class Notification
+    public class Notification
     {
+        
     }
 }
