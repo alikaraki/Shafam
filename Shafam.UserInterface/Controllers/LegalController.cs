@@ -52,7 +52,7 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult Patients()
         {
-            IEnumerable<Patient> patients = _patientManagementService.AllPatients();
+            List<Patient> patients = _patientManagementService.AllPatients();
 
             return View(patients);
         }
