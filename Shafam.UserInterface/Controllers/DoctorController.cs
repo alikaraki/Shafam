@@ -50,39 +50,12 @@ namespace Shafam.UserInterface.Controllers
         // GET: /Patient/
         public ActionResult Patients()
         {
-            //IEnumerable<Patient> patients = _patientRepository.GetPatients();
             int doctorId = _identityProvider.GetAuthenticatedUserId();
             IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
 
             return View(patients);
         }
 
-        // GETS RANDOM PATIENTS FROM DATABASE
-        // *NOTE*: THIS FUNCTION IS FOR TESTING PURPOSES 
-        // GET: /Patient/
-        public ActionResult RandomPatients()
-        {
-            IEnumerable<Patient> patients = _patientRepository.GetPatients();
-            //IEnumerable<Patient> patients = _patientManagementService.ViewAllPatients(doctorId);
-
-            return View(patients);
-        }
-
-        public ActionResult AddRandomPatient()
-        {
-            int id = new Random().Next(100);
-
-            var patient = new Patient
-                          {
-                              FirstName = "First Name " + id,
-                              LastName = "Last Name " + id,
-                              Age = id
-                          };
-
-            _patientRepository.AddPatient(patient);
-
-            return RedirectToAction("RandomPatients");
-        }
 
         public ActionResult PatientProfile(int patientId)
         {
