@@ -121,6 +121,7 @@ namespace Shafam.UserInterface.Controllers
             return RedirectToAction("AssignDoctor", "Staff", new {patientId = patientId});
         }
 
+        // View all visitiation details for a patient's visit
         public ActionResult VisitationDetails(int patientId, int visitationId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -156,7 +157,7 @@ namespace Shafam.UserInterface.Controllers
             return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
         }
 
-
+        // View all Medications prescribed to a patient
         public ActionResult Medication(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -181,6 +182,7 @@ namespace Shafam.UserInterface.Controllers
             return View(medicationViewModel);
         }
 
+        // View all Treatments prescribed to a patient
         public ActionResult Treatments(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -205,6 +207,7 @@ namespace Shafam.UserInterface.Controllers
             return View(treatmentViewModel);
         }
 
+        // View all Tests prescribed to a patient
         public ActionResult Tests(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
@@ -229,6 +232,7 @@ namespace Shafam.UserInterface.Controllers
             return View(testViewModel);
         }
 
+        //Add Test Result for a test prescribed
         [HttpGet]
         public ActionResult AddTestResult(int patientId, int testId)
         {
