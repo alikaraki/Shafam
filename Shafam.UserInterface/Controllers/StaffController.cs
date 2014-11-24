@@ -245,6 +245,23 @@ namespace Shafam.UserInterface.Controllers
             return View(doctorAppointment);
         }
 
+        // Show the details of a single appointment.
+        public ActionResult AppointmentDetails(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            return View(appointment);
+        }
+
+        // Cancel an appointment.
+        public ActionResult CancelAppointment(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.GetAppointment(appointmentId);
+            int doctorId = appointment.DoctorId;
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            _appointmentRepository.CancelAppointment(appointmentId);
+            return View(doctor);
+        }
+
         // Show a list of all doctors.
         public ActionResult Doctors()
         {
