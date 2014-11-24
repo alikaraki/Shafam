@@ -37,7 +37,7 @@
 
 
 <hr />
-<h3>Assigned Doctors</h3>
+<h4>Assigned Doctors</h4>
 
 <table class="table">
     <tr>
@@ -58,4 +58,6 @@
         </tr>
     }
 </table>
-
+<p>
+    @Html.ActionLink("Back to Patient", "PatientProfile", new { patientId = Model.Patient.PatientId })
+</p>

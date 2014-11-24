@@ -118,7 +118,7 @@ namespace Shafam.UserInterface.Controllers
             _patientManagementService.AssignDoctorToPatient(int.Parse(model.AssignedDoctorId), patientId);
 
             // Redirect to doctor assignment page
-            return RedirectToAction("PatientProfile", "Staff", new {patientId = patientId});
+            return RedirectToAction("AssignDoctor", "Staff", new {patientId = patientId});
         }
 
         public ActionResult VisitationDetails(int patientId, int visitationId)
