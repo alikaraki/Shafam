@@ -48,7 +48,7 @@ namespace Shafam.DataAccess.Repositories
         public List<Appointment> GetAppointmentsForPatient(int patientId)
         {
             List<Appointment> appointments = _dataContext.Appointments.Where(a => a.PatientId == patientId).ToList();
-            List<Appointment> SortedList = appointments.OrderBy(a => a.DateTime).ToList();
+            appointments = appointments.OrderBy(a => a.DateTime).ToList();
             return appointments;
         }
 

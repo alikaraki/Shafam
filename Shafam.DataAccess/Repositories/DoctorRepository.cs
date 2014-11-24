@@ -22,7 +22,9 @@ namespace Shafam.DataAccess.Repositories
 
         public List<Doctor> GetDoctors()
         {
-            return _dataContext.Doctors.ToList();
+            List<Doctor> doctors = _dataContext.Doctors.ToList();
+            //doctors = doctors.OrderBy(d => d.LastName).ToList();
+            return doctors;
         }
 
         public Doctor GetDoctor(int doctorId)

@@ -22,7 +22,9 @@ namespace Shafam.DataAccess.Repositories
 
         public List<Patient> GetPatients()
         {
-            return _context.Patients.ToList();
+            List<Patient> patients = _context.Patients.ToList();
+            //patients = patients.OrderBy(p => p.LastName).ToList();
+            return patients;
         }
 
         public Patient GetPatient(int patientid)

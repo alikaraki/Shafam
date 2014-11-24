@@ -13,5 +13,8 @@ namespace Shafam.DataAccess
         List<Visitation> GetVisitationsForPatient(int patientId);
 
         List<Visitation> GetVisitationsForDoctor(int doctorId);
+
+        List<Visitation> GetVisitationsForTime(DateTime begin, DateTime end);
+
     }
 }
