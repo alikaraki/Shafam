@@ -183,6 +183,7 @@
     <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
+    <Compile Include="Models\ReferPatientViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\AppointmentDetails.cshtml" />
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
+    <Content Include="Views\Doctor\ReferPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

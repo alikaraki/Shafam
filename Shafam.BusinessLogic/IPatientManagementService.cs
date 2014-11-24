@@ -19,6 +19,6 @@ namespace Shafam.BusinessLogic
 
         void AssignDoctorToPatient(int doctorId, int patientId);
         
-        bool ReferPatient(int patientId, int referringDocId, int referredDocId);
+        void ReferPatient(int patientId, int referringDocId, int referredDocId);
     }
 }

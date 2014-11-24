@@ -12,6 +12,7 @@ namespace Shafam.BusinessLogic.PatientManagement
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IStaffRepository _staffRepository;
+        private readonly IReferralRepository _referralRepository;
 
         /// <summary>
         /// Constructor
@@ -20,11 +21,13 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <param name="staffRepository"></param>
         public PatientManagementService(IPatientRepository patientRepository,
                                         IDoctorRepository doctorRepository,
-                                        IStaffRepository staffRepository)
+                                        IStaffRepository staffRepository,
+                                        IReferralRepository referralRepository)
         {
             _patientRepository = patientRepository;
             _doctorRepository = doctorRepository;
             _staffRepository = staffRepository;
+            _referralRepository = referralRepository;
         }
 
         /// <summary>
@@ -143,11 +146,12 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <param name="referringDocId"></param>
         /// <param name="referredDocId"></param>
         /// <returns>true if patient successfully referred, else false</returns>
-        public bool ReferPatient(int patientId, int referringDocId, int referredDocId)
+        public void ReferPatient(int patientId, int referringDocId, int referredDocId)
         {
-            AddPatient(_patientRepository.GetPatient(patientId), referredDocId);
+            _referralRepository.AddReferral(patientId, referringDocId, referredDocId);
+            AssignDoctorToPatient(referredDocId, patientId);
             INotificationManagementService notificationService = new NotificationManagementService(_doctorRepository);
-            return notificationService.SendNotification(referringDocId, referredDocId);
+            notificationService.SendNotification(referringDocId, referredDocId);
         }
     }
 }

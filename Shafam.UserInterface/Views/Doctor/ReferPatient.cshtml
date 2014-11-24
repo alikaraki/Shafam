@@ -1,11 +1,11 @@
 ﻿@using Shafam.Common.DataModel
-@model Shafam.UserInterface.Models.DoctorAssignmentViewModel
+@model Shafam.UserInterface.Models.ReferPatientViewModel
 
 @{
-    ViewBag.Title = "Assign Doctor";
+    ViewBag.Title = "Refer Patient";
 }
 
-@*@Html.Partial("_Header", @Model.Patient)*@
+@*<h2>@ViewBag.Title</h2>*@
 
 <div class="row">
     <div class="col-md-10">
@@ -19,18 +19,18 @@
 
 <hr />
 
-@using (Html.BeginForm("AssignDoctor", "Staff", new {patientId = Model.Patient.PatientId}, FormMethod.Post))
+@using (Html.BeginForm("ReferPatient", "Doctor", new { patientId = Model.Patient.PatientId }, FormMethod.Post))
 {
     <div class="form-horizontal">
         <div class="form-group">
-            @Html.LabelFor(model => model.AssignedDoctorId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ReferredDoctorId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.AssignedDoctorId, Model.DoctorList, null, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.ReferredDoctorId, Model.DoctorList, null, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Assign" class="btn btn-default" />
+                <input type="submit" value="Refer" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
 
 
 <hr />
-<h4>Assigned Doctors</h4>
+<h4>Referred Doctors</h4>
 
 <table class="table">
     <tr>
@@ -48,7 +48,7 @@
         <th>Specialty</th>
         <th>Gender</th>
     </tr>
-    @foreach (Doctor doctor in Model.AssignedDoctors)
+    @foreach (Doctor doctor in Model.ReferredDoctors)
     {
         <tr>
             <td>@doctor.DoctorId.ToString()</td>
@@ -59,4 +59,3 @@
         </tr>
     }
 </table>
-
