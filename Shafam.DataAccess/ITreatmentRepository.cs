@@ -10,5 +10,7 @@ namespace Shafam.DataAccess
         List<Treatment> GetTreatmentsForPatient(int patientId);
 
         List<Treatment> GetTreatmentsForVisitation(int visitationId);
+
+        void MarkAsCompleted(int treatmentId);
     }
 }

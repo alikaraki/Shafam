@@ -23,5 +23,11 @@ namespace Shafam.BusinessLogic
         IEnumerable<Treatment> GetTreatmentsforVisitation(int visitationId);
 
         IEnumerable<Test> GetTestsforVisitation(int visitationId);
+
+        void UpdateTestsResults(int testId, string testResult);
+
+        Test GetTestforTestId(int testId);
+
+        void CompleteTreatment(int treatmentId);
     }
 }

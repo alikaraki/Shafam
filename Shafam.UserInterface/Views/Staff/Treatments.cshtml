@@ -24,12 +24,11 @@
                 <td>@treatment.DateTime</td>
                 <td>@treatment.Reason</td>
                 <td>@treatment.Treatment.TreatmentType</td>
-                @if (treatment.Treatment.TreatmentCompleted == false)
+                @if (treatment.Treatment.TreatmentCompleted == false) 
                 {
-                    <td>Not Completed</td>}
-                else
-                {
-                    <td>Completed</td>}
+                    <td>@Html.ActionLink("Complete Treatment", "MarkTreatmentAsCompleted", new { patientid = @Model.Patient.PatientId, treatmentId = treatment.Treatment.TreatmentId })</td>
+                }
+                else {<td>Completed</td>}
             </tr>
         }
     </tbody>

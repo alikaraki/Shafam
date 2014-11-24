@@ -6,7 +6,9 @@
 
 @Html.Partial("_Header", @Model)
 
-<p>@Html.ActionLink("Assign Doctor", "AssignDoctor", new { patientId = @Model.PatientId }) </p>
+<form class="row">
+    <p class="pull-right">@Html.ActionLink("Assign Doctor", "AssignDoctor", new { patientId = @Model.PatientId }) </p>
+</form>
 
 <form class="form-horizontal" role="form">
     <div class="form-group">

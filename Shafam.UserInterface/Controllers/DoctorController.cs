@@ -15,25 +15,33 @@ namespace Shafam.UserInterface.Controllers
     {
         private readonly IIdentityProvider _identityProvider;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IPatientManagementService _patientManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
         private readonly ISchedulingService _schedulingService;
-        
+        private readonly IReferralRepository _referralRepository;
+        private readonly INotificationManagementService _notificationManagementService;
 
         public DoctorController(IIdentityProvider identityProvider,
                                 IDoctorRepository doctorRepository,
+                                IAppointmentRepository appointmentRepository,
                                 IPatientRepository patientRepository, 
                                 IPatientManagementService patientManagementService,
                                 IVisitationManagementService visitationManagementService,
-                                ISchedulingService schedulingService)
+                                ISchedulingService schedulingService,
+                                INotificationManagementService notificationManagementService,
+                                IReferralRepository referralRepository)
         {
             _identityProvider = identityProvider;
             _doctorRepository = doctorRepository;
+            _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
             _patientManagementService = patientManagementService;
             _visitationManagementService = visitationManagementService;
             _schedulingService = schedulingService;
+            _referralRepository = referralRepository;
+            
         }
 
         public ActionResult Index()
@@ -46,8 +54,15 @@ namespace Shafam.UserInterface.Controllers
             return View();
         }
 
+        //Get: /Doctor/Notification
+
+        public ActionResult UnseenNotification(int DoctorId)
+        {
+            return View(UnseenNotification);
+        }
+
         //
-        // GET: /Patient/
+        // GET: /Doctor/Patients/
         public ActionResult Patients()
         {
             int doctorId = _identityProvider.GetAuthenticatedUserId();
@@ -56,6 +71,37 @@ namespace Shafam.UserInterface.Controllers
             return View(patients);
         }
 
+        //
+        // GET: /Doctor/ReferPatient/
+        [HttpGet]
+        public ActionResult ReferPatient(int patientId)
+        {
+            int thisDocId = _identityProvider.GetAuthenticatedUserId();
+            Patient patient = _patientManagementService.ViewPatient(patientId);
+            List<Doctor> allDoctors = _doctorRepository.GetDoctors();
+            List<Referral> referralsForDoctor = _referralRepository.GetReferralsForDoctor(thisDocId).ToList();
+
+            var referredDoctors = new List<Doctor>();
+            foreach (Referral r in referralsForDoctor)
+            {
+                if (r.PatientId == patientId)
+                    referredDoctors.Add(_doctorRepository.GetDoctor(r.ReferredDoctorId));
+            }
+
+            return View(new ReferPatientViewModel { Patient = patient, Doctors = allDoctors, ReferredDoctors = referredDoctors });
+        }
+
+        //
+        // POST: /Doctor/ReferPatient/
+        [HttpPost]
+        public ActionResult ReferPatient(ReferPatientViewModel model, int patientId)
+        {
+            int thisDocId = _identityProvider.GetAuthenticatedUserId();
+            // Refer patient to the doctor associated with referredDocId
+            _patientManagementService.ReferPatient(patientId, thisDocId, int.Parse(model.ReferredDoctorId));
+
+            return RedirectToAction("ReferPatient", "Doctor", new { patientId = patientId });
+        }
 
         public ActionResult PatientProfile(int patientId)
         {
@@ -193,10 +239,18 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Schedule()
         {
             int doctorId = _identityProvider.GetAuthenticatedUserId();
-            DoctorScheduleViewModel doctorAppointment = new DoctorScheduleViewModel();
-            doctorAppointment.Doctor = _doctorRepository.GetDoctor(doctorId);
-            doctorAppointment.Appointments = _schedulingService.ViewDoctorSchedule(doctorId);
-            return View(doctorAppointment);
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            List<Appointment> appointmentsForDoctor = _schedulingService.ViewDoctorSchedule(doctorId);
+            DoctorScheduleViewModel doctorScheduleViewModel = new DoctorScheduleViewModel { Doctor = doctor, SingleAppointmentDoctorViewModels = new List<SingleAppointmentDoctorViewModel>() };
+
+            foreach (Appointment appointment in appointmentsForDoctor)
+            {
+                SingleAppointmentDoctorViewModel singleAppointment = new SingleAppointmentDoctorViewModel();
+                singleAppointment.SPatient = _schedulingService.GetPatientForAppointment(appointment.AppointmentId);
+                singleAppointment.SAppointment = _appointmentRepository.GetAppointment(appointment.AppointmentId);
+                doctorScheduleViewModel.SingleAppointmentDoctorViewModels.Add(singleAppointment);
+            }
+            return View(doctorScheduleViewModel); 
         }
     }
 }

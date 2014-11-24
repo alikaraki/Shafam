@@ -24,7 +24,14 @@
                 <td>@test.DateTime</td>
                 <td>@test.Reason</td>
                 <td>@test.Test.Type</td>
-                <td>@test.Test.Result</td>
+                @if (test.Test.Result != null)
+                {
+                    <td>@test.Test.Result</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink("Add Test Result", "AddTestResult", new { patientid = @Model.Patient.PatientId, testId = test.Test.TestId })</td>
+                }
             </tr>
         }
     </tbody>

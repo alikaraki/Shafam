@@ -5,16 +5,17 @@
     ViewBag.Title = "Assign Doctor";
 }
 
+@*@Html.Partial("_Header", @Model.Patient)*@
+
 <div class="row">
     <div class="col-md-10">
         <h3>Patient @Model.Patient.PatientId - @Model.Patient.LastName, @Model.Patient.FirstName</h3>
     </div>
     <div class="col-md-2">
         <br />
-        <p class="pull-right">@Html.ActionLink("< Back to patients", "Patients")</p>
+        <p class="pull-right">@Html.ActionLink("< Back to patient", "PatientProfile", new { patientId = Model.Patient.PatientId })</p>
     </div>
 </div>
-
 
 <hr />
 
@@ -58,6 +59,4 @@
         </tr>
     }
 </table>
-<p>
-    @Html.ActionLink("Back to Patient", "PatientProfile", new { patientId = Model.Patient.PatientId })
-</p>
+
