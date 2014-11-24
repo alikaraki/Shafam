@@ -28,10 +28,11 @@ namespace Shafam.BusinessLogic.NotificationManagement
             _appointmentRequestRepository = appointmentRequestRepository;
         }
 
-        public bool SendNotification(int referringDocId, int referredDocId)
+        public bool SendNotification(int SenderId, int ReceiverId, NotificationType notificationType)
         {
-            return true; //if notification sent successfully
-            throw new NotImplementedException();
+            switch()
+
+            
         }
 
         public void ViewNotification()
