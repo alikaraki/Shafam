@@ -53,6 +53,8 @@
     <Compile Include="DataModel\Doctor.cs" />
     <Compile Include="DataModel\Gender.cs" />
     <Compile Include="DataModel\Medication.cs" />
+    <Compile Include="DataModel\Notification.cs" />
+    <Compile Include="DataModel\NotificationType.cs" />
     <Compile Include="DataModel\Patient.cs" />
     <Compile Include="DataModel\Referral.cs" />
     <Compile Include="DataModel\Staff.cs" />

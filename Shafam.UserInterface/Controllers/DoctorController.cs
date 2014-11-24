@@ -60,6 +60,7 @@ namespace Shafam.UserInterface.Controllers
         {
             return View(UnseenNotification);
         }
+
         //
         // GET: /Doctor/Patients/
         public ActionResult Patients()
