@@ -15,6 +15,8 @@ namespace Shafam.DataAccess
 
         List<Test> GetTestsForVisitation(int visitationId);
 
+        Test GetTestsForTestId(int testId);
+
         void AddTestResult(int testId, string result);
 
         void MarkAsSeen(int testId);

@@ -67,5 +67,16 @@ namespace Shafam.BusinessLogic.VisitationManagement
             return testsForVisitation;
         }
 
+        public void UpdateTestsResults(int testId, string testResult)
+        {
+            _testRepository.AddTestResult(testId, testResult);
+            return;
+        }
+        public Test GetTestforTestId(int testId)
+        {
+            Test test = _testRepository.GetTestsForTestId(testId);
+            return test;
+        }
+
     }
 }

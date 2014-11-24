@@ -211,6 +211,21 @@ namespace Shafam.UserInterface.Controllers
             return View(testViewModel);
         }
 
+        [HttpGet]
+        public ActionResult AddTestResult(int patientId, int testId)
+        {
+            Patient patient = _patientRepository.GetPatient(patientId);
+            Test test = _visitationManagementService.GetTestforTestId(testId);
+            return View(new TestResultInputModel { Patient = patient, Test = test});
+        }
+
+        [HttpPost]
+        public ActionResult AddTestResult(int patientId, int testId, TestResultInputModel inputModel)
+        {
+            _visitationManagementService.UpdateTestsResults(testId, inputModel.Test.Result);
+            return RedirectToAction("Tests", "Staff", new { patientId = patientId });
+        }
+
         public ActionResult PatientSchedule(int patientId)
         {
             List<Appointment> appointments = _schedulingService.ViewPatientSchedule(patientId);
