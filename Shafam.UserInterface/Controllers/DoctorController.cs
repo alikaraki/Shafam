@@ -39,7 +39,7 @@ namespace Shafam.UserInterface.Controllers
             _visitationManagementService = visitationManagementService;
             _schedulingService = schedulingService;
             _referralRepository = referralRepository;
-            
+            _notificationManagementService = notificationManagementService;
         }
 
         public ActionResult Index()
@@ -49,10 +49,18 @@ namespace Shafam.UserInterface.Controllers
 
         public ActionResult Home()
         {
-            return View();
+            IEnumerable<Notification> notifications =
+                _notificationManagementService.GetNotificationsForDoctor(_identityProvider.GetAuthenticatedUserId());
+
+            return View(notifications);
         }
 
-        
+        public ActionResult AcknowledgeNotification(int notificationId, NotificationType type)
+        {
+            _notificationManagementService.MarkAsSeen(notificationId, type);
+            return RedirectToAction("Home");
+        }
+
         //
         // GET: /Doctor/Patients/
         public ActionResult Patients()
@@ -71,7 +79,7 @@ namespace Shafam.UserInterface.Controllers
             int thisDocId = _identityProvider.GetAuthenticatedUserId();
             Patient patient = _patientManagementService.ViewPatient(patientId);
             List<Doctor> allDoctors = _doctorRepository.GetDoctors();
-            List<Referral> referralsForDoctor = _referralRepository.GetReferralsForDoctor(thisDocId).ToList();
+            List<Referral> referralsForDoctor = _referralRepository.GetReferralsForReferringDoctor(thisDocId).ToList();
 
             var referredDoctors = new List<Doctor>();
             foreach (Referral r in referralsForDoctor)

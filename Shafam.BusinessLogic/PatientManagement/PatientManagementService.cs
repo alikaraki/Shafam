@@ -155,8 +155,6 @@ namespace Shafam.BusinessLogic.PatientManagement
         {
             _referralRepository.AddReferral(patientId, referringDocId, referredDocId);
             AssignDoctorToPatient(referredDocId, patientId);
-            //INotificationManagementService notificationService = new NotificationManagementService(_doctorRepository);
-            //notificationService.SendNotification(referringDocId, referredDocId); 
         }
     }
 }

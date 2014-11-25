@@ -1,14 +1,32 @@
 ﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.StaffHomeViewModel
 
 @{
     ViewBag.Title = "All Patients";
 }
 
+@if (Model.Notifications.Any())
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">New Appointment Requests</div>
+        <ul class="list-group">
+            @foreach (Notification notification in Model.Notifications)
+            {
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> @notification.Message
+                    <a style="margin-left: 15px" class="pull-right" href="@Url.Action("AcknowledgeNotification", new {notificationId = notification.NotificationId, type = notification.Type})"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                    @Html.ActionLink("View Patient", "PatientProfile", new {patientId = notification.PatientId}, new {@class = "pull-right"})
+                </li>
+            }
+        </ul>
+    </div>
+}
+
 <h2>Patients</h2>
 
-<p>
+<p class ="pull-right">
     @Html.ActionLink("Add patient", "AddPatient")
-</p>
+</pclass>
 
 <table class="table table-hover">
     <thead>
@@ -20,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Patient patient in Model)
+        @foreach (Patient patient in Model.Patients)
         {
             <tr onclick="window.location.href='@Url.Action("PatientProfile", new {patientid = @patient.PatientId})'">
                 <td>@patient.PatientId.ToString()</td>

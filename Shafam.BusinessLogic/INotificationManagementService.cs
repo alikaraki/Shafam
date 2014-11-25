@@ -9,10 +9,10 @@ namespace Shafam.BusinessLogic
 {
     public interface INotificationManagementService
     {
-        List<Notification> SendNotification(int senderId, int receiverId, int patientId, NotificationType notificationType);
+        void MarkAsSeen(int notificationId, NotificationType type);
 
-        void ViewNotification();
+        IEnumerable<Notification> GetNotificationsForDoctor(int doctorId);
 
-        void MarkAsSeen(int notificationId);
+        IEnumerable<Notification> GetNotificationsForStaff(int staffId);
     }
 }

@@ -22,17 +22,19 @@ namespace Shafam.UserInterface.Controllers
         private readonly ISchedulingService _schedulingService;
         private readonly IPatientManagementService _patientManagementService;
         private readonly IAccountManagementService _accountManagementService;
+        private readonly INotificationManagementService _notificationManagementService;
         private readonly IVisitationManagementService _visitationManagementService;
 
-        public StaffController(IPatientRepository patientRepository, 
-                                IIdentityProvider identityProvider,
-                                ISchedulingService schedulingService,
-                                IAppointmentRepository appointmentRepository, 
-                                IDoctorRepository doctorRepository,
-                                IPatientManagementService patientManagementService,
-                                IVisitationManagementService visitationManagementService,
-                                IAccountRepository accountRepository,
-                                IAccountManagementService accountManagementService)
+        public StaffController(IPatientRepository patientRepository,
+                               IIdentityProvider identityProvider,
+                               ISchedulingService schedulingService,
+                               IAppointmentRepository appointmentRepository,
+                               IDoctorRepository doctorRepository,
+                               IPatientManagementService patientManagementService,
+                               IVisitationManagementService visitationManagementService,
+                               IAccountRepository accountRepository,
+                               IAccountManagementService accountManagementService,
+                               INotificationManagementService notificationManagementService)
         {
             _patientRepository = patientRepository;
             _identityProvider = identityProvider;
@@ -41,6 +43,7 @@ namespace Shafam.UserInterface.Controllers
             _doctorRepository = doctorRepository;
             _patientManagementService = patientManagementService;
             _accountManagementService = accountManagementService;
+            _notificationManagementService = notificationManagementService;
             _accountRepository = accountRepository;
             _visitationManagementService = visitationManagementService;
         }
@@ -53,8 +56,15 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Patients()
         {
             IEnumerable<Patient> patients = _patientManagementService.ViewPatientsForStaff(_identityProvider.GetAuthenticatedUserId());
+            IEnumerable<Notification> notifications = _notificationManagementService.GetNotificationsForStaff(_identityProvider.GetAuthenticatedUserId());
 
-            return View(patients);
+            return View(new StaffHomeViewModel { Patients = patients, Notifications = notifications });
+        }
+
+        public ActionResult AcknowledgeNotification(int notificationId, NotificationType type)
+        {
+            _notificationManagementService.MarkAsSeen(notificationId, type);
+            return RedirectToAction("Patients");
         }
 
         // 

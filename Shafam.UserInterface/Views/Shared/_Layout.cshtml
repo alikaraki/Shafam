@@ -36,14 +36,21 @@
                     @if (User.IsDoctor())
                     {
                         <li @if (action == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Home", "Home", "Doctor")</li>
-                        <li @if (action == "Patiens") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
+                        <li @if (action == "Patients") { <text> class="active" </text>   }>@Html.ActionLink("Patients", "Patients", "Doctor")</li>
                         <li @if (action == "Schedule") { <text> class="active" </text>   }>@Html.ActionLink("Schedule", "Schedule", "Doctor")</li>
                     }
                     
-                    @if (User.IsFinance())
+                    @*@if (User.IsFinance())
                     {
                         <li @if (action == "Bills") { <text> class="active" </text>   }>@Html.ActionLink("Bills", "Bills", "Finance")</li>
                         <li @if (action == "Reports") { <text> class="active" </text>   }>@Html.ActionLink("Reports", "Reports", "Finance")</li>
+                    }*@
+                    
+                    @if (User.IsFinance())
+                    {
+                        <li @if (action == "Patients") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Finance")</li>
+                        <li @if (action == "Doctors") { <text> class="active" </text>   }>@Html.ActionLink("Doctors", "Doctors", "Finance")</li>
+                        <li @if (action == "TimeBill") { <text> class="active" </text>  }>@Html.ActionLink("Time Bill", "TimeBill", "Finance")</li>
                     }
                     
                     @if (User.IsIT())
