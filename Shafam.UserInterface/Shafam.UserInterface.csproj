@@ -308,6 +308,8 @@
     <Content Include="Views\Finance\PatientBill.cshtml" />
     <Content Include="Views\Finance\TimeBillDetails.cshtml" />
     <Content Include="Views\Legal\PatientVisitations.cshtml" />
+    <Content Include="Views\Legal\_DoctorProfileVisitationHeader.cshtml" />
+    <Content Include="Views\Legal\_PatientVisitationProfileHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
