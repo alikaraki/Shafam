@@ -93,10 +93,19 @@ namespace Shafam.UserInterface.Controllers
 		{
 			Doctor doctor = _doctorRepository.GetDoctor(doctorId);
 			IEnumerable<Visitation> visitationsForDoctor = _visitationManagementService.GetVisitationsForDoctor(doctor.DoctorId);
-			VisitationViewModel visitationViewModel = new VisitationViewModel {	Visitations = visitationsForDoctor,
-																				Doctor = doctor,
-																				Medications = new List<SingleMedicationModel>() };
-			foreach (Visitation visitation in visitationsForDoctor)
+            List<Patient> patients = new List<Patient>();
+            
+            foreach (Visitation visitation in visitationsForDoctor)
+            {
+                patients.Add(_patientRepository.GetPatients().First(d => d.PatientId == visitation.PatientId));
+            }
+            
+            VisitationViewModel visitationViewModel = new VisitationViewModel { Visitations = visitationsForDoctor,
+                                                                                Doctor = doctor,
+                                                                                PatientList = patients,
+                                                                                Medications = new List<SingleMedicationModel>() };
+
+            foreach (Visitation visitation in visitationsForDoctor)
 			{
 				IEnumerable<Medication> medicationsForVisitation = _visitationManagementService.GetMedicationsForVisitation(visitation.VisitationId);
 				foreach (Medication medication in medicationsForVisitation)

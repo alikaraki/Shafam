@@ -12,18 +12,29 @@
         <tr>
             <th>Visitation ID</th>
             <th>Patient ID</th>
+            <th>Patient Name</th>
             <th>Date &amp; Time</th>
             <th>Medications</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Visitation visitation in Model.Visitations)
+        @*@foreach (Visitation visitation in Model.Visitations)
         {
             <tr>
                 <td>@visitation.VisitationId</td>
                 <td>@visitation.PatientId</td>
                 <td>@visitation.DateTime</td>
                 <td>@visitation.Medications.Where(m => m.VisitationId == visitation.VisitationId)</td>
+            </tr>
+        }*@
+        @for (int i = 0; i < Model.Visitations.ToList().Count; i++)
+        {
+            <tr>
+                <td>@Model.Visitations.ToArray()[i].VisitationId</td>
+                <td>@Model.Visitations.ToArray()[i].PatientId</td>
+                <td>@Model.PatientList.ToArray()[i].FirstName @Model.PatientList.ToArray()[i].LastName</td>
+                <td>@Model.Visitations.ToArray()[i].DateTime</td>
+                <td>@Model.Medications.ToArray()[i].Medication.Name</td>
             </tr>
         }
     </tbody>
