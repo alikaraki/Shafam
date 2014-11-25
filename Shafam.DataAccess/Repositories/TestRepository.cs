@@ -54,6 +54,7 @@ namespace Shafam.DataAccess.Repositories
         {
             Test test = _dataContext.Tests.First(t => t.TestId == testId);
             test.Result = result;
+            test.Completed = DateTime.Now;
             _dataContext.Save();
         }
 

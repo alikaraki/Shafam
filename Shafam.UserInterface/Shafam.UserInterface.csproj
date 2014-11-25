@@ -184,13 +184,18 @@
     <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\PetientBillViewModel.cs" />
+=======
+    <Compile Include="Models\PatientViewModel.cs" />
+>>>>>>> a1899c515a8a1fa82b95b8a4f2de47398ba6e159
     <Compile Include="Models\ReferPatientViewModel.cs" />
     <Compile Include="Models\SingleAppointmentDoctorViewModel.cs" />
     <Compile Include="Models\SingleAppointmentViewModel.cs" />
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
+    <Compile Include="Models\StaffHomeViewModel.cs" />
     <Compile Include="Models\TestResultInputModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TimeBillViewModel.cs" />
@@ -291,17 +296,14 @@
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
     <Content Include="Views\Legal\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Legal\_Header.cshtml" />
-    <Content Include="Views\Legal\AppointmentDetails.cshtml" />
-    <Content Include="Views\Legal\AssignDoctor.cshtml" />
-    <Content Include="Views\Legal\CancelAppointment.cshtml" />
-    <Content Include="Views\Legal\Details.cshtml" />
-    <Content Include="Views\Legal\DoctorProfile.cshtml" />
+    <Content Include="Views\Legal\DoctorPatients.cshtml" />
     <Content Include="Views\Legal\Doctors.cshtml" />
-    <Content Include="Views\Legal\DoctorSchedule.cshtml" />
+    <Content Include="Views\Legal\DoctorVisitations.cshtml" />
     <Content Include="Views\Legal\Patients.cshtml" />
     <Content Include="Views\Staff\Visitations.cshtml" />
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Legal\VisitationDetails.cshtml" />
     <Content Include="Views\Finance\Patients.cshtml" />
     <Content Include="Views\Finance\Doctors.cshtml" />
@@ -310,6 +312,8 @@
     <Content Include="Views\Finance\DoctorBill.cshtml" />
     <Content Include="Views\Finance\PatientBill.cshtml" />
     <Content Include="Views\Finance\TimeBillDetails.cshtml" />
+=======
+>>>>>>> a1899c515a8a1fa82b95b8a4f2de47398ba6e159
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

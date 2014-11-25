@@ -12,6 +12,7 @@
         <tr>
             <th>Visitation ID</th>
             <th>Date &amp; Time</th>
+            <th>Doctor Name</th>
             <th>Reason</th>
             <th>Notes</th>
         </tr>
@@ -22,6 +23,7 @@
             <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = visitation.VisitationId })'">
                 <td>@visitation.VisitationId</td>
                 <td>@visitation.DateTime</td>
+                <td>@visitation.DoctorId</td>
                 <td>@visitation.Reason</td>
                 <td>@visitation.Notes</td>
             </tr>

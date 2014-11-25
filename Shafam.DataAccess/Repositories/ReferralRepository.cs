@@ -35,7 +35,12 @@ namespace Shafam.DataAccess.Repositories
             return _dataContext.Referrals.First(r => r.ReferralId == referralId);
         }
 
-        public IEnumerable<Referral> GetReferralsForDoctor(int doctorId)
+        public IEnumerable<Referral> GetReferralsForReferredDoctor(int doctorId)
+        {
+            return _dataContext.Referrals.Where(r => r.ReferredDoctorId == doctorId).ToList();
+        }
+
+        public IEnumerable<Referral> GetReferralsForReferringDoctor(int doctorId)
         {
             return _dataContext.Referrals.Where(r => r.ReferringDoctorId == doctorId).ToList();
         }

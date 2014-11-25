@@ -15,8 +15,8 @@
 @{string action = ViewContext.RouteData.Values["action"].ToString();}
 
 <ul class="nav nav-tabs">
-    <li role="presentation" @if (action == "DoctorProfile") { <text> class="active" </text>   }>@Html.ActionLink("Profile", "DoctorProfile", new { doctorId = Model.DoctorId })</li>
-    <li role="presentation" @if (action == "DoctorSchedule") { <text> class="active" </text>   }>@Html.ActionLink("Schedule", "DoctorSchedule", new { doctorId = Model.DoctorId })</li>
+    <li role="presentation" @if (action == "DoctorVisitations") { <text> class="active" </text>   }>@Html.ActionLink("Visitations", "DoctorVisitations", new { doctorId = Model.DoctorId })</li>
+    <li role="presentation" @if (action == "DoctorPatients") { <text> class="active" </text>    }>@Html.ActionLink("Patients", "DoctorPatients", new { doctorId = Model.DoctorId })</li>
 </ul>
 
 <br />

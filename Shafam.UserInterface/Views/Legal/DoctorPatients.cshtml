@@ -1,0 +1,32 @@
+﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.PatientViewModel
+
+@{
+    ViewBag.Title = "All Patients";
+}
+
+@Html.Partial("_DoctorProfileHeader", @Model.Doctor)
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Patient patient in Model.Patients)
+        {
+            <tr>
+                <td>@patient.PatientId.ToString()</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.LastName</td>
+                <td>@patient.Age</td>
+                <td>@patient.Gender</td>
+            </tr>
+        }
+    </tbody>
+</table>

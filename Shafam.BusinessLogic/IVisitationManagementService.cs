@@ -18,6 +18,8 @@ namespace Shafam.BusinessLogic
 
         IEnumerable<Visitation> GetVisitationsForPatient(int patientId);
 
+        IEnumerable<Visitation> GetVisitationsForDoctor(int doctorId);
+
         IEnumerable<Medication> GetMedicationsForVisitation(int visitationId);
 
         IEnumerable<Treatment> GetTreatmentsforVisitation(int visitationId);

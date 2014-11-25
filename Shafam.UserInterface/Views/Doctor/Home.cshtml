@@ -1,16 +1,52 @@
-﻿@{
+﻿@using Shafam.Common.DataModel
+@model IEnumerable<Notification>
+
+@{
     ViewBag.Title = " Welcome Doctor!";
 }
 
 <h3>@ViewBag.Title</h3>
 <br />
 <div class="panel panel-default">
-    <div class="panel-heading">Actions Items & Notifications</div>
+    <div class="panel-heading">Your Referrals</div>
     <ul class="list-group">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+        @foreach (Notification notification in Model)
+        {
+            if (notification.Type == NotificationType.Referral)
+            {
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> @notification.Message
+                    <a style="margin-left: 15px" class="pull-right" href="@Url.Action("AcknowledgeNotification", new { notificationId = notification.NotificationId, type = notification.Type })"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                    @Html.ActionLink("View Patient", "PatientProfile", new { patientId = notification.PatientId }, new { @class = "pull-right" })
+                </li>
+            }
+        }
+        
+        @if (Model.All(n => n.Type != NotificationType.Referral))
+        {
+            <li class="list-group-item">No new referrals.</li>
+        }
+    </ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Test Results</div>
+    <ul class="list-group">
+        @foreach (Notification notification in Model)
+        {
+            if (notification.Type == NotificationType.TestResult)
+            {
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> @notification.Message
+                    <a style="margin-left: 15px" class="pull-right" href="@Url.Action("AcknowledgeNotification", new { notificationId = notification.NotificationId, type = notification.Type })"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                    @Html.ActionLink("View Results", "Tests", new { patientId = notification.PatientId }, new { @class = "pull-right" })
+                </li>
+            }
+        }
+
+        @if (Model.All(n => n.Type != NotificationType.TestResult))
+        {
+            <li class="list-group-item">No new test results.</li>
+        }
     </ul>
 </div>
