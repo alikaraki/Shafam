@@ -186,7 +186,6 @@
     <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\PetientBillViewModel.cs" />
     <Compile Include="Models\PatientViewModel.cs" />
-
     <Compile Include="Models\ReferPatientViewModel.cs" />
     <Compile Include="Models\SingleAppointmentDoctorViewModel.cs" />
     <Compile Include="Models\SingleAppointmentViewModel.cs" />
@@ -301,8 +300,6 @@
     <Content Include="Views\Staff\Visitations.cshtml" />
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
-
-    <Content Include="Views\Legal\VisitationDetails.cshtml" />
     <Content Include="Views\Finance\Patients.cshtml" />
     <Content Include="Views\Finance\Doctors.cshtml" />
     <Content Include="Views\Finance\TimeBill.cshtml" />
@@ -310,7 +307,7 @@
     <Content Include="Views\Finance\DoctorBill.cshtml" />
     <Content Include="Views\Finance\PatientBill.cshtml" />
     <Content Include="Views\Finance\TimeBillDetails.cshtml" />
-
+    <Content Include="Views\Legal\PatientVisitations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
