@@ -8,6 +8,7 @@ using Shafam.Common.Infrastructure;
 using Shafam.BusinessLogic.NotificationManagement;
 using Shafam.BusinessLogic.Scheduling;
 using Shafam.BusinessLogic.VisitationManagement;
+using Shafam.BusinessLogic.BillingManagement;
 
 
 namespace Shafam.BusinessLogic
@@ -23,6 +24,7 @@ namespace Shafam.BusinessLogic
             container.RegisterSingleton<ISchedulingService, SchedulingService>();
             container.RegisterSingleton<IVisitationManagementService, VisitationManagementService>();
             container.RegisterSingleton<ILegalManagementService, LegalManagementService>();
+            container.RegisterSingleton<IBillingManagementService, BillingManagementService>();
 
         }
     }

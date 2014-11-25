@@ -30,8 +30,8 @@ namespace Shafam.UserInterface.Controllers
                                 IPatientManagementService patientManagementService,
                                 IVisitationManagementService visitationManagementService,
                                 ISchedulingService schedulingService,
-                                INotificationManagementService notificationManagementService,
-                                IReferralRepository referralRepository)
+                                IReferralRepository referralRepository,
+                                INotificationManagementService notificationManagementService)
         {
             _identityProvider = identityProvider;
             _doctorRepository = doctorRepository;
@@ -41,6 +41,7 @@ namespace Shafam.UserInterface.Controllers
             _visitationManagementService = visitationManagementService;
             _schedulingService = schedulingService;
             _referralRepository = referralRepository;
+            _notificationManagementService = notificationManagementService;
             
         }
 

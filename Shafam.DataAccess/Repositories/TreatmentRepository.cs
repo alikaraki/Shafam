@@ -64,8 +64,11 @@ namespace Shafam.DataAccess.Repositories
             foreach (Visitation visitation in visitations)
             {
                 int visitationId = visitation.VisitationId;
-                Treatment treatment = _dataContext.Treatments.First(t => t.VisitationId == visitationId);
-                treatments.Add(treatment);
+                List<Treatment> visitationTreatments = _dataContext.Treatments.Where(t => t.VisitationId == visitationId).ToList();
+                foreach (Treatment visitationTreatment in visitationTreatments)
+                {
+                    treatments.Add(visitationTreatment);   
+                }
             }
             return (treatments);
         }
