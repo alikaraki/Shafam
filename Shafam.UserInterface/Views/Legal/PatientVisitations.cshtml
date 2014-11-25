@@ -23,7 +23,7 @@
                 <td>@Model.Visitations.ToArray()[i].VisitationId</td>
                 <td>@Model.Doctor.FirstName @Model.Doctor.LastName</td>
                 <td>@Model.Visitations.ToArray()[i].DateTime</td>
-                <td>@Model.Visitations.ToArray()[i].Medications</td>
+                <td>@Model.Medications.ToArray()[i].Medication.Name</td>
             </tr>
         }
     </tbody>

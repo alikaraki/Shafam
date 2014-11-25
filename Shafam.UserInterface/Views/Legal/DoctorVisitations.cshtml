@@ -23,7 +23,7 @@
                 <td>@visitation.VisitationId</td>
                 <td>@visitation.PatientId</td>
                 <td>@visitation.DateTime</td>
-                <td>@visitation.Medications</td>
+                <td>@visitation.Medications.Where(m => m.VisitationId == visitation.VisitationId)</td>
             </tr>
         }
     </tbody>
