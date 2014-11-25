@@ -9,7 +9,9 @@ namespace Shafam.DataAccess
 
         Referral GetReferral(int referralId);
 
-        IEnumerable<Referral> GetReferralsForDoctor(int doctorId);
+        IEnumerable<Referral> GetReferralsForReferredDoctor(int doctorId);
+
+        IEnumerable<Referral> GetReferralsForReferringDoctor(int doctorId);
 
         IEnumerable<Referral> GetReferralsForPatient(int patientId);
 

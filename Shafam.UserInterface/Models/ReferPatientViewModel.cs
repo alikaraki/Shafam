@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Web.Mvc;
 using Shafam.Common.DataModel;
 
@@ -23,27 +25,14 @@ namespace Shafam.UserInterface.Models
         {
             get
             {
-                var items = new List<SelectListItem>();
-                var itemsDict = new Dictionary<string, int>();
-
-                foreach (Doctor doctor in Doctors)
-                    itemsDict.Add(doctor.LastName + ", " + doctor.FirstName, doctor.DoctorId);
-
-                var sortedDocNames = new List<string>(itemsDict.Keys);
-                sortedDocNames.Sort();
-
-                foreach (string docName in sortedDocNames)
-                {
-                    int docId;
-                    if (itemsDict.TryGetValue(docName, out docId))
+                IEnumerable<SelectListItem> items = Doctors.Select(d =>
+                    new SelectListItem
                     {
-                        items.Add(new SelectListItem
-                        {
-                            Text = docName,
-                            Value = docId.ToString()
-                        });
-                    }
-                }
+                        Text = d.LastName + ", " + d.FirstName,
+                        Value = d.DoctorId.ToString()
+                    });
+
+                items.ToList().Sort((item1, item2) => item1.Text.CompareTo(item2.Text));
 
                 return items;
             }

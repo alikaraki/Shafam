@@ -189,6 +189,7 @@
     <Compile Include="Models\SingleMedicationModel.cs" />
     <Compile Include="Models\SingleTestModel.cs" />
     <Compile Include="Models\SingleTreatmentModel.cs" />
+    <Compile Include="Models\StaffHomeViewModel.cs" />
     <Compile Include="Models\TestResultInputModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
