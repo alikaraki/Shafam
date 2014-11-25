@@ -95,11 +95,5 @@ namespace Shafam.UserInterface.Controllers
             return View(new PatientViewModel { Doctor = doctor, Patients = patients });
 		}
 
-		private UserViewModel GetPatient(int id)
-		{
-			var patient = _patientRepository.GetPatient(id);
-			return patient.GetUserViewModel(_accountRepository.GetAccountByUserId(patient.PatientId,UserRole.Patient));
-		}
-
 	}
 }

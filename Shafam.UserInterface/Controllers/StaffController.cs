@@ -136,6 +136,7 @@ namespace Shafam.UserInterface.Controllers
         {
             Patient patient = _patientRepository.GetPatient(patientId);
             Visitation visitation = _visitationManagementService.GetVisitationForVisitationId(visitationId);
+            Doctor doctor = _doctorRepository.GetDoctor(visitation.DoctorId);
             List<Medication> medicationList = _visitationManagementService.GetMedicationsForVisitation(visitationId).ToList<Medication>();
             List<Treatment> treatmentList = _visitationManagementService.GetTreatmentsforVisitation(visitationId).ToList<Treatment>();
             List<Test> testList = _visitationManagementService.GetTestsforVisitation(visitationId).ToList<Test>();
@@ -152,6 +153,7 @@ namespace Shafam.UserInterface.Controllers
             {
                 Patient = patient,
                 Visitation = visitation,
+                Doctor = doctor,
                 Medication = medication,
                 Treatment = treatment,
                 Test = test
@@ -164,7 +166,12 @@ namespace Shafam.UserInterface.Controllers
         {
             Patient patient = _patientRepository.GetPatient(patientId);
             IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
-            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
+            List<Doctor> doctorsForPatient = new List<Doctor>();
+            foreach (Visitation v in visitationsForPatient)
+            {
+                doctorsForPatient.Add(_doctorRepository.GetDoctor(v.DoctorId));
+            }
+            return View(new VisitationViewModel { Patient = patient, DoctorList = doctorsForPatient, Visitations = visitationsForPatient });
         }
 
         // View all Medications prescribed to a patient

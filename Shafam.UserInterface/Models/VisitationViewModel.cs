@@ -10,5 +10,6 @@ namespace Shafam.UserInterface.Models
         public Doctor Doctor { get; set; }
         public IEnumerable<Visitation> Visitations { get; set; }
         public Dictionary<int, Doctor> Doctors { get; set; }
+        public List<Doctor> DoctorList { get; set; }
     }
 }

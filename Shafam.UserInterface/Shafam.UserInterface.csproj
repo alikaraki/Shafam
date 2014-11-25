@@ -298,6 +298,7 @@
     <Content Include="Views\Staff\Visitations.cshtml" />
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
+    <Content Include="Views\Doctor\VisitationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

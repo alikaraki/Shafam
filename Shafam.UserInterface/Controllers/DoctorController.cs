@@ -115,6 +115,7 @@ namespace Shafam.UserInterface.Controllers
         {
             Patient patient = _patientRepository.GetPatient(patientId);
             Visitation visitation = _visitationManagementService.GetVisitationForVisitationId(visitationId);
+            Doctor doctor = _doctorRepository.GetDoctor(visitation.DoctorId);
             List<Medication> medicationList = _visitationManagementService.GetMedicationsForVisitation(visitationId).ToList<Medication>();
             List<Treatment> treatmentList = _visitationManagementService.GetTreatmentsforVisitation(visitationId).ToList<Treatment>();
             List<Test> testList = _visitationManagementService.GetTestsforVisitation(visitationId).ToList<Test>();
@@ -128,7 +129,8 @@ namespace Shafam.UserInterface.Controllers
             if (testList.Count != 0) test = testList.ElementAt(0);
 
             VisitationDetailModel visitationDetailModel = new VisitationDetailModel {Patient = patient, 
-                                                                                    Visitation = visitation, 
+                                                                                    Visitation = visitation,
+                                                                                    Doctor = doctor,
                                                                                     Medication = medication,
                                                                                     Treatment = treatment,
                                                                                     Test = test};
@@ -139,8 +141,10 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Visitations(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
-            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient});
+            int doctorId = _identityProvider.GetAuthenticatedUserId();
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatientWithDoctor(patient.PatientId,doctorId);
+            return View(new VisitationViewModel { Patient = patient, Doctor = doctor, Visitations = visitationsForPatient});
         }
 
         public ActionResult Medication(int patientId)
