@@ -100,7 +100,7 @@ namespace Shafam.UserInterface.Controllers
         // Show patient's visitations of a specific doctor
         public ActionResult PatientVisitations(int doctorId, int patientId)
         {
-            Doctor doctor = new Doctor();
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
             IEnumerable<Visitation> visitations = _visitationManagementService.GetVisitationsForPatient(patientId).Where(v => v.DoctorId == doctorId);
             return View(new VisitationViewModel { Doctor = doctor, Visitations = visitations });
         }

@@ -26,15 +26,6 @@
                 <td>@Model.Visitations.ToArray()[i].Medications</td>
             </tr>
         }
-        @*@foreach (Visitation visitation in Model.Visitations)
-        {
-            <tr>
-                <td>@visitation.VisitationId</td>
-                <td>@Model.DoctorList.Find(d => d.DoctorId == visitation.DoctorId) </td>
-                <td>@visitation.DateTime</td>
-                <td>@visitation.Medications</td>
-            </tr>
-        }*@
     </tbody>
 </table>
 
