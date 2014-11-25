@@ -178,12 +178,14 @@
     <Compile Include="Models\AppointmentInputViewModel.cs" />
     <Compile Include="Models\AppointmentRequestViewModel.cs" />
     <Compile Include="Models\DoctorAssignmentViewModel.cs" />
+    <Compile Include="Models\DoctorBillViewModel.cs" />
     <Compile Include="Models\DoctorScheduleViewModel.cs" />
     <Compile Include="Models\MedicationViewModel.cs" />
     <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
     <Compile Include="Models\PatientViewModel.cs" />
+    <Compile Include="Models\PetientBillViewModel.cs" />
     <Compile Include="Models\ReferPatientViewModel.cs" />
     <Compile Include="Models\SingleAppointmentDoctorViewModel.cs" />
     <Compile Include="Models\SingleAppointmentViewModel.cs" />
@@ -193,6 +195,8 @@
     <Compile Include="Models\StaffHomeViewModel.cs" />
     <Compile Include="Models\TestResultInputModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
+    <Compile Include="Models\TimeBillViewModel.cs" />
+    <Compile Include="Models\TimePeriodInputViewModel.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
     <Compile Include="Models\VisitationDetailModel.cs" />
     <Compile Include="Models\VisitationInputModel.cs" />
@@ -299,6 +303,19 @@
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
     <Content Include="Views\Doctor\VisitationDetails.cshtml" />
+    <Content Include="Views\Doctor\ReferPatient.cshtml" />
+    <Content Include="Views\Doctor\Schedule.cshtml" />
+    <Content Include="Views\Finance\DoctorBill.cshtml" />
+    <Content Include="Views\Finance\Doctors.cshtml" />
+    <Content Include="Views\Finance\PatientBill.cshtml" />
+    <Content Include="Views\Finance\Patients.cshtml" />
+    <Content Include="Views\Finance\TimeBill.cshtml" />
+    <Content Include="Views\Finance\TimeBillDetails.cshtml" />
+    <Content Include="Views\Legal\PatientVisitations.cshtml" />
+    <Content Include="Views\Patient\RequestAppointment.cshtml" />
+    <Content Include="Views\Patient\RequestMessage.cshtml" />
+    <Content Include="Views\Staff\AddTestResult.cshtml" />
+    <Content Include="Views\Staff\NewAppointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -159,9 +159,10 @@ namespace Shafam.BusinessLogic.NotificationManagement
             return notifications;
         }
 
-        public bool SendNotification(int referringDoctorId, int referredDoctorId)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool SendNotification(int referringDoctorId, int referredDoctorId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
     }
 }

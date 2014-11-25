@@ -13,18 +13,16 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Specialty</th>
-            <th>Gender</th>
         </tr>
     </thead>
     <tbody>
         @foreach (Doctor doctor in Model)
         {
-            <tr onclick="window.location.href='@Url.Action("DoctorProfile", new {doctorId = @doctor.DoctorId})'">
+            <tr onclick="window.location.href='@Url.Action("DoctorBill", new {doctorId = @doctor.DoctorId})'">
                 <td>@doctor.DoctorId.ToString() </td>
                 <td>@doctor.FirstName</td>
                 <td>@doctor.LastName</td>
                 <td>@doctor.Specialty</td>
-                <td>@doctor.Gender</td>
             </tr>
         }
     </tbody>

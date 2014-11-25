@@ -72,15 +72,18 @@ namespace Shafam.DataAccess.Repositories
         }
 
 
-        public List<Test> GettestsForTime(DateTime begin, DateTime end)
+        public List<Test> GetTestsForTime(DateTime begin, DateTime end)
         {
             List<Visitation> visitations = _dataContext.Visitations.Where(v => v.DateTime >= begin && v.DateTime <= end).ToList();
             List<Test> tests = new List<Test>();
             foreach (Visitation visitation in visitations)
             {
                 int visitationId = visitation.VisitationId;
-                Test test = _dataContext.Tests.First(t => t.VisitationId == visitationId);
-                tests.Add(test);
+                List<Test> visitationTests = _dataContext.Tests.Where(t => t.VisitationId == visitationId).ToList();
+                foreach (Test visitationTest in visitationTests)
+                {
+                    tests.Add(visitationTest);
+                }
             }
             return (tests);
         }

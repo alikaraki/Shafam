@@ -61,15 +61,17 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Visitations(int patientId)
 		{
 			Patient patient = _patientRepository.GetPatient(patientId);
+            List<Doctor> doctors = _patientRepository.GetDoctorsForPatient(patientId);
 			IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
 
-            Dictionary<int,Doctor> doctors = new Dictionary<int,Doctor>();
-            foreach (Visitation visitation in visitationsForPatient)
-            {
-                doctors.Add(visitation.DoctorId,_doctorRepository.GetDoctor(visitation.DoctorId));
-            }
 
-			return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient, Doctors = doctors });
+            //Dictionary<int,Doctor> doctors = new Dictionary<int,Doctor>();
+            //foreach (Visitation visitation in visitationsForPatient)
+            //{
+            //    doctors.Add(visitation.DoctorId,_doctorRepository.GetDoctor(visitation.DoctorId));
+            //}
+
+            return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient, DoctorList = doctors });
 		}
 
 		// Show the visitations of a doctor
@@ -95,5 +97,18 @@ namespace Shafam.UserInterface.Controllers
             return View(new PatientViewModel { Doctor = doctor, Patients = patients });
 		}
 
+        // Show patient's visitations of a specific doctor
+        public ActionResult PatientVisitations(int doctorId, int patientId)
+        {
+            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            IEnumerable<Visitation> visitations = _visitationManagementService.GetVisitationsForPatient(patientId).Where(v => v.DoctorId == doctorId);
+            return View(new VisitationViewModel { Doctor = doctor, Visitations = visitations });
+        }
+
+		private UserViewModel GetPatient(int id)
+		{
+			var patient = _patientRepository.GetPatient(id);
+			return patient.GetUserViewModel(_accountRepository.GetAccountByUserId(patient.PatientId,UserRole.Patient));
+		}
 	}
 }

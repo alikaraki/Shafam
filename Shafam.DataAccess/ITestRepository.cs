@@ -23,6 +23,6 @@ namespace Shafam.DataAccess
 
         void MarkAsSeen(int testId);
 
-        List<Test> GettestsForTime(DateTime begin, DateTime end);
+        List<Test> GetTestsForTime(DateTime begin, DateTime end);
     }
 }

@@ -48,8 +48,8 @@
                     
                     @if (User.IsFinance())
                     {
-                        <li @if (action == "Patients") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Finance")</li>
                         <li @if (action == "Doctors") { <text> class="active" </text>   }>@Html.ActionLink("Doctors", "Doctors", "Finance")</li>
+                        <li @if (action == "Patients") { <text> class="active" </text>  }>@Html.ActionLink("Patients", "Patients", "Finance")</li>
                         <li @if (action == "TimeBill") { <text> class="active" </text>  }>@Html.ActionLink("Time Bill", "TimeBill", "Finance")</li>
                     }
                     

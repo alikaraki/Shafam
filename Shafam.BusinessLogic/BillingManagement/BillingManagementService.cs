@@ -15,18 +15,21 @@ namespace Shafam.BusinessLogic.BillingManagement
         private readonly ITestRepository _testRepository;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IPatientRepository _patientRepository;
+        private readonly IMedicationRepository _medicationRepositpry;
 
         public BillingManagementService(IVisitationRepository visitationRepository, 
                                 ITreatmentRepository treatmentRepository,
                                 ITestRepository testRepository,
                                 IDoctorRepository doctorRepository,
-                                IPatientRepository patientRepository)
+                                IPatientRepository patientRepository,
+                                IMedicationRepository medicationRepository)
         {
             _visitationRepository = visitationRepository;
             _treatmentRepository = treatmentRepository;
             _testRepository = testRepository;
             _doctorRepository = doctorRepository;
             _patientRepository = patientRepository;
+            _medicationRepositpry = medicationRepository;
         }
 
         public int GetNumberOfVisitationsForDoctor(int doctorId)
@@ -46,6 +49,11 @@ namespace Shafam.BusinessLogic.BillingManagement
             return _testRepository.GetTestsForDoctor(doctorId);
         }
 
+        public List<Medication> GetMedicationsForDoctor(int doctorId)
+        {
+            return _medicationRepositpry.GetMedicationsForDoctor(doctorId);
+        }
+
         public int GetNumberOfVisitationsForPatient(int patientId)
         {
             List<Visitation> visitations = _visitationRepository.GetVisitationsForPatient(patientId);
@@ -63,6 +71,12 @@ namespace Shafam.BusinessLogic.BillingManagement
             return _testRepository.GetTestsForPatient(patientId);
         }
 
+        public List<Medication> GetMedicationsForPatient(int patientId)
+        {
+            return _medicationRepositpry.GetMedicationsForPatient(patientId);
+        }
+
+
         public int GetNumberOfVisitationForTime(DateTime begin, DateTime end)
         {
             List<Visitation> visitations = _visitationRepository.GetVisitationsForTime(begin, end);
@@ -77,7 +91,14 @@ namespace Shafam.BusinessLogic.BillingManagement
 
         public List<Test> GetTestsForTime(DateTime begin, DateTime end)
         {
-            return _testRepository.GettestsForTime(begin, end);
+            return _testRepository.GetTestsForTime(begin, end);
         }
+
+        public List<Medication> GetMedicationsForTime(DateTime begin, DateTime end)
+        {
+            return _medicationRepositpry.GetMedicationsForTime(begin, end);
+        }
+
+
     }
 }

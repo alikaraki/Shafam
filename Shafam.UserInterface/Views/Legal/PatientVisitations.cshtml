@@ -1,11 +1,12 @@
 ﻿@using Shafam.Common.DataModel
 @{
-    ViewBag.Title = "Visitations";
+    ViewBag.Title = "PatientVisitations";
 }
 
 @model Shafam.UserInterface.Models.VisitationViewModel
 
-@Html.Partial("_Header", @Model.Patient)
+@Html.Partial("_DoctorProfileHeader", @Model.Doctor)
+@*@Html.Partial("_Header", @Model.Patient)*@
 
 <table class="table table-hover">
     <thead>
@@ -21,11 +22,10 @@
         {
             <tr>
                 <td>@Model.Visitations.ToArray()[i].VisitationId</td>
-                <td>@Model.DoctorList.ToArray()[i].FirstName @Model.DoctorList.ToArray()[i].LastName</td>
+                <td>@Model.Doctor.FirstName @Model.Doctor.LastName</td>
                 <td>@Model.Visitations.ToArray()[i].DateTime</td>
                 <td>@Model.Visitations.ToArray()[i].Medications</td>
             </tr>
         }
     </tbody>
 </table>
-

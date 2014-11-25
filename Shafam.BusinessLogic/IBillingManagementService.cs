@@ -16,12 +16,16 @@ namespace Shafam.BusinessLogic
 
         List<Test> GetTestsForDoctor(int doctorId);
 
+        List<Medication> GetMedicationsForDoctor(int doctorId);
+
         // For generate patient bill:
         int GetNumberOfVisitationsForPatient(int patientId);
 
         List<Treatment> GetTreatmentsForPatient(int patientId);
 
-        List<Test> GetTestsForPatient(int patientId); 
+        List<Test> GetTestsForPatient(int patientId);
+
+        List<Medication> GetMedicationsForPatient(int patientId);
 
         // For generate time period bill:
         int GetNumberOfVisitationForTime(DateTime begin, DateTime end);
@@ -30,5 +34,6 @@ namespace Shafam.BusinessLogic
 
         List<Test> GetTestsForTime(DateTime begin, DateTime end);
 
+        List<Medication> GetMedicationsForTime(DateTime begin, DateTime end);
     }
 }
