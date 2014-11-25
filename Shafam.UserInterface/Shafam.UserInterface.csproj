@@ -183,6 +183,7 @@
     <Compile Include="Models\PatientExtensions.cs" />
     <Compile Include="Models\PatientInputModel.cs" />
     <Compile Include="Models\PatientScheduleViewModel.cs" />
+    <Compile Include="Models\PatientViewModel.cs" />
     <Compile Include="Models\ReferPatientViewModel.cs" />
     <Compile Include="Models\SingleAppointmentDoctorViewModel.cs" />
     <Compile Include="Models\SingleAppointmentViewModel.cs" />
@@ -289,18 +290,13 @@
     <Content Include="Views\Staff\CancelAppointment.cshtml" />
     <Content Include="Views\Legal\_DoctorProfileHeader.cshtml" />
     <Content Include="Views\Legal\_Header.cshtml" />
-    <Content Include="Views\Legal\AppointmentDetails.cshtml" />
-    <Content Include="Views\Legal\AssignDoctor.cshtml" />
-    <Content Include="Views\Legal\CancelAppointment.cshtml" />
-    <Content Include="Views\Legal\Details.cshtml" />
-    <Content Include="Views\Legal\DoctorProfile.cshtml" />
+    <Content Include="Views\Legal\DoctorPatients.cshtml" />
     <Content Include="Views\Legal\Doctors.cshtml" />
-    <Content Include="Views\Legal\DoctorSchedule.cshtml" />
+    <Content Include="Views\Legal\DoctorVisitations.cshtml" />
     <Content Include="Views\Legal\Patients.cshtml" />
     <Content Include="Views\Staff\Visitations.cshtml" />
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
-    <Content Include="Views\Legal\VisitationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

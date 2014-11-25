@@ -19,7 +19,7 @@
     <tbody>
         @foreach (Doctor doctor in Model)
         {
-            <tr onclick="window.location.href='@Url.Action("DoctorProfile", new {doctorId = @doctor.DoctorId})'">
+            <tr onclick="window.location.href='@Url.Action("DoctorPatients", new { doctorId = @doctor.DoctorId })'">
                 <td>@doctor.DoctorId.ToString() </td>
                 <td>@doctor.FirstName</td>
                 <td>@doctor.LastName</td>

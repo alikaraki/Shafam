@@ -21,7 +21,6 @@ namespace Shafam.UserInterface.Controllers
         private readonly IVisitationManagementService _visitationManagementService;
         private readonly ISchedulingService _schedulingService;
         private readonly IReferralRepository _referralRepository;
-        private readonly INotificationManagementService _notificationManagementService;
 
         public DoctorController(IIdentityProvider identityProvider,
                                 IDoctorRepository doctorRepository,
@@ -30,7 +29,6 @@ namespace Shafam.UserInterface.Controllers
                                 IPatientManagementService patientManagementService,
                                 IVisitationManagementService visitationManagementService,
                                 ISchedulingService schedulingService,
-                                INotificationManagementService notificationManagementService,
                                 IReferralRepository referralRepository)
         {
             _identityProvider = identityProvider;
