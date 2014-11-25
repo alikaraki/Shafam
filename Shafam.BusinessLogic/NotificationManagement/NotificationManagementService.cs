@@ -104,9 +104,14 @@ namespace Shafam.BusinessLogic.NotificationManagement
         }
 
         public void MarkAsSeen(int referralId)
+    {
+                    throw new NotImplementedException();
+
+    }
+
+        public bool SendNotification(int referringDoctorId, int referredDoctorId)
         {
             throw new NotImplementedException();
         }
-
     }
 }

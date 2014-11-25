@@ -153,10 +153,11 @@ namespace Shafam.BusinessLogic.PatientManagement
         /// <returns>true if patient successfully referred, else false</returns>
         public void ReferPatient(int patientId, int referringDocId, int referredDocId)
         {
-            _referralRepository.AddReferral(patientId, referringDocId, referredDocId);
-            AssignDoctorToPatient(referredDocId, patientId);
+            //_referralRepository.AddReferral(patientId, referringDocId, referredDocId);
+            //AssignDoctorToPatient(referredDocId, patientId);
             //INotificationManagementService notificationService = new NotificationManagementService(_doctorRepository);
-            //notificationService.SendNotification(referringDocId, referredDocId); 
+            //notificationService.SendNotification(referringDocId, referredDocId);
+            throw new NotImplementedException(); 
         }
     }
 }
