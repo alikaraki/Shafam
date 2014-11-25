@@ -105,7 +105,7 @@ namespace Shafam.UserInterface.Controllers
                     }
                     else
                     {
-                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, 1, test.Rate * count);
+                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, 1, test.Rate);
                         testDict.Add(test.Type, testTuple);
                     }
                 }
@@ -124,7 +124,7 @@ namespace Shafam.UserInterface.Controllers
                     }
                     else
                     {
-                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, 1, medication.Rate * count);
+                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, 1, medication.Rate);
                         medicationDict.Add(medication.Name, medicationTuple);
                     }
                 }
@@ -136,7 +136,7 @@ namespace Shafam.UserInterface.Controllers
             double Amount = (numVisits * 100) 
                             + testDict.Sum(ix => ix.Value.Item3) 
                             + treatmentDict.Sum(ix => ix.Value.Item3) 
-                            + medicationDict.Skip(1).Sum(ix => ix.Value.Item3);
+                            + medicationDict.Sum(ix => ix.Value.Item3);
 
             DoctorBillViewModel doctorBillViewModel = new DoctorBillViewModel
             {

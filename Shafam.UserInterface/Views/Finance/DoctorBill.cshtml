@@ -14,21 +14,23 @@
     </div>
 </div>
 
+<hr />
+
 <table class="table">
     <thead>
         <tr>
             <th></th>
-            <th>Rate</th>
             <th>Visitations</th>
+            <th>Rate</th>
             <th>Cost</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th></th>
-            <th>$100.00</th>
-            <th>@Model.NumberOfVisitations</th>
-            <th>@Model.VisitationCost</th>
+        <tr>            
+            <td>Value</td>
+            <td>@Model.NumberOfVisitations</td>
+            <td>$100.00</td>
+            <td>$@Model.VisitationCost</td>
         </tr>
     </tbody>
 </table>
@@ -62,7 +64,9 @@
     <thead>
         <tr>
             <th>Test Type</th>
+            <th>Rate</th>
             <th>Count</th>
+            <th>Cost</th>
         </tr>
     </thead>
     <tbody>
@@ -70,7 +74,9 @@
         {
             <tr>
                 <td>@item.Key</td>
-                <td>@item.Value</td>
+                <td>$@item.Value.Item1</td>
+                <td>@item.Value.Item2</td>
+                <td>$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
@@ -82,7 +88,9 @@
     <thead>
         <tr>
             <th>Medication Type</th>
+            <th>Rate</th>
             <th>Count</th>
+            <th>Cost</th>
         </tr>
     </thead>
     <tbody>
@@ -90,7 +98,9 @@
         {
             <tr>
                 <td>@item.Key</td>
-                <td>@item.Value</td>
+                <td>$@item.Value.Item1</td>
+                <td>@item.Value.Item2</td>
+                <td>$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
