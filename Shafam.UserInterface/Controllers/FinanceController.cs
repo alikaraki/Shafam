@@ -94,7 +94,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    testDict[test.Type] = 1;
+                    testDict.Add(test.Type, 1);
                 }
             }
 
@@ -106,7 +106,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    medicationDict[medication.Name] = 1;
+                    medicationDict.Add(medication.Name, 1);
                 }
             }
             
@@ -151,7 +151,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    testDict[test.Type] = 1;
+                    testDict.Add(test.Type, 1);
                 }
             }
 
@@ -163,7 +163,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    medicationDict[medication.Name] = 1;
+                    medicationDict.Add(medication.Name, 1);
                 }
             }
 
@@ -208,7 +208,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    testDict[test.Type] = 1;
+                    testDict.Add(test.Type, 1);
                 }
             }
 
@@ -220,7 +220,7 @@ namespace Shafam.UserInterface.Controllers
                 }
                 else
                 {
-                    medicationDict[medication.Name] = 1;
+                    medicationDict.Add(medication.Name, 1);
                 }
             }
 
