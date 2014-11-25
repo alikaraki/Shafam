@@ -15,14 +15,24 @@
 </div>
 
 
-<form class="form-horizontal" role="form">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Number of Visitations</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">@Model.NumberOfVisitations</p>
-        </div>
-    </div>
-</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Rate</th>
+            <th>Visitations</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th></th>
+            <th>$100.00</th>
+            <th>@Model.NumberOfVisitations</th>
+            <th>@Model.VisitationCost</th>
+        </tr>
+    </tbody>
+</table>
 
 
 
@@ -30,7 +40,9 @@
     <thead>
         <tr>
             <th>Treatment Type</th>
+            <th>Rate</th>
             <th>Count</th>
+            <th>Cost</th>
         </tr>
     </thead>
     <tbody>
@@ -38,7 +50,9 @@
         {
             <tr>
                 <td>@item.Key</td>
-                <td>@item.Value</td>
+                <td>$@item.Value.Item1</td>
+                <td>@item.Value.Item2</td>
+                <td>$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
@@ -50,7 +64,9 @@
     <thead>
         <tr>
             <th>Test Type</th>
+            <th>Rate</th>
             <th>Count</th>
+            <th>Cost</th>
         </tr>
     </thead>
     <tbody>
@@ -58,7 +74,9 @@
         {
             <tr>
                 <td>@item.Key</td>
-                <td>@item.Value</td>
+                <td>$@item.Value.Item1</td>
+                <td>@item.Value.Item2</td>
+                <td>$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
@@ -69,8 +87,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Medication Type</th>
+            <th>Test Type</th>
+            <th>Rate</th>
             <th>Count</th>
+            <th>Cost</th>
         </tr>
     </thead>
     <tbody>
@@ -78,8 +98,19 @@
         {
             <tr>
                 <td>@item.Key</td>
-                <td>@item.Value</td>
+                <td>$@item.Value.Item1</td>
+                <td>@item.Value.Item2</td>
+                <td>$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
 </table>
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">BILL AMOUNT</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">$@Model.BillAmount</p>
+        </div>
+    </div>
+</form>
