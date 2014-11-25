@@ -10,9 +10,10 @@ namespace Shafam.UserInterface.Models
     {
         public Doctor Doctor {get; set; }
         public int NumberOfVisitations { get; set; }
-        public Dictionary<string, int> TestDict { get; set; }
-        public Dictionary<string, int> TreatmentDict { get; set; }
-        public Dictionary<string, int> MedicationDict { get; set; }
-
+        public double VisitationCost { get; set; }
+        public Dictionary<string, Tuple<double, int, double>> TestDict { get; set; }
+        public Dictionary<string, Tuple<double, int, double>> TreatmentDict { get; set; }
+        public Dictionary<string, Tuple<double, int, double>> MedicationDict { get; set; }
+        public double BillAmount { get; set; }
     }
 }

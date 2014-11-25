@@ -20,7 +20,7 @@
     <tbody>
         @foreach (Patient patient in Model.Patients)
         {
-            <tr>
+            <tr onclick="window.location.href='@Url.Action("PatientVisitations", new { patientid = @patient.PatientId, doctorId = Model.Doctor.DoctorId })'">
                 <td>@patient.PatientId.ToString()</td>
                 <td>@patient.FirstName</td>
                 <td>@patient.LastName</td>

@@ -69,24 +69,32 @@ namespace Shafam.UserInterface.Controllers
             List<Treatment> treatments = _billingManagementService.GetTreatmentsForDoctor(doctorId);
             List<Test> tests = _billingManagementService.GetTestsForDoctor(doctorId);
             List<Medication> medications = _billingManagementService.GetMedicationsForDoctor(doctorId);
-            Dictionary<string, int> treatmentDict = new Dictionary<string, int>();
-            Dictionary<string, int> testDict = new Dictionary<string, int>();
-            Dictionary<string, int> medicationDict = new Dictionary<string, int>();
-
+            Dictionary<string, Tuple<double, int, double>> treatmentDict = new Dictionary<string, Tuple<double, int, double>>();
+            Dictionary<string, Tuple<double, int, double>> testDict = new Dictionary<string, Tuple<double, int, double>>();
+            Dictionary<string, Tuple<double, int, double>> medicationDict = new Dictionary<string, Tuple<double, int, double>>();
+            int count = 0;
+ 
             foreach (Treatment treatment in treatments)
             {
-                
-                if (treatmentDict.ContainsKey(treatment.TreatmentType))
-                {
-                    treatmentDict[treatment.TreatmentType]++;
-                }
-                else
-                {
-                    treatmentDict.Add(treatment.TreatmentType, 1);
+                if (!String.IsNullOrEmpty(treatment.TreatmentType))
+                {                    
+                    if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                    {
+                        count = treatmentDict[treatment.TreatmentType].Item2 + 1;
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,count,treatment.Rate*count);
+                        treatmentDict[treatment.TreatmentType] = treatmentTuple;
+                    }
+                    else
+                    {                        
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,1,treatment.Rate);
+                        treatmentDict.Add(treatment.TreatmentType,treatmentTuple); 
+                    }
                 }
             }
 
+            count = 0;
             foreach (Test test in tests)
+<<<<<<< HEAD
             {
                 if (testDict.ContainsKey(test.Type))
                 {
@@ -95,10 +103,28 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     testDict.Add(test.Type, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(test.Type))
+                {
+                    if (testDict.ContainsKey(test.Type))
+                    {
+                        count = testDict[test.Type].Item2 + 1;
+                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, count, test.Rate * count);
+                        testDict[test.Type] = testTuple;
+                    }
+                    else
+                    {
+                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, 1, test.Rate * count);
+                        testDict.Add(test.Type, testTuple);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
 
+            count = 0;
             foreach (Medication medication in medications)
+<<<<<<< HEAD
             {
                 if (medicationDict.ContainsKey(medication.Name))
                 {
@@ -107,16 +133,42 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     medicationDict.Add(medication.Name, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(medication.Name))
+                {
+                    if (medicationDict.ContainsKey(medication.Name))
+                    {
+                        count = medicationDict[medication.Name].Item2 + 1;
+                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, count, medication.Rate * count);
+                        medicationDict[medication.Name] = medicationTuple;
+                    }
+                    else
+                    {
+                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, 1, medication.Rate * count);
+                        medicationDict.Add(medication.Name, medicationTuple);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
             
+
+            // CALCULATE BILL AMOUNT
+            int numVisits = _billingManagementService.GetNumberOfVisitationsForDoctor(doctorId);
+            double Amount = (numVisits * 100) 
+                            + testDict.Sum(ix => ix.Value.Item3) 
+                            + treatmentDict.Sum(ix => ix.Value.Item3) 
+                            + medicationDict.Skip(1).Sum(ix => ix.Value.Item3);
+
             DoctorBillViewModel doctorBillViewModel = new DoctorBillViewModel
             {
                 Doctor = _doctorRepository.GetDoctor(doctorId),
-                NumberOfVisitations = _billingManagementService.GetNumberOfVisitationsForDoctor(doctorId),
+                NumberOfVisitations = numVisits,
+                VisitationCost = 100 * numVisits,
                 TestDict = testDict,
                 TreatmentDict = treatmentDict,
-                MedicationDict = medicationDict
+                MedicationDict = medicationDict,
+                BillAmount = Amount
             };
             return View(doctorBillViewModel);
         }
@@ -132,18 +184,21 @@ namespace Shafam.UserInterface.Controllers
 
             foreach (Treatment treatment in treatments)
             {
-
-                if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                if (!String.IsNullOrEmpty(treatment.TreatmentType))
                 {
-                    treatmentDict[treatment.TreatmentType]++;
-                }
-                else
-                {
-                    treatmentDict.Add(treatment.TreatmentType, 1);
+                    if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                    {
+                        treatmentDict[treatment.TreatmentType]++;
+                    }
+                    else
+                    {
+                        treatmentDict.Add(treatment.TreatmentType, 1);
+                    }
                 }
             }
 
             foreach (Test test in tests)
+<<<<<<< HEAD
             {
                 if (testDict.ContainsKey(test.Type))
                 {
@@ -152,10 +207,24 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     testDict.Add(test.Type, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(test.Type))
+                {
+                    if (testDict.ContainsKey(test.Type))
+                    {
+                        testDict[test.Type]++;
+                    }
+                    else
+                    {
+                        testDict.Add(test.Type, 1);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
 
             foreach (Medication medication in medications)
+<<<<<<< HEAD
             {
                 if (medicationDict.ContainsKey(medication.Name))
                 {
@@ -164,6 +233,19 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     medicationDict.Add(medication.Name, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(medication.Name))
+                {
+                    if (medicationDict.ContainsKey(medication.Name))
+                    {
+                        medicationDict[medication.Name]++;
+                    }
+                    else
+                    {
+                        medicationDict.Add(medication.Name, 1);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
 
@@ -189,18 +271,21 @@ namespace Shafam.UserInterface.Controllers
 
             foreach (Treatment treatment in treatments)
             {
-
-                if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                if (!String.IsNullOrEmpty(treatment.TreatmentType))
                 {
-                    treatmentDict[treatment.TreatmentType]++;
-                }
-                else
-                {
-                    treatmentDict.Add(treatment.TreatmentType, 1);
+                    if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                    {
+                        treatmentDict[treatment.TreatmentType]++;
+                    }
+                    else
+                    {
+                        treatmentDict.Add(treatment.TreatmentType, 1);
+                    }
                 }
             }
 
             foreach (Test test in tests)
+<<<<<<< HEAD
             {
                 if (testDict.ContainsKey(test.Type))
                 {
@@ -209,10 +294,24 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     testDict.Add(test.Type, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(test.Type))
+                {
+                    if (testDict.ContainsKey(test.Type))
+                    {
+                        testDict[test.Type]++;
+                    }
+                    else
+                    {
+                        testDict.Add(test.Type, 1);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
 
             foreach (Medication medication in medications)
+<<<<<<< HEAD
             {
                 if (medicationDict.ContainsKey(medication.Name))
                 {
@@ -221,6 +320,19 @@ namespace Shafam.UserInterface.Controllers
                 else
                 {
                     medicationDict.Add(medication.Name, 1);
+=======
+            {
+                if (!String.IsNullOrEmpty(medication.Name))
+                {
+                    if (medicationDict.ContainsKey(medication.Name))
+                    {
+                        medicationDict[medication.Name]++;
+                    }
+                    else
+                    {
+                        medicationDict.Add(medication.Name, 1);
+                    }
+>>>>>>> 8c75e5be62615df35af045105914c56799e80e1f
                 }
             }
 

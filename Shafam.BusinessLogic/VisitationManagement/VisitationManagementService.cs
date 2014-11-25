@@ -49,6 +49,12 @@ namespace Shafam.BusinessLogic.VisitationManagement
             return visitationsForPatient;
         }
 
+        public IEnumerable<Visitation> GetVisitationsForPatientWithDoctor(int patientId, int doctorId)
+        {
+            IEnumerable<Visitation> visitationsforPatientwithDoctor = _visitationRepository.GetVisitationsforPatientWithDoctor(patientId, doctorId);
+            return visitationsforPatientwithDoctor;
+        }
+
         public IEnumerable<Visitation> GetVisitationsForDoctor(int doctorId)
         {
             IEnumerable<Visitation> visitationsForDoctor = _visitationRepository.GetVisitationsForDoctor(doctorId);
@@ -89,6 +95,5 @@ namespace Shafam.BusinessLogic.VisitationManagement
             _treatmentRepository.MarkAsCompleted(treatmentId);
             return;
         }
-
     }
 }

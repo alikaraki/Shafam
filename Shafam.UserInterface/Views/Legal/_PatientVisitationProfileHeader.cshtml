@@ -1,0 +1,23 @@
+﻿@using Shafam.Common.DataModel
+@model Shafam.UserInterface.Models.VisitationViewModel
+
+<div class="row">
+    <div class="col-md-10">
+        <h3>Patient @Model.Patient.PatientId - (@Model.Patient.LastName, @Model.Patient.FirstName) List of visitations with doctor (@Model.Doctor.LastName, @Model.Doctor.FirstName)</h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("< Back to doctors", "Doctors")</p>
+    </div>
+</div>
+
+<br />
+
+@{string action = ViewContext.RouteData.Values["action"].ToString();}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" @if (action == "DoctorVisitations") { <text> class="active" </text>    }>@Html.ActionLink("Visitations", "DoctorVisitations", new { doctorId = Model.Doctor.DoctorId })</li>
+    <li role="presentation" @if (action == "DoctorPatients") { <text> class="active" </text>     }>@Html.ActionLink("Patients", "DoctorPatients", new { doctorId = Model.Doctor.DoctorId })</li>
+</ul>
+
+<br />
