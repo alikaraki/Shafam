@@ -302,6 +302,8 @@
     <Content Include="Views\Staff\VisitationDetails.cshtml" />
     <Content Include="Views\Legal\Visitations.cshtml" />
     <Content Include="Views\Legal\VisitationDetails.cshtml" />
+    <Content Include="Views\Finance\Doctors.cshtml" />
+    <Content Include="Views\Finance\Patients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

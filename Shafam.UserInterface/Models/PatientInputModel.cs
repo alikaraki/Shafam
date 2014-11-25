@@ -17,7 +17,22 @@ namespace Shafam.UserInterface.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public int Age { get; set; }
-        public Gender Gender { get; set; }
+        [DisplayName("Gender")]
+        public string GenderSelected { get; set; }
+
+        public Gender Gender
+        {
+            get
+            {
+                if (GenderSelected != null)
+                    if (GenderSelected.Equals("Male"))
+                        return Gender.Male;
+
+                //default Gender is Female
+                return Gender.Female;
+            }
+        }
+
         [DisplayName("Health Card Number")]
         public string HealthCardNumber { get; set; }
     }
