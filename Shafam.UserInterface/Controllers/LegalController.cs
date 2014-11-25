@@ -62,7 +62,14 @@ namespace Shafam.UserInterface.Controllers
 		{
 			Patient patient = _patientRepository.GetPatient(patientId);
 			IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
-			return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient });
+
+            Dictionary<int,Doctor> doctors = new Dictionary<int,Doctor>();
+            foreach (Visitation visitation in visitationsForPatient)
+            {
+                doctors.Add(visitation.DoctorId,_doctorRepository.GetDoctor(visitation.DoctorId));
+            }
+
+			return View(new VisitationViewModel { Patient = patient, Visitations = visitationsForPatient, Doctors = doctors });
 		}
 
 		// Show the visitations of a doctor

@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th>Visitation ID</th>
-            <th>Doctor ID</th>
+            <th>Doctor Name</th>
             <th>Date &amp; Time</th>
             <th>Medications</th>
         </tr>
@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>@visitation.VisitationId</td>
-                <td>@visitation.DoctorId</td>
+                <td>@Model.Doctors[visitation.VisitationId]</td>
                 <td>@visitation.DateTime</td>
                 <td>@visitation.Medications</td>
             </tr>
