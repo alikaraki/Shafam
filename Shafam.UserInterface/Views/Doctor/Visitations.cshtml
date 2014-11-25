@@ -20,14 +20,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Visitation visitation in Model.Visitations)
+        @for (int i = 0; i < Model.Visitations.ToList().Count; i++)
         {
-            <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = visitation.VisitationId })'">
-                <td>@visitation.VisitationId</td>
-                <td>@visitation.DateTime</td>
-                <td>@visitation.DoctorId</td>
-                <td>@visitation.Reason</td>
-                <td>@visitation.Notes</td>
+            <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = Model.Visitations.ToArray()[i].VisitationId })'">
+                <td>@Model.Visitations.ToArray()[i].VisitationId</td>   @*<td>@visitation.VisitationId</td>*@
+                <td>@Model.Visitations.ToArray()[i].DateTime</td>       @*<td>@visitation.DateTime</td>*@
+                <td>@Model.Doctor.FirstName @Model.Doctor.LastName </td>   @*<td>@visitation.DoctorId</td>*@
+                <td>@Model.Visitations.ToArray()[i].Reason</td>   @*<td>@visitation.Reason</td>*@
+                <td>@Model.Visitations.ToArray()[i].Notes</td>   @*<td>@visitation.Notes</td>*@
             </tr>
         }
     </tbody>

@@ -9,6 +9,7 @@ namespace Shafam.UserInterface.Models
     {
         public Patient Patient { get; set; }
         public Visitation Visitation { get; set; }
+        public Doctor Doctor { get; set; }
         public Medication Medication { get; set; }
         public Treatment Treatment { get; set; }
         public Test Test { get; set; }

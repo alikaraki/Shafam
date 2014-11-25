@@ -110,6 +110,5 @@ namespace Shafam.UserInterface.Controllers
 			var patient = _patientRepository.GetPatient(id);
 			return patient.GetUserViewModel(_accountRepository.GetAccountByUserId(patient.PatientId,UserRole.Patient));
 		}
-
 	}
 }
