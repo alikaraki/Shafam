@@ -30,7 +30,7 @@ namespace Shafam.UserInterface.Controllers
             _billingManagementService = billingManagementService;
             _patientManagementService = patientManagementService;
         }
-        
+
         public ActionResult Index()
         {
             return RedirectToAction("Doctors");
@@ -60,7 +60,7 @@ namespace Shafam.UserInterface.Controllers
         {
             DateTime begin = timePeriod.Begin;
             DateTime end = timePeriod.End;
-            return RedirectToAction("TimeBillDetails", "Finance", new { begin = begin, end = end});
+            return RedirectToAction("TimeBillDetails", "Finance", new { begin = begin, end = end });
         }
 
 
@@ -73,108 +73,21 @@ namespace Shafam.UserInterface.Controllers
             Dictionary<string, Tuple<double, int, double>> testDict = new Dictionary<string, Tuple<double, int, double>>();
             Dictionary<string, Tuple<double, int, double>> medicationDict = new Dictionary<string, Tuple<double, int, double>>();
             int count = 0;
- 
+
             foreach (Treatment treatment in treatments)
             {
                 if (!String.IsNullOrEmpty(treatment.TreatmentType))
-                {                    
+                {
                     if (treatmentDict.ContainsKey(treatment.TreatmentType))
                     {
                         count = treatmentDict[treatment.TreatmentType].Item2 + 1;
-                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,count,treatment.Rate*count);
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double, int, double>(treatment.Rate, count, treatment.Rate * count);
                         treatmentDict[treatment.TreatmentType] = treatmentTuple;
                     }
                     else
-                    {                        
-                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,1,treatment.Rate);
-                        treatmentDict.Add(treatment.TreatmentType,treatmentTuple); 
-                    }
-                }
-            }
-
-            count = 0;
-            foreach (Test test in tests)
-            {
-                if (!String.IsNullOrEmpty(test.Type))
-                {
-                    if (testDict.ContainsKey(test.Type))
                     {
-                        count = testDict[test.Type].Item2 + 1;
-                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, count, test.Rate * count);
-                        testDict[test.Type] = testTuple;
-                    }
-                    else
-                    {
-                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, 1, test.Rate * count);
-                        testDict.Add(test.Type, testTuple);
-                    }
-                }
-            }
-
-            count = 0;
-            foreach (Medication medication in medications)
-            {
-                if (!String.IsNullOrEmpty(medication.Name))
-                {
-                    if (medicationDict.ContainsKey(medication.Name))
-                    {
-                        count = medicationDict[medication.Name].Item2 + 1;
-                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, count, medication.Rate * count);
-                        medicationDict[medication.Name] = medicationTuple;
-                    }
-                    else
-                    {
-                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, 1, medication.Rate * count);
-                        medicationDict.Add(medication.Name, medicationTuple);
-                    }
-                }
-            }
-            
-
-            // CALCULATE BILL AMOUNT
-            int numVisits = _billingManagementService.GetNumberOfVisitationsForDoctor(doctorId);
-            double Amount = (numVisits * 100) 
-                            + testDict.Sum(ix => ix.Value.Item3) 
-                            + treatmentDict.Sum(ix => ix.Value.Item3) 
-                            + medicationDict.Skip(1).Sum(ix => ix.Value.Item3);
-
-            DoctorBillViewModel doctorBillViewModel = new DoctorBillViewModel
-            {
-                Doctor = _doctorRepository.GetDoctor(doctorId),
-                NumberOfVisitations = numVisits,
-                VisitationCost = 100 * numVisits,
-                TestDict = testDict,
-                TreatmentDict = treatmentDict,
-                MedicationDict = medicationDict,
-                BillAmount = Amount
-            };
-            return View(doctorBillViewModel);
-        }
-
-        public ActionResult PatientBill(int patientId)
-        {
-            List<Treatment> treatments = _billingManagementService.GetTreatmentsForPatient(patientId);
-            List<Test> tests = _billingManagementService.GetTestsForPatient(patientId);
-            List<Medication> medications = _billingManagementService.GetMedicationsForPatient(patientId);
-            Dictionary<string, Tuple<double, int, double>> treatmentDict = new Dictionary<string, Tuple<double, int, double>>();
-            Dictionary<string, Tuple<double, int, double>> testDict = new Dictionary<string, Tuple<double, int, double>>();
-            Dictionary<string, Tuple<double, int, double>> medicationDict = new Dictionary<string, Tuple<double, int, double>>();
-            int count = 0;
- 
-            foreach (Treatment treatment in treatments)
-            {
-                if (!String.IsNullOrEmpty(treatment.TreatmentType))
-                {                    
-                    if (treatmentDict.ContainsKey(treatment.TreatmentType))
-                    {
-                        count = treatmentDict[treatment.TreatmentType].Item2 + 1;
-                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,count,treatment.Rate*count);
-                        treatmentDict[treatment.TreatmentType] = treatmentTuple;
-                    }
-                    else
-                    {                        
-                        Tuple<double, int, double> treatmentTuple = new Tuple<double,int,double> (treatment.Rate,1,treatment.Rate);
-                        treatmentDict.Add(treatment.TreatmentType,treatmentTuple); 
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double, int, double>(treatment.Rate, 1, treatment.Rate);
+                        treatmentDict.Add(treatment.TreatmentType, treatmentTuple);
                     }
                 }
             }
@@ -216,13 +129,100 @@ namespace Shafam.UserInterface.Controllers
                     }
                 }
             }
-            
+
+
+            // CALCULATE BILL AMOUNT
+            int numVisits = _billingManagementService.GetNumberOfVisitationsForDoctor(doctorId);
+            double Amount = (numVisits * 100)
+                            + testDict.Sum(ix => ix.Value.Item3)
+                            + treatmentDict.Sum(ix => ix.Value.Item3)
+                            + medicationDict.Sum(ix => ix.Value.Item3);
+
+            DoctorBillViewModel doctorBillViewModel = new DoctorBillViewModel
+            {
+                Doctor = _doctorRepository.GetDoctor(doctorId),
+                NumberOfVisitations = numVisits,
+                VisitationCost = 100 * numVisits,
+                TestDict = testDict,
+                TreatmentDict = treatmentDict,
+                MedicationDict = medicationDict,
+                BillAmount = Amount
+            };
+            return View(doctorBillViewModel);
+        }
+
+        public ActionResult PatientBill(int patientId)
+        {
+            List<Treatment> treatments = _billingManagementService.GetTreatmentsForPatient(patientId);
+            List<Test> tests = _billingManagementService.GetTestsForPatient(patientId);
+            List<Medication> medications = _billingManagementService.GetMedicationsForPatient(patientId);
+            Dictionary<string, Tuple<double, int, double>> treatmentDict = new Dictionary<string, Tuple<double, int, double>>();
+            Dictionary<string, Tuple<double, int, double>> testDict = new Dictionary<string, Tuple<double, int, double>>();
+            Dictionary<string, Tuple<double, int, double>> medicationDict = new Dictionary<string, Tuple<double, int, double>>();
+            int count = 0;
+
+            foreach (Treatment treatment in treatments)
+            {
+                if (!String.IsNullOrEmpty(treatment.TreatmentType))
+                {
+                    if (treatmentDict.ContainsKey(treatment.TreatmentType))
+                    {
+                        count = treatmentDict[treatment.TreatmentType].Item2 + 1;
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double, int, double>(treatment.Rate, count, treatment.Rate * count);
+                        treatmentDict[treatment.TreatmentType] = treatmentTuple;
+                    }
+                    else
+                    {
+                        Tuple<double, int, double> treatmentTuple = new Tuple<double, int, double>(treatment.Rate, 1, treatment.Rate);
+                        treatmentDict.Add(treatment.TreatmentType, treatmentTuple);
+                    }
+                }
+            }
+
+            count = 0;
+            foreach (Test test in tests)
+            {
+                if (!String.IsNullOrEmpty(test.Type))
+                {
+                    if (testDict.ContainsKey(test.Type))
+                    {
+                        count = testDict[test.Type].Item2 + 1;
+                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, count, test.Rate * count);
+                        testDict[test.Type] = testTuple;
+                    }
+                    else
+                    {
+                        Tuple<double, int, double> testTuple = new Tuple<double, int, double>(test.Rate, 1, test.Rate);
+                        testDict.Add(test.Type, testTuple);
+                    }
+                }
+            }
+
+            count = 0;
+            foreach (Medication medication in medications)
+            {
+                if (!String.IsNullOrEmpty(medication.Name))
+                {
+                    if (medicationDict.ContainsKey(medication.Name))
+                    {
+                        count = medicationDict[medication.Name].Item2 + 1;
+                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, count, medication.Rate * count);
+                        medicationDict[medication.Name] = medicationTuple;
+                    }
+                    else
+                    {
+                        Tuple<double, int, double> medicationTuple = new Tuple<double, int, double>(medication.Rate, 1, medication.Rate);
+                        medicationDict.Add(medication.Name, medicationTuple);
+                    }
+                }
+            }
+
 
             // CALCULATE BILL AMOUNT
             int numVisits = _billingManagementService.GetNumberOfVisitationsForPatient(patientId);
-            double Amount = (numVisits * 100) 
-                            + testDict.Sum(ix => ix.Value.Item3) 
-                            + treatmentDict.Sum(ix => ix.Value.Item3) 
+            double Amount = (numVisits * 100)
+                            + testDict.Sum(ix => ix.Value.Item3)
+                            + treatmentDict.Sum(ix => ix.Value.Item3)
                             + medicationDict.Sum(ix => ix.Value.Item3);
 
             PatientBillViewModel patientBillViewModel = new PatientBillViewModel
@@ -323,5 +323,5 @@ namespace Shafam.UserInterface.Controllers
             };
             return View(timeBillViewModel);
         }
-	}
+    }
 }
