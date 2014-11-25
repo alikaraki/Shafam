@@ -42,10 +42,6 @@ namespace Shafam.UserInterface.Controllers
             _schedulingService = schedulingService;
             _referralRepository = referralRepository;
             _notificationManagementService = notificationManagementService;
-<<<<<<< HEAD
-            
-=======
->>>>>>> a1899c515a8a1fa82b95b8a4f2de47398ba6e159
         }
 
         public ActionResult Index()
