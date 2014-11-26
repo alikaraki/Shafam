@@ -11,7 +11,6 @@
     <thead>
         <tr>
             <th>Visitation ID</th>
-            <th>Patient ID</th>
             <th>Patient Name</th>
             <th>Date &amp; Time</th>
             <th>Medications</th>
@@ -31,7 +30,6 @@
         {
             <tr>
                 <td>@Model.Visitations.ToArray()[i].VisitationId</td>
-                <td>@Model.Visitations.ToArray()[i].PatientId</td>
                 <td>@Model.PatientList.ToArray()[i].FirstName @Model.PatientList.ToArray()[i].LastName</td>
                 <td>@Model.Visitations.ToArray()[i].DateTime</td>
                 <td>@Model.Medications.ToArray()[i].Medication.Name</td>
