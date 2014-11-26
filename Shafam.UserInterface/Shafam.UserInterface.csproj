@@ -222,21 +222,21 @@
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
-    <None Include="Models\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Models\Scripts\bootstrap.js" />
-    <Content Include="Models\Scripts\bootstrap.min.js" />
-    <Content Include="Models\Scripts\jquery-1.10.2.js" />
-    <Content Include="Models\Scripts\jquery-1.10.2.min.js" />
-    <None Include="Models\Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Models\Scripts\jquery.validate.js" />
-    <Content Include="Models\Scripts\jquery.validate.min.js" />
-    <Content Include="Models\Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Models\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Models\Scripts\modernizr-2.6.2.js" />
-    <Content Include="Models\Scripts\npm.js" />
-    <Content Include="Models\Scripts\respond.js" />
-    <Content Include="Models\Scripts\respond.min.js" />
-    <Content Include="Models\Scripts\_references.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -253,7 +253,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Models\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
@@ -310,6 +310,8 @@
     <Content Include="Views\Legal\PatientVisitations.cshtml" />
     <Content Include="Views\Legal\_DoctorProfileVisitationHeader.cshtml" />
     <Content Include="Views\Legal\_PatientVisitationProfileHeader.cshtml" />
+    <None Include="Properties\PublishProfiles\shafam.pubxml" />
+    <Content Include="Views\Doctor\Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
