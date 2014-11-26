@@ -367,7 +367,7 @@ namespace Shafam.UserInterface.Controllers
         [HttpPost]
         public ActionResult NewAppointment(AppointmentInputViewModel newAppointment, int doctorId)
         {
-            _schedulingService.AddAppointment(newAppointment.PatientID, doctorId,
+            _schedulingService.AddAppointment(int.Parse(newAppointment.AssignedPatientId), doctorId,
                                                 newAppointment.DateTime, newAppointment.Reason); 
             // Redirect to Doctor Schedule
             return RedirectToAction("DoctorSchedule", "Staff", new { doctorId = doctorId });
