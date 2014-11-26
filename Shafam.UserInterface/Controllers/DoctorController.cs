@@ -141,10 +141,17 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult Visitations(int patientId)
         {
             Patient patient = _patientRepository.GetPatient(patientId);
-            int doctorId = _identityProvider.GetAuthenticatedUserId();
-            Doctor doctor = _doctorRepository.GetDoctor(doctorId);
-            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatientWithDoctor(patient.PatientId,doctorId);
-            return View(new VisitationViewModel { Patient = patient, Doctor = doctor, Visitations = visitationsForPatient});
+            //int doctorId = _identityProvider.GetAuthenticatedUserId();
+            //Doctor doctor = _doctorRepository.GetDoctor(doctorId);
+            //IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatientWithDoctor(patient.PatientId,doctorId);
+            
+            IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
+            List<Doctor> doctorsForPatient = new List<Doctor>();
+            foreach (Visitation v in visitationsForPatient)
+            {
+                doctorsForPatient.Add(_doctorRepository.GetDoctor(v.DoctorId));
+            }
+            return View(new VisitationViewModel { Patient = patient, DoctorList = doctorsForPatient, Visitations = visitationsForPatient});
         }
 
         public ActionResult Medication(int patientId)

@@ -25,7 +25,7 @@
             <tr onclick="window.location.href='@Url.Action("VisitationDetails", new { patientid = @Model.Patient.PatientId, visitationId = Model.Visitations.ToArray()[i].VisitationId })'">
                 <td>@Model.Visitations.ToArray()[i].VisitationId</td>   @*<td>@visitation.VisitationId</td>*@
                 <td>@Model.Visitations.ToArray()[i].DateTime</td>       @*<td>@visitation.DateTime</td>*@
-                <td>@Model.Doctor.FirstName @Model.Doctor.LastName </td>   @*<td>@visitation.DoctorId</td>*@
+                <td>@Model.DoctorList.ToArray()[i].FirstName @Model.DoctorList.ToArray()[i].LastName </td>   @*<td>@visitation.DoctorId</td>*@
                 <td>@Model.Visitations.ToArray()[i].Reason</td>   @*<td>@visitation.Reason</td>*@
                 <td>@Model.Visitations.ToArray()[i].Notes</td>   @*<td>@visitation.Notes</td>*@
             </tr>
