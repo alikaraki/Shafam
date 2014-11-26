@@ -1,16 +1,28 @@
 ﻿@model Shafam.UserInterface.Models.AppointmentInputViewModel
 
 @{
-    ViewBag.Title = "NewAppointment";
+    ViewBag.Title = "New Appointment";
 }
+
+<div class="row">
+    <div class="col-md-10">
+        <h3>Schedule Appointment with Doctor @Model.Doctor.FirstName @Model.Doctor.LastName </h3>
+    </div>
+    <div class="col-md-2">
+        <br />
+        <p class="pull-right">@Html.ActionLink("< Back to doctor schedule", "DoctorSchedule", new { doctorId = Model.Doctor.DoctorId })</p>
+    </div>
+</div>
+
+<hr />
 
 <section id="appointmentForm">
     @using (Html.BeginForm("NewAppointment", "Staff", new { doctorId = @Model.Doctor.DoctorId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         <div class="form-group">
-            @Html.LabelFor(m => m.PatientID, new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.PatientID, new { @class = "form-control", @placeholder = "Patient's ID" })
+            @Html.LabelFor(model => model.AssignedPatientId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AssignedPatientId, Model.PatientList, "Select Doctor", new { @class = "form-control" })
             </div>
         </div>
 

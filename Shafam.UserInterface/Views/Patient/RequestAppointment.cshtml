@@ -10,9 +10,9 @@
     @using (Html.BeginForm("RequestAppointment", "Patient", new { patientId = @Model.Patient.PatientId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         <div class="form-group">
-            @Html.LabelFor(m => m.Patient.PatientId, new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(m => m.Patient, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.Patient.PatientId, new { @class = "form-control", @placeholder = "Patient's ID" })
+                @Html.TextBoxFor(m => m.Patient.FirstName, new { @class = "form-control", @placeholder = "Patient's ID", @disabled = "true" })
             </div>
         </div>
 

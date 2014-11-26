@@ -344,9 +344,10 @@ namespace Shafam.UserInterface.Controllers
         [HttpGet]
         public ActionResult NewAppointment(int doctorId)
         {
+            List<Patient> allPatients = _patientManagementService.AllPatients();
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
             ViewBag.ReturnUrl = Url.Action("NewAppointment");
-            return View(new AppointmentInputViewModel {Doctor = doctor});
+            return View(new AppointmentInputViewModel { Doctor = doctor, Patients = allPatients });
         }
 
         [HttpPost]
