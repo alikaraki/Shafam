@@ -312,6 +312,11 @@
     <Content Include="Views\Legal\_PatientVisitationProfileHeader.cshtml" />
     <None Include="Properties\PublishProfiles\shafam.pubxml" />
     <Content Include="Views\Doctor\Schedule.cshtml" />
+    <Content Include="Views\Doctor\VisitationDetails.cshtml" />
+    <Content Include="Views\Patient\RequestAppointment.cshtml" />
+    <Content Include="Views\Patient\RequestMessage.cshtml" />
+    <Content Include="Views\Doctor\ReferPatient.cshtml" />
+    <Content Include="Views\Staff\AddTestResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,7 +33,7 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "John",
                 LastName = "Smith",
                 Gender = Gender.Male,
-                Specialty = "Surgeant",
+                Specialty = "Neurologist",
                 Department = Department.Neurology
             };
 
@@ -42,7 +42,7 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "Amy",
                 LastName = "Montrose",
                 Gender = Gender.Female,
-                Specialty = "Neurologist",
+                Specialty = "Surgeant",
                 Department = Department.Surgery
             };
 

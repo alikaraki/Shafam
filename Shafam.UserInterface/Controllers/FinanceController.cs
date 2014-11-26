@@ -52,7 +52,7 @@ namespace Shafam.UserInterface.Controllers
         public ActionResult TimeBill()
         {
             ViewBag.ReturnUrl = Url.Action("TimeBill");
-            return View(new TimePeriodInputViewModel { });
+            return View(new TimePeriodInputViewModel { Begin = DateTime.Now.AddMonths(-1), End = DateTime.Now });
         }
 
         [HttpPost]

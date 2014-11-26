@@ -18,6 +18,7 @@ namespace Shafam.UserInterface.Controllers
         private readonly IIdentityProvider _identityProvider;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IStaffRepository _staffRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly ISchedulingService _schedulingService;
         private readonly IPatientManagementService _patientManagementService;
@@ -29,6 +30,7 @@ namespace Shafam.UserInterface.Controllers
                                IIdentityProvider identityProvider,
                                ISchedulingService schedulingService,
                                IAppointmentRepository appointmentRepository,
+                               IStaffRepository staffRepository,
                                IDoctorRepository doctorRepository,
                                IPatientManagementService patientManagementService,
                                IVisitationManagementService visitationManagementService,
@@ -40,6 +42,7 @@ namespace Shafam.UserInterface.Controllers
             _identityProvider = identityProvider;
             _schedulingService = schedulingService;
             _appointmentRepository = appointmentRepository;
+            _staffRepository = staffRepository;
             _doctorRepository = doctorRepository;
             _patientManagementService = patientManagementService;
             _accountManagementService = accountManagementService;
@@ -329,7 +332,18 @@ namespace Shafam.UserInterface.Controllers
         // Show a list of all doctors.
         public ActionResult Doctors()
         {
-            IEnumerable<Doctor> doctors = _doctorRepository.GetDoctors();
+            Staff staff = _staffRepository.GetStaff(_identityProvider.GetAuthenticatedUserId());
+
+            IEnumerable<Doctor> doctors = new List<Doctor>();
+            if (staff.Department.HasValue)
+            {
+                doctors = _doctorRepository.GetDoctorsInDepartment(staff.Department.Value);
+            }
+            else
+            {
+                doctors = _doctorRepository.GetDoctors();
+            }
+
             return View(doctors);
         }
         
@@ -346,7 +360,7 @@ namespace Shafam.UserInterface.Controllers
         {
             Doctor doctor = _doctorRepository.GetDoctor(doctorId);
             ViewBag.ReturnUrl = Url.Action("NewAppointment");
-            return View(new AppointmentInputViewModel {Doctor = doctor});
+            return View(new AppointmentInputViewModel {Doctor = doctor, DateTime = DateTime.Now.AddDays(3) });
         }
 
         [HttpPost]

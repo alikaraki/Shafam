@@ -18,19 +18,19 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th></th>
-            <th>Visitations</th>
-            <th>Rate</th>
-            <th>Cost</th>
+        <tr class="row">
+            <th class="col-md-3"></th>
+            <th class="col-md-3">Rate</th>
+            <th class="col-md-3">Visitations</th>
+            <th class="col-md-3">Cost</th>
         </tr>
     </thead>
     <tbody>
-        <tr>            
-            <td>Value</td>
-            <td>@Model.NumberOfVisitations</td>
-            <td>$100.00</td>
-            <td>$@Model.VisitationCost</td>
+        <tr class="row">            
+            <td class="col-md-3">Value</td>
+            <td class="col-md-3">$100.00</td>
+            <td class="col-md-3">@Model.NumberOfVisitations</td>
+            <td class="col-md-3">$@Model.VisitationCost</td>
         </tr>
     </tbody>
 </table>
@@ -38,21 +38,21 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Treatment Type</th>
-            <th>Rate</th>
-            <th>Count</th>
-            <th>Cost</th>
+        <tr class="row">
+            <th class="col-md-3">Treatment Type</th>
+            <th class="col-md-3">Rate</th>
+            <th class="col-md-3">Count</th>
+            <th class="col-md-3">Cost</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.TreatmentDict)
         {
-            <tr> 
-                <td>@item.Key</td>
-                <td>$@item.Value.Item1</td>
-                <td>@item.Value.Item2</td>
-                <td>$@item.Value.Item3</td>
+            <tr class="row"> 
+                <td class="col-md-3">@item.Key</td>
+                <td class="col-md-3">$@item.Value.Item1</td>
+                <td class="col-md-3">@item.Value.Item2</td>
+                <td class="col-md-3">$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
@@ -62,21 +62,21 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Test Type</th>
-            <th>Rate</th>
-            <th>Count</th>
-            <th>Cost</th>
+        <tr class="row">
+            <th class="col-md-3">Test Type</th>
+            <th class="col-md-3">Rate</th>
+            <th class="col-md-3">Count</th>
+            <th class="col-md-3">Cost</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.TestDict)
         {
-            <tr>
-                <td>@item.Key</td>
-                <td>$@item.Value.Item1</td>
-                <td>@item.Value.Item2</td>
-                <td>$@item.Value.Item3</td>
+            <tr class="row">
+                <td class="col-md-3">@item.Key</td>
+                <td class="col-md-3">$@item.Value.Item1</td>
+                <td class="col-md-3">@item.Value.Item2</td>
+                <td class="col-md-3">$@item.Value.Item3</td>
             </tr>
         }
     </tbody>
@@ -86,21 +86,21 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Medication Type</th>
-            <th>Rate</th>
-            <th>Count</th>
-            <th>Cost</th>
+        <tr class="row">
+            <th class="col-md-3">Medication Type</th>
+            <th class="col-md-3">Rate</th>
+            <th class="col-md-3">Count</th>
+            <th class="col-md-3">Cost</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.MedicationDict)
         {
-            <tr>
-                <td>@item.Key</td>
-                <td>$@item.Value.Item1</td>
-                <td>@item.Value.Item2</td>
-                <td>$@item.Value.Item3</td>
+            <tr class="row">
+                <td class="col-md-3">@item.Key</td>
+                <td class="col-md-3">$@item.Value.Item1</td>
+                <td class="col-md-3">@item.Value.Item2</td>
+                <td class="col-md-3">$@item.Value.Item3</td>
             </tr>
         }
     </tbody>

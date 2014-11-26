@@ -8,6 +8,7 @@ using Shafam.DataAccess;
 using Shafam.UserInterface.Infrastructure;
 using Shafam.BusinessLogic;
 using Shafam.UserInterface.Models;
+using WebGrease.Css.Extensions;
 
 namespace Shafam.UserInterface.Controllers
 {
@@ -61,9 +62,11 @@ namespace Shafam.UserInterface.Controllers
 		public ActionResult Visitations(int patientId)
 		{
 			Patient patient = _patientRepository.GetPatient(patientId);
-			List<Doctor> doctors = _patientRepository.GetDoctorsForPatient(patientId);
+			List<Doctor> doctors = new List<Doctor>();
 			IEnumerable<Visitation> visitationsForPatient = _visitationManagementService.GetVisitationsForPatient(patient.PatientId);
 			
+            visitationsForPatient.ForEach(v => doctors.Add(_doctorRepository.GetDoctor(v.DoctorId)));
+
 			VisitationViewModel visitationViewModel = new VisitationViewModel { Patient = patient,
 																				Visitations = visitationsForPatient,
 																				DoctorList = doctors,
