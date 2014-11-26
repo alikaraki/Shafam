@@ -15,9 +15,10 @@ namespace Shafam.Common.DataModel
             {
                 if (!string.IsNullOrEmpty(Type))
                 {
-                    if (Type.Equals("X-Ray"))
+                    if (Type.Equals("X-Ray", StringComparison.InvariantCultureIgnoreCase))
                         return 150.00;
-                    else if (Type.Equals("Blood Test"))
+                    
+                    if (Type.Equals("Blood Test", StringComparison.InvariantCultureIgnoreCase))
                         return 120.00;
                 }
                 return 100.00;   //flat rate of $100

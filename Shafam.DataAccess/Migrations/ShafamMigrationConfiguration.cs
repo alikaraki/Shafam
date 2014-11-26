@@ -33,7 +33,7 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "John",
                 LastName = "Smith",
                 Gender = Gender.Male,
-                Specialty = "Surgeant",
+                Specialty = "Neurologist",
                 Department = Department.Neurology
             };
 
@@ -42,7 +42,7 @@ namespace Shafam.DataAccess.Migrations
                 FirstName = "Amy",
                 LastName = "Montrose",
                 Gender = Gender.Female,
-                Specialty = "Neurologist",
+                Specialty = "Surgeant",
                 Department = Department.Surgery
             };
 
@@ -72,7 +72,7 @@ namespace Shafam.DataAccess.Migrations
 
             context.SaveChanges();
 
-            var doctor1Account = new Account { Username = "JoBhn", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
+            var doctor1Account = new Account { Username = "John", Password = "john", Role = UserRole.Doctor, UserId = doctor1.DoctorId };
             var doctor2Account = new Account { Username = "Amy", Password = "amy", Role = UserRole.Doctor, UserId = doctor2.DoctorId };
             var staff1Account = new Account { Username = "Michael", Password = "michael", Role = UserRole.Staff, UserId = staff1.StaffId};
             var staff2Account = new Account { Username = "Sara", Password = "sara", Role = UserRole.Staff, UserId = staff2.StaffId};
